@@ -1,0 +1,8 @@
+version = 1
+default = "herdr"
+
+[environments.herdr]
+protocol = "references/environment-herdr.md"
+
+[environments.herdr.required_env]
+HERDR_ENV = "1"

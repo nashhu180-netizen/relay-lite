@@ -1,0 +1,13 @@
+{
+  "cwd": "/home/nash/work/relay-lite/.dh-worktrees/RLT_35",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "exit_code": 1
+}

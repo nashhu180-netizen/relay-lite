@@ -5,6 +5,8 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import subprocess
+import shutil
 import sys
 import tempfile
 import unittest
@@ -60,8 +62,11 @@ class InstallSkillTests(unittest.TestCase):
                 "SKILL.md",
                 "references/adapter-claude-code.md",
                 "references/adapter-codex.md",
+                "references/environment-herdr.md",
+                "environments.toml",
                 "roles.toml",
                 "space_watch.py",
+                "environment_config.py",
                 "templates/card-chain.md",
             ),
             PACKAGE_FILES,
@@ -138,4 +143,23 @@ class InstallSkillTests(unittest.TestCase):
         for target in self.targets():
             self.assertEqual(src, (target / "roles.toml").read_bytes(), str(target))
 
-
+    def test_environment_gate_is_standalone_after_source_checkout_disappears(self) -> None:
+        """The installed helper reads only the installed package and its protocol."""
+        source = Path(self.tempdir.name)/'removed-source'
+        for rel in PACKAGE_FILES:
+            dest = source/rel
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(install_skill._source_file(SKILL_DIR, rel), dest)
+        self.assertEqual(0, install_skill.main(["--all"], home=self.home, source_dir=source))
+        shutil.rmtree(source)
+        self.assertFalse(source.exists())
+        for target in self.targets():
+            helper = target / "environment_config.py"
+            env = {"PATH": os.environ.get("PATH", ""), "HERDR_ENV": "1"}
+            proc = subprocess.run([sys.executable, str(helper)], cwd=self.tempdir.name,
+                                  capture_output=True, text=True, env=env, check=False)
+            self.assertEqual(0, proc.returncode, proc.stderr)
+            payload = json.loads(proc.stdout)
+            self.assertEqual("READY", payload["state"])
+            self.assertEqual("herdr", payload["environment"])
+            self.assertEqual(str(target / "references/environment-herdr.md"), payload["protocol"])

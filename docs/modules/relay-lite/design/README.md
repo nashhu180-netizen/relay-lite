@@ -5,6 +5,7 @@
 
 <!-- dh:design-inputs:start -->
 - [产品设计与验收](./01-产品设计与验收.md)
+- [环境派发与监控](./02-环境派发与监控.md)
 <!-- dh:design-inputs:end -->
 
 ## 内容目录

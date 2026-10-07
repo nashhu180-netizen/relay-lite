@@ -1,0 +1,16 @@
+RLT_35 config implementation evidence
+
+Scope: skill/environments.toml; tools/environment_config.py; tools/install_skill.py;
+tests/test_environment_config.py; tests/test_install_skill.py.
+
+Command:
+python3 -m unittest tests/test_environment_config.py tests/test_install_skill.py -v
+
+Result: PASS (17 tests, 0 failures, 0 errors).
+
+Coverage observed: real helper CLI returns fixed JSON for READY and BLOCKED; unknown and
+empty selections, recovery conflict, malformed/closed configuration, missing protocol,
+relative and symlink escape, missing runtime contract, and RELAY_RECEIPT presence stop
+without exposing values. Installer copies config, protocol and helper to all three targets,
+records hashes, and the installed helper resolves the installed package without its source
+checkout as cwd.

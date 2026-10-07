@@ -1,0 +1,23 @@
+{
+  "path": "tools/environment_config.py",
+  "anchor": "chosen = environment if environment is not None else data[\"default\"]",
+  "mutation": "Unknown environment silently falls back to default",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_environment_config.py",
+    "-k",
+    "test_unknown_empty_and_recovery_conflict_stop",
+    "-v"
+  ],
+  "red_exit_code": 1,
+  "original_sha256": "d8e269e045ef5388c6e6d2c891e81ee0433256c46c79151f4502879258a847b7",
+  "mutated_sha256": "c328ffdde94d533e1f6fbb132dd4f15a1b3359227095b6d75941258680410fdf",
+  "restored_sha256": "d8e269e045ef5388c6e6d2c891e81ee0433256c46c79151f4502879258a847b7",
+  "red_is_assertion_failure": true
+}

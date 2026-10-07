@@ -30,3 +30,21 @@
 ## Verdict
 
 `PASS`：候选满足本轮独立代码审阅所覆盖的安装器旧别名/manifest 保护、现役与 archive 的独立性、旧协议权限语义保留及源仓退役测试耦合处理。仍须按 heavy 卡合同完成同批其它独立路径、指定变异的实际 RED→精确恢复→GREEN，以及后续 PR/CI/合入态复验和 verify。
+
+## 定向补充：最新 AW 总表切换候选
+
+审阅范围仅限本工作树尚未提交的 `docs/table-cutover.json`、AW 现役表候选、`live-source-table-5a47a4f9.md` / readback 证据及 `tests/test_contract.py` 的表体校验；不复审产品代码，不改变冻结的 948 条库存。
+
+- `table-cutover.json` 锁定源 `5a47a4f98d01e77f9a78994765dc59d8b54dd6a5` 和 AW 表快照 SHA256 `b8a7a5aa6729ba3d5355132b72c8f5f3466de7afbfaf31530c2449df5f7343d5`。独立以 `git show 5a47a4f:<AW 表路径>` 复算，和快照字节相同。
+- 新 AW 表只新增迁移候选头；移除该头后的表体与上述快照逐字节一致，故原状态、自动接续授权、维护会话、历史通知和旧 `coder` 正文均未被重写。切换清单现也显式列出 WFP：其 snapshot 指向原 archive，SHA256 `e91b6125dcba63eef6adc8298339bd607a8e89aaf5ffde3832931bb7e584221f` 同时匹配冻结源和本地主树 `5a47a4f`；WFP 候选头同样写明待原维护者确认、旧表仍权威且禁止并写。`test_inventory_exactly_matches_preconstruction_plan` 仍确认 948 条冻结库存未变。
+- `test_active_table_bodies_preserve_all_authorization_and_status_bytes` 现在从 `table-cutover.json` 为明确列出的 AW 表选择额外快照并核对 SHA256，未列出的 WFP 表仍取原 archive。独立复跑 `python3 -m unittest discover -s tests -v`：39 tests / exit 0；另以相同选择逻辑复算两份现役表体，均匹配各自授权快照。
+- 切换清单和两份候选头均明确 `pending_maintainer_ack`：向 AW、WFP 的原维护者通知均因 active writer 未送达，旧 dh-relay 表仍是权威，候选不得并写或合入。该状态与用户本次迁最新并协调原维护者的边界相符，不将未送达通知写成确认。
+
+| 级别 | 结论 |
+|---|---|
+| P0 | 无 |
+| P1 | 无 |
+| P2 | 无 |
+| P3 | 无 |
+
+定向结论：`PASS`（仅表切换候选与其测试/证据）。此结论不解除 `pending_maintainer_ack`，不把新表宣布为权威，也不放行合并。

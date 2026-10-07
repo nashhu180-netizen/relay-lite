@@ -1,0 +1,1 @@
+DONE path=requirement_direction verdict=PASS candidate=db18185b160c653eebe2121727b9f9f85c22716b source=d8f88ae948ae6767daea4dae491eea5b292b07e6 evidence=review.requirement.md cutover=5a47a4f98d01e77f9a78994765dc59d8b54dd6a5 tables=2 status=pending_maintainer_ack

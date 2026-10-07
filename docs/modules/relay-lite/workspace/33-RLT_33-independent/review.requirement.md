@@ -26,3 +26,19 @@
 `PASS`：当前候选完整承接用户的四项原始要求，并保留历史、授权与人验边界，未见扩入 #154 的实现性修改。独立安装边界有当前候选的孤立 clone 测试记录和可读结构测试支撑。
 
 仍未闭合的整卡事项按任务合同保留：fresh 代码轮 2、一致性、教训、有效变异 RED→恢复 GREEN、两仓远端 PR/必需 CI/合入态复验及 `verify(relay-lite)`；本报告不以本轮 PASS 代替这些闸门。
+
+## 2026-10-07 定向补充：最新总表切换
+
+复核对象为当前未提交补充，不重跑测试。用户新增决定是“本次迁移最新总表，并协调原维护会话切换新仓”；其范围只覆盖总表版本选择与交接协调，不授予合入、清理、代替维护者确认或改写 AW_07 业务状态的权限。
+
+- **状态与历史保真：PASS。** `table-cutover.json` 现列两表；冻结 `migration-plan.json`、`migration-inventory.json` 与 `archive/**` 未改。独立读回源主树 `5a47a4f98d01e77f9a78994765dc59d8b54dd6a5`：AW 表 SHA256 为 `b8a7a5aa6729ba3d5355132b72c8f5f3466de7afbfaf31530c2449df5f7343d5`，与额外快照相同；WFP 表 SHA256 为 `e91b6125dcba63eef6adc8298339bd607a8e89aaf5ffde3832931bb7e584221f`，与冻结 archive 相同。两候选表正文经迁移候选头后逐字等于各自列明的快照；`tests/test_contract.py` 的扩展断言以对应快照校验正文与 hash。
+- **权限与停止线：PASS，且仍受阻。** 两个候选页头、`brief.md`、`migration.md` 和 `progress.md` 一致写明 `pending_maintainer_ack`：旧仓表在确认前仍权威、候选表禁止并写、两 PR 不合入且不清理。`table-cutover.json` 对 `AW_07 orchestrator#2` 与 `WFP_08 orchestrator` 均记录 active writer、未送达及 `ack=null`；没有把任一未送达尝试写成已交接，也没有向 Herdr pane 施加外部控制。`review.md` 的 RL33-M5 同步降为“冻结 archive PASS、现役 cutover 待确认”，未冒称切换完成。
+
+| 级别 | 定向补充 finding |
+|---|---|
+| P0 | 无 |
+| P1 | 无 |
+| P2 | 无；维护者确认缺失是明确的合入/清理停止条件，不是可忽略的通过项。 |
+| P3 | 无 |
+
+**定向结论：PASS（候选与用户此次切换决定一致）。** 维护者确认仍为未闭合依赖；在收到可核查回执并按其内容完成旧表停写/新路径登记前，保持 `pending_maintainer_ack`、旧表权威和 Draft/不合入状态。本结论不代替该交接、整卡验收或任何既有出口闸。

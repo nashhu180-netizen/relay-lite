@@ -31,12 +31,18 @@ class MigrationTests(unittest.TestCase):
     def test_active_table_bodies_preserve_all_authorization_and_status_bytes(self):
         plan = json.loads((ROOT/'docs/modules/relay-lite/workspace/33-RLT_33-independent/migration-plan.json').read_text(encoding='utf-8'))
         tables = [r for r in plan['files'] if r['new_active']]
+        cutover = json.loads((ROOT/'docs/table-cutover.json').read_text(encoding='utf-8'))
+        latest = {r['source']:r for r in cutover['tables']}
         self.assertEqual(2, len(tables))
         for row in tables:
             new = (ROOT/row['new_active']).read_bytes()
             header, body = new.split(b'\n\n',1)
             self.assertIn('迁移'.encode(), header)
-            self.assertEqual((ROOT/row['archive']).read_bytes(),body,row['source'])
+            extra = latest.get(row['source'])
+            original = ROOT/(extra['snapshot'] if extra else row['archive'])
+            self.assertEqual(original.read_bytes(),body,row['source'])
+            if extra:
+                self.assertEqual(extra['sha256'],hashlib.sha256(body).hexdigest())
 
 class PackageTests(unittest.TestCase):
     def test_roles_and_new_dispatch_use_executor(self):

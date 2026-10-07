@@ -1,6 +1,6 @@
 # RLT_33 自动验收与独立复核
 
-本卡原授权：2026-10-07 用户“建个issue 后开工”，Issue relay-lite #1 / dh-relay #156。施工/自动验收执行者 Codex /root；未把施工会话冒充独立 reviewer，无新增人类签名。产品候选 db18185b160c653eebe2121727b9f9f85c22716b；源代码 d8f88ae，CI必要终态联动6a431e9。后续纯证据追加不修改产品。
+本卡原授权：2026-10-07 用户“建个issue 后开工”，Issue relay-lite #1 / dh-relay #156。施工/自动验收执行者 Codex /root；未把施工会话冒充独立 reviewer，无新增人类签名。产品候选 db18185b160c653eebe2121727b9f9f85c22716b；源代码 d8f88ae，CI必要终态联动6a431e9。补充用户决定及最新AW表迁移由定向复核另记；切换仍待原维护者确认。
 
 | ID | 命题/事实证明方式 | 实际结果/证据 | 最终裁决者 | 未覆盖边界 |
 |---|---|---|---|---|
@@ -8,8 +8,8 @@
 | RL33-M2 | 独立clone及临时home安装；封闭包测试 | PASS：isolated-clone-tests.log 39项；安装覆盖Claude/Codex/Agents三侧和明确alias | 自动验收 | 未改变用户级安装副本或运行中的会话 |
 | RL33-M3 | 协议/两adapter/roles/AGENTS与写权一致 | PASS：review.code1/code2/requirement/consistency；九phase与新executor一致、旧signal只读 | 独立reviewer，自动记录 | 不实施另案#154复核配方 |
 | RL33-M4 | 包中无旧mode/账本专属文件，不装archive | PASS：test_contract PackageTests；现役无stage-lead/五阶段入口 | 自动验收+独立reviewer | archive旧文字不作現役 |
-| RL33-M5 | 948项源闭集/937文档archive和两表原字节 | PASS：MigrationTests及review.plan/code1独立复算；mismatches=0 | 自动验收+独立reviewer | 不改原卡状态/授权/人验、不关闭旧卡 |
-| RL33-M6 | watcher回归、heavy五路与有效变异、CI | 本地39、冻结相关44、source PowerShell PASS（原真实终端skip1）；五路均PASS；effective-test.json业务RED/精确恢复/GREEN | 独立reviewer+自动验收 | CI当前读回另补；没有新真实Herdr演练 |
+| RL33-M5 | 948项源闭集/937文档archive和两表原字节 | 冻结archive PASS（948项/937原字节）；最新AW表快照已补，待维护会话确认切换；见table-cutover.json | 自动验收+独立reviewer | 不改原卡状态/授权/人验、不关闭旧卡 |
+| RL33-M6 | watcher回归、heavy五路与有效变异、CI | 本地39、冻结相关44、source PowerShell PASS（原真实终端skip1）；五路均PASS；effective-test.json业务RED/精确恢复/GREEN | 独立reviewer+自动验收 | 两仓必要CI成功，source整体SUCCESS/relay-core观察失败保留；没有新真实Herdr演练 |
 
 需求境证据：操作路径“独立clone→运行39项测试→无源checkout的隔离包/临时HOME安装→读取模板及watcher CLI”；证据isolated-clone-tests.log、test_contract.py与五份独立报告；结论分发/术语/历史保全满足本卡需求。任务不含UI，不用DOM/截图替代。旧卡#151真实Herdr验收仍归原合同。
 

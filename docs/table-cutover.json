@@ -1,7 +1,7 @@
 {
   "source_sha": "5a47a4f98d01e77f9a78994765dc59d8b54dd6a5",
   "user_decision": "2026-10-07 migrate latest tables and coordinate existing maintainer",
-  "status": "paused_ack_received_waiting_new_merge",
+  "status": "complete_both_original_maintainers_resumed_new_authoritative_paths_source_retired",
   "tables": [
     {
       "source": "docs/relay/agent-playground/agent-workbench/aw-mvp/relay_plan.md",
@@ -12,7 +12,10 @@
       "ack": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/rlt33-aw07-cutover-ack.md",
       "source_sha": "5a47a4f98d01e77f9a78994765dc59d8b54dd6a5",
       "source_ref": "local master",
-      "import_commit": "9458e4fab52e5d39f67ddaa7ecd4e76370937f7a"
+      "import_commit": "9458e4fab52e5d39f67ddaa7ecd4e76370937f7a",
+      "active_path_ack": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/rlt33-aw07-cutover-active-ack.md",
+      "resume_notice": "original sole maintainer confirmed new-table maintenance resumed; separate owned branch, master unchanged",
+      "resumed_ack": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/rlt33-aw07-cutover-resumed-ack.md"
     },
     {
       "source": "docs/relay/wf-analytics-platform/workflow-platform/wfp-p1-obd-p5/relay_plan.md",
@@ -23,10 +26,13 @@
       "ack": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/rlt33-wfp-cutover-ack.md",
       "source_sha": "65f87a0adab6d7bf4915c99c317f709dab3b32fd",
       "source_ref": "unmerged PR158 docs/wfp08-chain-resume-20261007",
-      "import_commit": "9458e4fab52e5d39f67ddaa7ecd4e76370937f7a"
+      "import_commit": "9458e4fab52e5d39f67ddaa7ecd4e76370937f7a",
+      "active_path_ack": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/rlt33-wfp-cutover-active-ack.md",
+      "resume_notice": "identity-checked deferred prompt submitted; original sole maintainer durable resumed ACK received; no business acceptance or PR158 merge",
+      "resumed_ack": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/rlt33-wfp-cutover-resumed-ack.md"
     }
   ],
-  "source_checkout_changes": "none",
+  "source_checkout_changes": "source retired via PR157; ordinary local merge retains unpushed history; no unrelated history pushed",
   "notice_attempts": [
     {
       "tool": "codex_tui.send_message_to_thread",
@@ -51,5 +57,9 @@
       "result": "agent_prompted; target was already working; durable ack pending"
     }
   ],
-  "user_message_transport_instruction": "2026-10-07 user: 你想办法传达消息给他们; explicit existing Herdr session transport used despite caller outside pane"
+  "user_message_transport_instruction": "2026-10-07 user: 你想办法传达消息给他们; explicit existing Herdr session transport used despite caller outside pane",
+  "new_merged_sha": "7a3346f3c2f1f6cd010df382ccd06f96b513e453",
+  "source_merged_sha": "8cbff631af90198484036f60c2a82a2b032ff680",
+  "source_remote_verify_sha": "fde68d870b6bff25caf677a12343c923453ada67",
+  "local_source_final_sync": "2fb5b1e4196c819f3a863ba956c4c5491dbf1431"
 }

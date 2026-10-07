@@ -1,0 +1,10 @@
+{
+  "remote_verify_sha": "fde68d870b6bff25caf677a12343c923453ada67",
+  "local_master": "2fb5b1e4196c819f3a863ba956c4c5491dbf1431",
+  "prior_local_master_preserved": "3940ad542a20e76c51153dd6941db60f103cfc51",
+  "local_unpushed_aw_history_preserved": "5a47a4f98d01e77f9a78994765dc59d8b54dd6a5",
+  "tree_equal_remote": true,
+  "status_clean": true,
+  "unrelated_commits_pushed": false,
+  "verify_message": "verify(dh-relay): RLT_33 源仓迁出验收通过\n\nverify(dh-relay): RLT_33 源仓迁出验收通过\n\nVerified-By: Codex /root (machine acceptance; no human signature)\nVerified-Via: task-start-authorization RLT_33 2026-10-07 user 建个issue 后开工; source issue #156 / relay-lite #1\nVerified-At: 2026-10-07 Asia/Shanghai; remote merged 8cbff631af90198484036f60c2a82a2b032ff680; local integration 3b8a0e7386a97f7f8ba449eb0d77d9a2ebd65759\nEvidence: source PR157 required Windows/Ubuntu Runner and relay-light-python CI SUCCESS; source merged-state tools/tests/run-relay-tests.ps1 RELAY ALL PASS (SKIPPED: 1); relay-lite workspace evidence/source-merged-tests.log and source-sync.json\nVerification: full\nRisk-Count: 0\nDoD: [x]端到端 [x]装配层 [x]非占位\n\nPaused relay-core observation failure and historical dh failures retained; not declared passing. Original AW/WFP authority and signal unchanged; both new path ACKs received. No unrelated local history pushed."
+}

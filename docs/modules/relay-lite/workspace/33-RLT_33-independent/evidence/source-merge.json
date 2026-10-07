@@ -1,0 +1,7 @@
+{
+  "initial_merge_method_rejected": "HTTP405 merge commits disallowed; readback confirmed PR open",
+  "method": "squash",
+  "sha": "8cbff631af90198484036f60c2a82a2b032ff680",
+  "merged": true,
+  "message": "Pull Request successfully merged"
+}

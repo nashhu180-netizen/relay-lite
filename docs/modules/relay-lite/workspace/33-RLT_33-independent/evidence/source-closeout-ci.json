@@ -1,0 +1,50 @@
+{
+  "headRefOid": "0238a13d4e1f166e7b8dfdae008398f2aef1d95c",
+  "mergeCommit": {
+    "oid": "fde68d870b6bff25caf677a12343c923453ada67"
+  },
+  "mergedAt": "2026-10-07T10:22:46Z",
+  "state": "MERGED",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-07T10:21:48Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/nashhu180-netizen/dh-relay/actions/runs/37606460913/job/112743026099",
+      "name": "relay-core (Node test)",
+      "startedAt": "2026-10-07T10:18:36Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-07T10:19:11Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nashhu180-netizen/dh-relay/actions/runs/37606460913/job/112743026079",
+      "name": "relay-tests (PowerShell runner, windows-latest)",
+      "startedAt": "2026-10-07T10:18:00Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-07T10:18:44Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nashhu180-netizen/dh-relay/actions/runs/37606460913/job/112743026048",
+      "name": "relay-tests (PowerShell runner, ubuntu-latest)",
+      "startedAt": "2026-10-07T10:18:00Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-07T10:18:07Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nashhu180-netizen/dh-relay/actions/runs/37606460913/job/112743025728",
+      "name": "relay-light (Python unittest)",
+      "startedAt": "2026-10-07T10:18:00Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    }
+  ]
+}

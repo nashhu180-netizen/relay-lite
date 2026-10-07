@@ -1,0 +1,7 @@
+{
+  "valid_merged_state_evidence": false,
+  "cause": "fetch TLS failed; sync precondition failed; test was erroneously started before dependent outcome inspection",
+  "source_was": "5a47a4f local pre-retirement tree",
+  "own_pwsh_terminated": true,
+  "own_legacy_test_children_terminated": []
+}

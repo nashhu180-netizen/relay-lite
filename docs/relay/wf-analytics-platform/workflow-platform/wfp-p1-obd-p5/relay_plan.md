@@ -8,7 +8,7 @@
 
 关联原工作项：WFP P1 GitLab #58、OBD P5 GitLab #59（链接见原计划）。本表是已有计划的衔接索引，不是新增 dh-relay 设计、DevPlan 或任务卡。本表入库登记于 dh-relay Issue #79。
 
-最近核对：2026-10-07 20:11:42 +0800（唯一维护会话核原卡G2归档与失败证据；表维护恢复及文档复核不视为业务人验。本次待独立复核精确表head后合入。）
+最近核对：2026-10-07 20:59:39 +0800（维护恢复PR5已实际squash合入94d9c703cdc71500b0d077fe6adb42f2329d8fb9，独立表级文档核验与必要双CI通过、主仓已同步；本次仅回填该Git事实，原G2/B4阻塞/失败/预算及所有接续栏保持，不视为业务人验或WFP verify。）
 
 **维护会话（唯一写入者）**：WFP_08 替代单卡 orchestrator `wfp08-orch`（Herdr kpi-agg `w6F:t1`/`w6F:p1`，Codex GPT-6.1 Sol/high，session `01a11599-07ad-7b93-8097-042301220688`）；2026-10-07 按用户「开个新的space 继续 WFP08；以 gpt + swe-2 为主，claude 模型不能用了」及本轮继续指令透明接管，登记见 WFP_08 execution_strategy 新space节，启动checkpoint `d6160cf1480b2130377a3b7f1677f23e88b2319e`；当前原卡归档G2 `c4ee09268f323c98afd09dd3d002763e843939a4`（NOT_PASS）。原维护会话为同名 w61 Claude（不可用），不冒认其 session；历史移交：2026-10-05 22:4x 由 wfp07-orch 按「维护人卡收口前移交」移交（wfp08-orch 已回 ack），登记见 WFP_08 工作区 execution_strategy「卡级总表」。此前 WFP_07 单卡 orchestrator `wfp07-orch`（Herdr `w5T:t1`/`w5T:p1`）2026-10-04 17:5x 由 obd45-orch 移交。此前 2026-10-04 17:4x OBD_45 收口时曾暂交回用户；OBD_45 单卡 orchestrator `obd45-orch`（Herdr `w5S:t1`/`w5S:p1`，Claude Code Opus 5.5/high，Remote Control 已开）；2026-10-03 07:4x 由 wfp06-orch 按「维护人卡收口前移交」移交（obd45-orch 于 07:49:03 前收到并确认）（WFP_06 verify 后、收口文档 MR 前），登记见 OBD_45 工作区 execution_strategy「卡级总表」；WFP_06 后续收口事实（收口 MR、Issue #71 关闭、relay `wt/WFP_06` 删除）由 wfp06-orch 以 card-chain update 交维护会话补记（已于 2026-10-03 08:58:20 +08:00 由 obd45-orch 核实补记）。历史：2026-09-29 Wfp03主控 → wfp04-orch（会话 `c7595b97…`/`dd12ecff…`）→ 2026-09-30 07:57 obd44-orch（会话 `ae88ebf0…`）→ 15:42 wfp05-orch（会话 `e0d1dffe…`）→ 19:58 wfp06-orch（会话 `4d10ca8c…`）→ obd45-orch（会话 `82ad014d…`）（2026-10-04 续会话 `71247b2b…`）→ 2026-10-04 17:4x 交回用户 → 17:5x wfp07-orch → 2026-10-05 22:4x wfp08-orch。
 

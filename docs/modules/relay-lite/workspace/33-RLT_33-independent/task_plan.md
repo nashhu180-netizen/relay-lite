@@ -22,3 +22,5 @@
 验收命令：python3 -m unittest discover -s tests -v（每条 archive 文件 SHA256 与冻结清单对照；现役两表移除新增 header 后全文与 archive 同字节；新包封闭清单无 relay_log.py/dh-mapping.toml；现役 SKILL/adapter 无 stage-lead、五阶段、账本命令或旧完整标头；临时HOME包 manifest 全文件可读且不依赖旧仓；旧目录不存在时安装成功）。孤立 clone 在临时目录完整跑同命令；不访问源树。测试必须明确包不复制 archive。
 
 有效变异点由代码轮2 reviewer 指定；记录生产文件/替换点、断言失败命令/退出码/测试名、RED和精确恢复后GREEN及SHA。临时 home 不影响用户在途会话。新仓 PR#2、源仓PR#157 均保留 Draft 直到独立复核与测试通过。
+
+范围内必要联动补漏（2026-10-07、产品退役后源回归实际发现）：源tools/tests/relay-light-log.ps1仍调用旧账本/安装器；加入本卡源允许路径，改为静态退役断言。保留run-relay-tests.ps1套件入口与全部Runner检查，旧Python产品测试由独立仓CI承接，本脚本不静默skip、不网络调用新仓。此为用户独立拆分目标的必要联动，不实现新功能或改变原业务卡验收。失败日志留证，focused后全量源回归及远端CI验证。

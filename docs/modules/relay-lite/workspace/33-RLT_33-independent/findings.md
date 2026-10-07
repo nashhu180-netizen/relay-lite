@@ -6,3 +6,5 @@ F3：历史留原仓及新仓只读副本，Git历史通过完整源SHA/路径�
 
 F4：独立方案初审两P1（迁移闭集/负向验收）已补948项清单与兼容矩阵，原reviewer定向PASS；review.plan.md留原REVISE及复审。
 F5：旧全量基线因源产品删除在运行中而无效，不是业务RED；已停止，日志保留。冻结相关44测试另跑GREEN，不冒充整套旧模式全回归。
+
+F6：source PowerShell回归末尾专属relay-light-log.ps1发现对退役产品的路径依赖；必要联动只改该专属suite为退役断言，Runner套件和入口不删、不skip。证据source-pwsh-before.log，复验待补。

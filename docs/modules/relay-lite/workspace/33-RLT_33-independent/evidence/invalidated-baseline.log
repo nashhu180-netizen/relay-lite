@@ -1,0 +1,27 @@
+.usage: install_skill.py [-h] --all
+install_skill.py: error: the following arguments are required: --all
+usage: install_skill.py [-h] --all
+install_skill.py: error: the following arguments are required: --all
+usage: install_skill.py [-h] --all
+install_skill.py: error: the following arguments are required: --all
+usage: install_skill.py [-h] --all
+install_skill.py: error: unrecognized arguments: extra
+..error: injected mid-copy failure
+....error: skill source incomplete, missing: space_watch.py
+.................................................................................installed: /tmp/tmpytukoc0z/home/.claude/skills/relay-light
+installed: /tmp/tmpytukoc0z/home/.codex/skills/relay-light
+installed: /tmp/tmpxmdx_d0i/home/.claude/skills/relay-light
+installed: /tmp/tmpxmdx_d0i/home/.codex/skills/relay-light
+installed: /tmp/tmp4q3zufer/home/.claude/skills/relay-light
+installed: /tmp/tmp4q3zufer/home/.codex/skills/relay-light
+installed: /tmp/tmp4q3zufer/home/.claude/skills/relay-light
+installed: /tmp/tmp4q3zufer/home/.codex/skills/relay-light
+installed: /tmp/tmpkxsdalri/home/.claude/skills/relay-light
+installed: /tmp/tmpkxsdalri/home/.codex/skills/relay-light
+installed: /tmp/tmpkxsdalri/home/.claude/skills/relay-light
+installed: /tmp/tmpkxsdalri/home/.codex/skills/relay-light
+installed: /tmp/tmpxjzqyd1h/home/.claude/skills/relay-light
+installed: /tmp/tmpxjzqyd1h/home/.codex/skills/relay-light
+......lint: amend-check before ok (1 proposed path(s))
+.........................................................................................................................................FEEEEEEEEEEEEEEFEEEEEEEEEEFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFerror: HC-RL-A135 explicit config dir does not exist: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/relay-light/skill
+FFF

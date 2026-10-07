@@ -48,3 +48,21 @@
 | P3 | 无 |
 
 定向结论：`PASS`（仅表切换候选与其测试/证据）。此结论不解除 `pending_maintainer_ack`，不把新表宣布为权威，也不放行合并。
+
+## 最终补充：维护者回执与 WFP 最新未合入 delta
+
+审阅范围只覆盖新增两份维护者回执、两份 `latest-table-*` 快照、`table-cutover.json` / `table-cutover.md`、两份候选表体，以及 `/tmp/rlt33-latest-tables-tests.log`；不改产品，也不改变冻结 archive。
+
+- AW 回执 `rlt33-aw07-cutover-ack.md` 记录唯一维护者保留维护权、旧写入已暂停，源 `5a47a4f98d01e77f9a78994765dc59d8b54dd6a5` 的 AW 表无未提交改动。候选去掉迁移头后与 `latest-table-5a47a4f9.md` 字节相同，SHA256 为 `b8a7a5aa6729ba3d5355132b72c8f5f3466de7afbfaf31530c2449df5f7343d5`。
+- WFP 回执 `rlt33-wfp-cutover-ack.md` 明确：PR158 / `65f87a0adab6d7bf4915c99c317f709dab3b32fd` 是原维护者的最新表体，但尚未合入，不能冒充当前 master；维护者暂停该 PR 和旧表写入，且保留维护权。独立从该 Git 对象读取 WFP 表体，和 `latest-table-65f87a0a.md` 完全相同，SHA256 为 `8fdc182475da21baf5f2613d4a009182e993dda7274d45c7113e01cf8c88d777`。
+- `table-cutover.json` 为 AW/WFP 分别固定 `source_sha`、snapshot、hash 与 ack，整体状态为 `paused_ack_received_waiting_new_merge`。两份候选表头均声明旧表在新仓合入、再由原维护者确认路径前仍为权威，迁移执行者不并写；archive 和 948 条冻结清单未被改写。
+- `/tmp/rlt33-latest-tables-tests.log` 记录本次 `python3 -m unittest discover -s tests -v` 的 39 tests / exit 0；另行复算两份候选表体、对应快照及切换清单 SHA256，均一致。
+
+| 级别 | 结论 |
+|---|---|
+| P0 | 无 |
+| P1 | 无 |
+| P2 | 无 |
+| P3 | 无 |
+
+定向结论：`PASS`。该结论仅认可已暂停状态下的来源/快照/回执保真；不将 PR158 或 `65f87a0` 写为已合入，不关闭源 PR158，不转移原维护权，也不放行新仓合入后的路径恢复确认。

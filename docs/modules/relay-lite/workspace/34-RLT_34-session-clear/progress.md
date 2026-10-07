@@ -27,3 +27,6 @@
 | E-014 | ci | evidence/ci-final-source.json | pass | 最新实现PR source c716b9a Ubuntu/Windows success |
 
 实施路线偏离：为保留原 freeze 所绑定的 e6adef4 祖先链便于严格原证复跑，服务端采用 merge commit（仓库允许），未采用 task_plan 原 squash 路线；范围、验收、代码候选和授权不变，不为此重派代码复核。
+| E-015 | verify | git show 54c586ba0af00f23798d5f7a4fe51510377f056b；/tmp/rlt34-verify-message.txt 原文已进 commit message | pass | verify 在实际合入并复验后的本地主干产生，通过本有限收口PR归远端；完成状态合入后生效 |
+
+收口汇报@集成复验：规则已补齐、41项复验/独立 approved/双平台 CI 通过；无范围增减，无新教训或遗留人判；待本有限收口归远端即实际销户。安装副本未更新。

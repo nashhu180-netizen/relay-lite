@@ -21,7 +21,7 @@ normal=[code_review]；完整 fresh 初审已 approved，无 open P0/P1，独立
 | RL34-M2 | 标签页接新的独立任务前保存前任务工件与 signal，清理旧会话并确认成功，再读取新派单；新建空会话不冒充复用会话的 clear。 | AI | E-002～E-004 | 本地协议验证通过，独立结论 approved |
 | RL34-M3 | 同任务 FAIL/整改与 E2 定向复查保留原会话及计数；fresh reviewer 必须是未参与实施的独立新实例；常驻 watcher 不逐批 clear。 | AI | E-002、E-004 | 本地协议验证通过，独立结论 approved |
 | RL34-M4 | 清理失败或结果未知时停止新派单，不盲重发；core 与两 adapter 一致；历史 signal、证据、计数及 RELAY_* 保留。 | AI | E-002、E-004 | 本地协议验证通过，独立结论 approved |
-| RL34-M5 | 协议回归及变异 RED→还原 GREEN、fresh 独立复核、Ubuntu/Windows CI、PR 合入态复验和 verify(relay-lite) 齐备。 | AI | | 待验证 |
+| RL34-M5 | 协议回归及变异 RED→还原 GREEN、fresh 独立复核、Ubuntu/Windows CI、PR 合入态复验和 verify(relay-lite) 齐备。 | AI | E-003、E-004、E-008～E-014；verify 54c586b | 满足（有限收口合入后生效） |
 
 ## 需求对齐证据
 | 需求 / 人验项 | 场景与操作路径 | 证据 (E-00x) | 结论（满足 / 不满足 / 待人验） |
@@ -30,7 +30,7 @@ normal=[code_review]；完整 fresh 初审已 approved，无 open P0/P1，独立
 | 新任务 RL34-M2 | 保存前任务→复用 tab 原生 clear→确认→投递/重读新合同 | E-002～E-004；两 adapter 启动投递 | 文本协议和回归满足，独立复核 approved |
 | 例外 RL34-M3 | 原整改/E2 原会话继续；fresh 审核另起实例；watcher 常驻 | E-002、E-004；core 生命周期 | 文本协议和回归满足，独立复核 approved |
 | 未知结果 RL34-M4 | 未确认清理→阻断新派单；保留证据/计数/RELAY_* | E-002、E-004 | 文本协议和回归满足，独立复核 approved |
-| 交付 RL34-M5 | RED→还原 GREEN→fresh 审核→双平台 CI→合入复验→verify | E-003、E-004 | 不满足（待 CI/合入/verify，保留待验证） |
+| 交付 RL34-M5 | RED→还原 GREEN→fresh 审核→双平台 CI→合入复验→verify | E-003、E-004 | 满足（实现/复验/verify齐备，有限收口归远端后生效） |
 
 局限：本卡交付是书面流程约束与协议测试，没有自动强制拦截程序，不声称真实 Herdr 清理已执行。无 UI/可视化产品改动，无需渲染截图。
 
@@ -65,5 +65,11 @@ normal=[code_review]；完整 fresh 初审已 approved，无 open P0/P1，独立
 | RL34-M2 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M2 | 等价覆盖 | P2 同名验收条件 | 协议断言和 fresh 独立语义复核均满足原文验收 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
 | RL34-M3 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M3 | 等价覆盖 | P2 同名验收条件 | 协议断言和 fresh 独立语义复核均满足原文验收 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
 | RL34-M4 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M4 | 等价覆盖 | P2 同名验收条件 | 协议断言和 fresh 独立语义复核均满足原文验收 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
-| RL34-M5 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M5 | 部分 | P2 同名验收条件 | 待完成最新 CI、实际合入态复验及 verify | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
+| RL34-M5 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M5 | 等价覆盖 | P2 同名验收条件 | 41项复验、fresh approved、两平台 CI 与实际 merge/verify 齐备；收口PR合入后生效 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
 <!-- dh:review-attempt:v1 task=RLT_34 attempt=1 kind=full reviewer_session_id=/root/rlt34_code_review status=punched -->
+
+- verify 提交 SHA：54c586ba0af00f23798d5f7a4fe51510377f056b
+- 远端归档：本次有限收口 PR 仅携带既有验收证据、verify 和机械状态；合入读回后实际关闭 #7/清理本卡。实现 PR #8 merge=6abcacd5d5e3fc7e514b804cdbb7d97893ae6d38。
+- 本地与副本：master 已同步实现；安装副本/其它 worktree 未修改，环境写入须另行授权。
+
+完成态生效条件：本有限收口 PR 实际服务端合入、远端可达且核对产品/verify内容后生效；此前本行仅为收口候选，不先关闭 Issue 或清理任务树。验收 evidence/integration.json、code-review.json、ci-final-source.json，verify 54c586ba0af00f23798d5f7a4fe51510377f056b。无额外人判、风险接受或未验证产品结果；本卡不修改安装副本。

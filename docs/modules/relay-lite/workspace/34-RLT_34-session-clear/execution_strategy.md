@@ -118,3 +118,5 @@ Draft PR：[GitHub #8](https://github.com/nashhu180-netizen/relay-lite/pull/8)�
 复核 gate 调用定位：cwd=/home/nash/work/relay-lite/.dh-worktrees/RLT_34；命令 `dh gate relay-lite 34-RLT_34-session-clear --review-json`；原 JSON= evidence/review-gate.json，schema=dh.review-gate.v2，实际 exit=0。
 
 PR8 已服务端合入：6abcacd5d5e3fc7e514b804cdbb7d97893ae6d38；master 已 fast-forward。同原候选逐字一致与集成复验见 evidence/integration.json。
+
+有限收口分支 delivery/RLT_34-closeout；verify=54c586ba0af00f23798d5f7a4fe51510377f056b 在实际合入后的 main/master 提交，有限PR归远端。不重审无产品增量的机械收口；原冻结原证保留，集成态 PASS 在 evidence/integrated-review-gate.json。

@@ -1,0 +1,16 @@
+{
+  "cwd": "/home/nash/work/relay-lite/.dh-worktrees/RLT_34",
+  "interpreter": "/usr/bin/python3",
+  "command": [
+    "/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "returncode": 0,
+  "head": "126c82e665d4eb642a2cef4cc144a77c3f30e01c",
+  "uncommitted_diff_sha256": "315b830cac23cc3caa6fe9cbd79c646bc278c9596a368419a49aecb0c4828265"
+}

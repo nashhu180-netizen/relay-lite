@@ -7,3 +7,5 @@
 分支：wt/RLT_34；worktree：/home/nash/work/relay-lite/.dh-worktrees/RLT_34；目标：origin/master。
 GitHub Issue：#7。原现场另有 AW_07-table-resume worktree，本卡不清理。
 停止线：沿 brief/task_plan，不派下一卡，不部署、不安装。
+
+Draft PR：[GitHub #8](https://github.com/nashhu180-netizen/relay-lite/pull/8)，开工提交 126c82e。

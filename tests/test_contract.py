@@ -49,6 +49,34 @@ class MigrationTests(unittest.TestCase):
             self.assertEqual(extra['sha256'],hashlib.sha256(body).hexdigest())
 
 class PackageTests(unittest.TestCase):
+    def test_new_task_clear_is_a_predispatch_gate(self):
+        core = (ROOT/'skill/SKILL.md').read_text(encoding='utf-8')
+        title = '### 新批次与新任务的标签页会话清理闸'
+        self.assertEqual(1, core.count(title))
+        gate = core.split(title, 1)[1].split('\n### ', 1)[0]
+        new_task = next(line for line in gate.splitlines() if line.startswith('- **新的独立任务**'))
+        self.assertIn('先 clear 并确认，再投递新派单', new_task)
+        self.assertIn('工件、证据与原角色 signal 已保存', new_task)
+        self.assertIn('重新读取新任务的 AGENTS、精确派单与指定 workspace', new_task)
+        self.assertIn('不能沿用前任务授权或写权', new_task)
+        for guard in ('durable signal 为 PASS', '本批工件齐全', '各执行一次 `/clear`',
+                      '分别复验已清理', '与新派单分两次投递', '已核实支持的原生会话清理命令',
+                      '清理失败或结果未知时不投递新任务、不盲重发',
+                      'FAIL/整改期间禁止 `/clear`', 'E2 targeted attempt 2 沿用原会话',
+                      '不能把旧实例 `/clear` 后冒充 fresh', 'watcher 常驻、不 clear',
+                      '不清除 `RELAY_*`', '不为未闭合原任务放行或重置额度'):
+            with self.subTest(guard=guard):
+                self.assertIn(guard, gate)
+
+    def test_both_adapters_require_clear_before_dispatch(self):
+        for rel in DOCS[1:]:
+            text = (ROOT/'skill'/rel).read_text(encoding='utf-8')
+            with self.subTest(adapter=rel):
+                self.assertIn('「新批次与新任务的标签页会话清理闸」', text)
+                self.assertIn('确认清理成功后再投递派单文件指针', text)
+                self.assertIn('清理命令与派单不可合并', text)
+                self.assertIn('失败或未知不派新单、不盲重发', text)
+
     def test_roles_and_new_dispatch_use_executor(self):
         roles = tomllib.loads((ROOT/'skill/roles.toml').read_text(encoding='utf-8'))
         self.assertEqual({'orchestrator','builder','plan-reviewer','executor','batch-reviewer','reviewer','decider','watcher'},set(roles))

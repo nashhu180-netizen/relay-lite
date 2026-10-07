@@ -1,0 +1,14 @@
+test_new_task_clear_is_a_predispatch_gate (test_contract.PackageTests.test_new_task_clear_is_a_predispatch_gate) ... FAIL
+
+======================================================================
+FAIL: test_new_task_clear_is_a_predispatch_gate (test_contract.PackageTests.test_new_task_clear_is_a_predispatch_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/nash/work/relay-lite/.dh-worktrees/RLT_34/tests/test_contract.py", line 58, in test_new_task_clear_is_a_predispatch_gate
+    self.assertIn('先 clear 并确认，再投递新派单', new_task)
+AssertionError: '先 clear 并确认，再投递新派单' not found in '- **新的独立任务**：复用标签页前，先核前任务已按原合同停下，且工件、证据与原角色 signal 已保存；对该标签页内的旧会话**保留旧会话上下文，直接投递新派单**。清理完成后 worker 重新读取新任务的 AGENTS、精确派单与指定 workspace，不能沿用前任务授权或写权。全新实例的空会话按真实启动事实登记，不伪造执行过 `/clear`；原合同要求新 workspace/实例时仍照原合同创建。'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=1)

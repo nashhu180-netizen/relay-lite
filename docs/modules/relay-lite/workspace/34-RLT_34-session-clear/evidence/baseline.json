@@ -1,0 +1,7 @@
+{
+  "cwd": "/home/nash/work/relay-lite/.dh-worktrees/RLT_34",
+  "interpreter": "/usr/bin/python3",
+  "command": "python3 -m unittest discover -s tests -v",
+  "baseline_sha": "43f68e0822785e57d640aa32d885148ba97ff8ac",
+  "returncode": 0
+}

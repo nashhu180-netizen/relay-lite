@@ -115,10 +115,15 @@ relay-lite 给任意业务仓使用，只提供单卡接力。跨卡接力计划
 - workflow-final 每条适用 path 最多返工 2 轮，**每轮换 fresh reviewer**，不得复用上一轮实例冒充 fresh；E2 `code_review` 初审为完整 fresh，仅出现 open P0/P1 后由**同一 `reviewer_session_id`** 做 targeted attempt 2。两层证据分别登记身份/输入/finding/结论，条件相斥不得合并为一条。
 - 完成谓词：全部适用 `task_type` Recipe path PASS 或有可核查 N/A，最终汇总无 open P0/P1；heavy 五路（code-round1/code-round2/requirement/consistency/lesson）一条不少；单一 final reviewer、batch PASS 或 E2 receipt 均不替代整套 Recipe。施工者不复核自己的施工。
 
-### batch PASS 后会话清理闸
+### 新批次与新任务的标签页会话清理闸
+
+这里的 clear 指 agent 的会话上下文清理，不是 shell 的 `clear` 清屏。标签页承接新的批次或新的独立任务时，orchestrator 先核真实 tab/pane、当前任务与 agent kind，按以下时序清理，再派单。
 
 - 仅当该批 batch reviewer 的 durable signal 为 PASS **且**本批工件齐全（本批交付物、验证证据、executor signal、review 产物、reviewer durable PASS）后，orchestrator 对本批 executor 与 batch reviewer **各执行一次 `/clear`** 并分别复验已清理，之后才启动下一批。终端 idle/done 或 executor DONE 不替代此门。
+- **新的独立任务**：复用标签页前，先核前任务已按原合同停下，且工件、证据与原角色 signal 已保存；对该标签页内的旧会话**先 clear 并确认，再投递新派单**。清理完成后 worker 重新读取新任务的 AGENTS、精确派单与指定 workspace，不能沿用前任务授权或写权。全新实例的空会话按真实启动事实登记，不伪造执行过 `/clear`；原合同要求新 workspace/实例时仍照原合同创建。
+- **执行与确认**：使用该 agent kind 已核实支持的原生会话清理命令（支持 `/clear` 时使用 `/clear`，其它 kind 使用已核实的等效命令），与新派单分两次投递；命令送达后，核对实际 pane 的原生清理成功提示或新空会话状态，再发派单。仅命令已输入、`state_change_seq` 推进、idle/done 或屏幕变空，都不能证明上下文已清理。在既有 `execution_strategy.md` 记录清理对象、对应任务/批次、命令与确认依据，不新建清理账本。前批已 clear 且复验成功、期间未再承接任务时，直接使用该已确认空会话，不重复 clear；恢复时回查原记录与 Herdr 实态，无法确认仍停在清理门。
 - FAIL/整改期间禁止 `/clear`，保持原 executor/原 reviewer session，不借清理清零整改计数；清理失败或无法复验时不得启动下一批，也不盲目重复发送 `/clear`。watcher 常驻、不 clear；decider 按需拉起，不纳入每批固定 clear。
+- 同任务补证与 E2 targeted attempt 2 沿用原会话，不作为新任务 clear；workflow-final 每轮和要求 fresh 的独立复核仍换未参与实施的新实例，不能把旧实例 `/clear` 后冒充 fresh。清理失败或结果未知时不投递新任务、不盲重发。clear 不删除或改写历史工件、signal、失败、`review_round`/`remediation_count`，不清除 `RELAY_*`，不为未闭合原任务放行或重置额度。
 
 ### durable signal 与写者边界
 
@@ -158,4 +163,3 @@ relay-lite 给任意业务仓使用，只提供单卡接力。跨卡接力计划
 ### 恢复依据
 
 恢复权威只有四类：原角色自写的 durable signals、独立 review/decision 工件及其原始来源、由 orchestrator 核对的 `execution_strategy.md`、Herdr 实态。`progress.md` 只是施工证据索引、watcher 通知只是即时提示，二者都不是运行真相；恢复/重启时从四类权威重建，不依赖终端存活状态。 `findings.md` 是决定与遗留的检索入口，沿其来源引用回查上述独立工件及用户原始裁决，不新增第五类运行权威；摘要缺源、冲突或仍待用户决定时，不推进依赖该决定的动作。
-

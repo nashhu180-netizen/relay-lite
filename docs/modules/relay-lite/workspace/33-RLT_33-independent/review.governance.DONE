@@ -1,0 +1,1 @@
+DONE governance_miner | verdict=PASS_WITH_NONBLOCKING_WARNINGS | scope=current_uncommitted_governance_corrections_only | dh=0_fail_2_warn(R14_reader_out_of_domain,R19_naming_advisory) | report=review.governance.md

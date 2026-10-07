@@ -15,3 +15,18 @@
 2026-10-07：用户要求自行传达；已核原session IDs，Herdr现有终端AW w62:p1投递并working/seq前进；WFP已迁w6F:p1投递，等待两方durable ack，不把agent_prompted当维护确认。
 
 2026-10-07：AW/WFP暂停ACK均收到；WFP追加原维护者未合入PR158/65f87a0原字节快照，新候选两表依照各自最新源和回执迁入。等待定向复核/最新CI后合入独立仓；原维护权保持，源主树未动。
+
+## 证据账本 (Evidence Ledger)
+
+| ID | 类型 | 命令 / 路径 | 结果 (pass/fail/observed/waived) | 支撑什么结论 |
+|---|---|---|---|---|
+| E-001 | test | evidence/isolated-clone-tests.log；独立clone python3 -m unittest discover -s tests -v | pass | 39项独立分发/临时home场景，无dh-relay源依赖 |
+| E-002 | review-dispatch | review.code1.md / review.code2.md / review.requirement.md / review.consistency.md / review.lessons.md | pass | heavy五路径独立复核与最新表定向复核 |
+| E-003 | observed | evidence/rlt33-aw07-cutover-ack.md / evidence/rlt33-wfp-cutover-ack.md / docs/table-cutover.json | pass | 两原维护者暂停、最新源保真，合入后仍待确认路径 |
+| E-004 | test | evidence/effective-test.json / mutation-red.log / mutation-green.log | pass | 有效业务RED、精确恢复GREEN |
+| E-005 | test | evidence/source-pwsh-final.log | pass | 源Runner全套通过，原真实条件skip1 |
+| E-006 | observed | evidence/dh-check-before.log / dh-check-final.log | observed | 治理首检格式失败保留，修复再检 |
+
+2026-10-07治理补正：dh首次8失败源为本卡新治理文件格式；README输入./、brief章节、review分区/需求证据、taskplan伪占位均已修，最终0失败2warn（R19命名；R14 reader仅DH_旧卡语法，RLT_33无自动支持），不声称全绿。真实先于施工的方案review原件保留，planning-event为机器登记补正，最新源补充不改变权限。source历史模块checker baseline101/current101，R30旧RLT27对整个分支diff误归因与detached基线上下文差异独立记入source-dh-delta.json，修本卡brief3项后不改历史卡。
+
+本次miner按fresh agent实际抽2条候选→模块knowledge/教训库-候选.md，状态待裁决，不入正册；mine.log保存只读备料。

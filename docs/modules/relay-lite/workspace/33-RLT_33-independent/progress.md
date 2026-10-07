@@ -34,3 +34,5 @@
 2026-10-07：固定本仓9458e4f迁入版本审计已定向代码轮2/需求PASS；隔离clone改live表后迁移审计仍PASS，篡改固定快照触发AssertionError拒绝（独立reviewer验证）。39全套PASS见import-audit-tests.log；不会用正常维护变化篡改冻结证据。
 
 2026-10-07：固定导入审计要求Git历史，首个fdcb6fc CI37602646669因默认浅checkout缺9458对象，两系统FAILURE保留；这是本卡CI配置遗漏，不归因产品/环境基线。新CI显式fetch-depth:0，保留原Windows/Ubuntu两门与39测试，不skip审计。安装包仍不依赖Git。
+
+2026-10-07：gov实例fork=all继承上下文，身份claim已由原作者更正，不算fresh miner；另派fork=none fresh_miner真实独立核对并挖掘3候选（2保留+浅checkout历史1），均待裁决。review.miner-fresh.md/DONE已落，五路原review身份不改。

@@ -35,6 +35,13 @@
 
 | E-019 | check | evidence/review-gate.json、check-premerge.log | pass | 当前策略来源重绑定后严格原证PASS/exit0；dh0失败6警告 |
 
+| E-020 | integration | evidence/integration.json、integrated-tests.log、integrated-review-gate.json、integrated-check.log、ci-final-source.json | pass | 实际merge908d86ba；12个产品/测试文件与review候选逐字一致，58项、原证PASS、dh0失败；最终实现source两平台CI成功 |
+
+| E-021 | verify | git show c03ca83d19591b83678400043e1e1cb773b947fd；evidence/preverify-gate.json、preverify-check.log | pass | 实际合入复验后verify(relay-lite)生成，授权/执行者/风险0/DoD齐备；有限归档后生效 |
+
+| E-022 | check | evidence/check-closeout.log、check-closeout-corrected.log | fail | release_mode索引空列改full被R29识别为实质B调整；还原该列，正文既有full不变 |
+| E-023 | check | evidence/check-closeout-final.log | pass | 仅状态/验收日期/verifySHA/现状块机械回填，冻结正文及合同不变，dh0失败6警告 |
+
 ## 实施验证命令矩阵（开工计划复核 P1 补充）
 
 | 用途 | 精确命令 | 预期/证据 |
@@ -52,3 +59,7 @@
 CR-001 同范围修复：仅测试期望路径规范化；候选登记 miner 两条草稿，不改验收/产品/正式知识库。
 
 阶段汇报@独立复核收敛：完整初审P1→同实例唯一定向approved；双平台CI、当前源绑定原证闸PASS。采用仓库允许的merge commit保留被审候选祖先，便于合入后原证重建；范围和验收不变，待实际合入及verify，不提前完成。
+
+收口汇报@合入复验：已解决环境入口及通用watcher步骤；58项本地/双平台CI及fresh初审→唯一修复复核通过，实际主干复验原证PASS。无未决P0/P1及风险；miner两条草稿留本卡待裁决；liveHerdr及真实副本不在本卡。完整交付授权未撤销，执行自动验收/verify/有限归档，不启下一卡。
+
+有限归档只含真实集成/验收/verify原证及机械状态回填；不修改产品、冻结验收或正式知识库。销户/清理以远端实际合入及读回为准。

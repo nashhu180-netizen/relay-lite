@@ -1,0 +1,17 @@
+=== dh-check: relay-lite ===
+设计文档·验收清单: (未解析到)
+
+
+⚠️  警告 7:
+  dev_plan/P1-独立交付.md　R19 dev_plan 新文件命名建议为 P{N}-{计划名}-开发方案.md（warn 级，不自动改名）
+  dev_plan/P2-会话清理维护.md　R19 dev_plan 新文件命名建议为 P{N}-{计划名}-开发方案.md（warn 级，不自动改名）
+  dev_plan/P3-环境派发与监控.md　R19 dev_plan 新文件命名建议为 P{N}-{计划名}-开发方案.md（warn 级，不自动改名）
+  workspace/35-RLT_35-environment-dispatch　R30 只对账未提交变化：任务分支「delivery/RLT_35-closeout」尚无任务提交（分叉点=分支尖端），没有已提交范围可比，已提交变化不适用本闸
+  workspace/33-RLT_33-independent/brief.md　R14 任务「RLT_33」找不到 DevPlan 计划卡验收口径，无法核对 brief 是否漂移
+  workspace/34-RLT_34-session-clear/brief.md　R14 任务「RLT_34」找不到 DevPlan 计划卡验收口径，无法核对 brief 是否漂移
+  workspace/35-RLT_35-environment-dispatch/brief.md　R14 任务「RLT_35」找不到 DevPlan 计划卡验收口径，无法核对 brief 是否漂移
+
+合计: 0 失败, 7 警告
+
+=== 任务卡写法软报告（只读 warn，不影响退出码） ===
+三字段空转: 0 | 单条验收密度: 0 | 缺少增量边界: 0

@@ -1,0 +1,85 @@
+{
+  "actual_merge_sha": "908d86ba6b4c2dc02549f735b9f6266825f043a3",
+  "reviewed_product_sha": "20eb3797f80a451aa13c06675037f79c9aa6654b",
+  "product_byte_equivalence": true,
+  "product_hashes": {
+    "README.md": "4700d6bb7fe586c91b02e7973253e4d288ec8e485af68c6577099e78372b7ea2",
+    "skill/SKILL.md": "a91ecb86445e9d570aea72498454a5f2f6b11aaffb109cdd4166c4f425b2ecca",
+    "skill/environments.toml": "b39d58c0cad0e73c888ec6d93229b17e1e9074fdcd1a49d151d2b63c465e1135",
+    "skill/references/environment-herdr.md": "341e329acaed3befc7560bce0f64b0e20f9675eda057402ffd210558a6798464",
+    "skill/references/adapter-codex.md": "08038670c4dfb6e18c9556b68b367ef61e3381f828aff8718e9de8f031b68bd7",
+    "skill/references/adapter-claude-code.md": "ae534b2c0ad2e2d8a9ce2a3e5e3c90bc850173ad847663119a235bee4243a7c6",
+    "skill/templates/card-chain.md": "9ee9b7f8dc35f1887e893b7bb2f3e7662469b28bd7cd0575928826594116114c",
+    "tools/environment_config.py": "d8e269e045ef5388c6e6d2c891e81ee0433256c46c79151f4502879258a847b7",
+    "tools/install_skill.py": "10d8281c1a2bb656b3d89a62c8c9182df4bc167524394f0bc08f0510c99c5d0a",
+    "tests/test_environment_config.py": "afe92892617cae037be20e3a73afb12dc7b27b6af09775fb5797a962d84d88dc",
+    "tests/test_install_skill.py": "e5c470131e8b5328bf497fd71f344d7aa8e708b9908936826f24d38538f9d122",
+    "tests/test_contract.py": "114379bc3627ee587f55828f55ed780a449b5d19ccb0a09c9cc108d6c573c5b3"
+  },
+  "results": {
+    "integrated-tests": {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    "integrated-review-gate": {
+      "command": [
+        "dh",
+        "gate",
+        "relay-lite",
+        "35-RLT_35-environment-dispatch",
+        "--review-json"
+      ],
+      "exit_code": 0,
+      "state": "PASS",
+      "reasons": []
+    },
+    "integrated-check": {
+      "command": [
+        "dh",
+        "relay-lite"
+      ],
+      "exit_code": 0
+    }
+  },
+  "implementation_pr": {
+    "headRefOid": "0c040dca93c99b1b2b97e331569ba146a4bcdb19",
+    "mergeCommit": {
+      "oid": "908d86ba6b4c2dc02549f735b9f6266825f043a3"
+    },
+    "mergedAt": "2026-10-07T16:18:30Z",
+    "state": "MERGED",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-07T16:18:03Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/nashhu180-netizen/relay-lite/actions/runs/37650913665/job/112893690473",
+        "name": "relay-lite-python (ubuntu-latest)",
+        "startedAt": "2026-10-07T16:17:54Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-07T16:18:13Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/nashhu180-netizen/relay-lite/actions/runs/37650913665/job/112893690284",
+        "name": "relay-lite-python (windows-latest)",
+        "startedAt": "2026-10-07T16:17:54Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      }
+    ],
+    "url": "https://github.com/nashhu180-netizen/relay-lite/pull/13"
+  },
+  "live_herdr_tested": false,
+  "installed_user_replicas_updated": false
+}

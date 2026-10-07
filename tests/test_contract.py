@@ -35,14 +35,18 @@ class MigrationTests(unittest.TestCase):
         latest = {r['source']:r for r in cutover['tables']}
         self.assertEqual(2, len(tables))
         for row in tables:
-            new = (ROOT/row['new_active']).read_bytes()
+            extra = latest.get(row['source'])
+            self.assertIsNotNone(extra)
+            imported = extra['import_commit']
+            self.assertRegex(imported,r'\A[0-9a-f]{40}\Z')
+            subprocess.run(['git','merge-base','--is-ancestor',imported,'HEAD'],cwd=ROOT,check=True,capture_output=True)
+            new = subprocess.check_output(['git','show',f"{imported}:{row['new_active']}"],cwd=ROOT)
+            self.assertTrue((ROOT/row['new_active']).is_file())
             header, body = new.split(b'\n\n',1)
             self.assertIn('迁移'.encode(), header)
-            extra = latest.get(row['source'])
-            original = ROOT/(extra['snapshot'] if extra else row['archive'])
+            original = ROOT/extra['snapshot']
             self.assertEqual(original.read_bytes(),body,row['source'])
-            if extra:
-                self.assertEqual(extra['sha256'],hashlib.sha256(body).hexdigest())
+            self.assertEqual(extra['sha256'],hashlib.sha256(body).hexdigest())
 
 class PackageTests(unittest.TestCase):
     def test_roles_and_new_dispatch_use_executor(self):

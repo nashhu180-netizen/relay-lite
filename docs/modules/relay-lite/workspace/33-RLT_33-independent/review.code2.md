@@ -66,3 +66,22 @@
 | P3 | 无 |
 
 定向结论：`PASS`。该结论仅认可已暂停状态下的来源/快照/回执保真；不将 PR158 或 `65f87a0` 写为已合入，不关闭源 PR158，不转移原维护权，也不放行新仓合入后的路径恢复确认。
+
+## 最终补充：可维护 live 表与固定迁入审计
+
+审阅范围仅限 `tests/test_contract.py` 的迁入表体校验和 `table-cutover.json` 新增的逐表 `import_commit`；不复审产品，不改变 archive 或维护者授权。
+
+- 每个表必须给出 40 位小写十六进制 `import_commit`，且测试用本独立仓的 `git merge-base --is-ancestor <import_commit> HEAD` 验证可达。当前两表均锚定独立仓提交 `9458e4fab52e5d39f67ddaa7ecd4e76370937f7a`。
+- 测试从该固定提交以 `git show <commit>:<new_active>` 读取迁入时的文件，拆除迁移头后对照逐表 snapshot 与 SHA256；同时仍要求当前 live 表存在。因而未来由原维护者正常更新 live 表不再使 CI 误判历史迁入被篡改，而迁入时的授权/状态正文仍由不可变 Git 对象、snapshot 与 hash 三重约束。
+- 该机制不访问旧仓；仅依赖独立仓完整 Git。安装包的无 Git 测试路径不运行此 repository-contract test，故不改变安装包的无 Git 工作边界。
+- 审阅 `9458e4f` 中两份表的表体：AW 与 `latest-table-5a47a4f9.md` 相同，WFP 与 `latest-table-65f87a0a.md` 相同，SHA256 分别为 `b8a7a5aa6729ba3d5355132b72c8f5f3466de7afbfaf31530c2449df5f7343d5` 和 `8fdc182475da21baf5f2613d4a009182e993dda7274d45c7113e01cf8c88d777`。`/tmp/rlt33-import-audit-tests.log` 记录完整 39 tests / exit 0；`live-table-maintenance-check.log` 记录仅改隔离 live 表后两项迁移测试仍通过。
+- 独立反证：在隔离 clone `/tmp/rlt33-audit-review-0safCs` 只篡改 WFP snapshot 的标题，运行 `MigrationTests.test_active_table_bodies_preserve_all_authorization_and_status_bytes` 得到预期 `AssertionError` / exit 1，证明 snapshot/固定迁入正文仍受拒绝，live 可维护并非绕过保真审计。
+
+| 级别 | 结论 |
+|---|---|
+| P0 | 无 |
+| P1 | 无 |
+| P2 | 无 |
+| P3 | 无 |
+
+定向结论：`PASS`。固定 `import_commit` 保存本次迁入审计，允许原维护者在切换后按其授权维护 live 表；它不放宽当前暂停、维护权、合入或路径恢复的任何闸门。

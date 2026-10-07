@@ -59,3 +59,20 @@
 | P3 | 无 |
 
 **定向结论：PASS（最终候选的来源、状态与授权边界一致）。** 该 PASS 只允许继续按既有 Draft/CI/合入流程处理本迁移卡；不等同两表已切换或原维护会话已恢复新路径。
+
+## 2026-10-07 定向补充：固定导入审计与 live 表持续维护
+
+本轮核对 `tests/test_contract.py`、`table-cutover.json`、固定导入提交 `9458e4fab52e5d39f67ddaa7ecd4e76370937f7a` 及现有隔离 clone 证据；未重跑测试。
+
+- **审计保真：PASS。** 每张表的 `import_commit` 均为完整 40 位 SHA，并由迁移测试要求是当前 `HEAD` 祖先；测试使用 `git show <import_commit>:<new_active>` 读取固定导入版本，拆除迁移头后逐字比对每表 snapshot 和 SHA256。实际复核两表 body hash 仍分别为 AW `b8a7a5aa6729ba3d5355132b72c8f5f3466de7afbfaf31530c2449df5f7343d5`、WFP `8fdc182475da21baf5f2613d4a009182e993dda7274d45c7113e01cf8c88d777`。这把导入时的状态/授权留作可复现审计对象，不再把随后合法维护的 live 内容错判为迁移篡改。
+- **持续维护与独立边界：PASS。** 测试对 live 表仅校验路径仍存在；`live-table-maintenance-check.log` 记录额外隔离 clone 修改 live 表后迁移审计仍通过，`latest-tables-tests.log` 记录完整 39 项通过。迁移审计测试因使用 Git 历史而要求正常完整 clone，但安装包测试仍只复制 `skill/` 与 `tools/`、无 Git/无 dh-relay checkout 即可安装和运行 watcher help；两类需求没有混淆。
+- **维护权与授权：PASS。** 固定导入提交不替代 ACK 所载的维护权、原卡授权、signal、预算或停止线；它也不授权迁移执行者写 live 表。两表仍按 `paused_ack_received_waiting_new_merge` 等待新仓合入后的维护者恢复入口。PR #158 仍仅是 WFP 导入来源 delta，不因固定审计提交而变为已合入主干或可自动关闭。
+
+| 级别 | 定向补充 finding |
+|---|---|
+| P0 | 无 |
+| P1 | 无 |
+| P2 | 无；完整 Git clone 是迁移审计的有意前提，不能降格为安装包依赖。 |
+| P3 | 无 |
+
+**定向结论：PASS。** 用户要求的“独立仓保留接力计划”现在同时具备导入历史可审计性与合入后持续维护能力；仍不解除原卡授权、维护会话恢复或实际合入的既有闸门。

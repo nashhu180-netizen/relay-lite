@@ -30,3 +30,5 @@
 2026-10-07治理补正：dh首次8失败源为本卡新治理文件格式；README输入./、brief章节、review分区/需求证据、taskplan伪占位均已修，最终0失败2warn（R19命名；R14 reader仅DH_旧卡语法，RLT_33无自动支持），不声称全绿。真实先于施工的方案review原件保留，planning-event为机器登记补正，最新源补充不改变权限。source历史模块checker baseline101/current101，R30旧RLT27对整个分支diff误归因与detached基线上下文差异独立记入source-dh-delta.json，修本卡brief3项后不改历史卡。
 
 本次miner按fresh agent实际抽2条候选→模块knowledge/教训库-候选.md，状态待裁决，不入正册；mine.log保存只读备料。
+
+2026-10-07：固定本仓9458e4f迁入版本审计已定向代码轮2/需求PASS；隔离clone改live表后迁移审计仍PASS，篡改固定快照触发AssertionError拒绝（独立reviewer验证）。39全套PASS见import-audit-tests.log；不会用正常维护变化篡改冻结证据。

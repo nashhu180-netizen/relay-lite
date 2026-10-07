@@ -11,7 +11,8 @@
       "maintainer": "AW_07 orchestrator#2",
       "ack": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/rlt33-aw07-cutover-ack.md",
       "source_sha": "5a47a4f98d01e77f9a78994765dc59d8b54dd6a5",
-      "source_ref": "local master"
+      "source_ref": "local master",
+      "import_commit": "9458e4fab52e5d39f67ddaa7ecd4e76370937f7a"
     },
     {
       "source": "docs/relay/wf-analytics-platform/workflow-platform/wfp-p1-obd-p5/relay_plan.md",
@@ -21,7 +22,8 @@
       "maintainer": "WFP_08 orchestrator wfp08-orch / kpi-agg w6F:p1",
       "ack": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/rlt33-wfp-cutover-ack.md",
       "source_sha": "65f87a0adab6d7bf4915c99c317f709dab3b32fd",
-      "source_ref": "unmerged PR158 docs/wfp08-chain-resume-20261007"
+      "source_ref": "unmerged PR158 docs/wfp08-chain-resume-20261007",
+      "import_commit": "9458e4fab52e5d39f67ddaa7ecd4e76370937f7a"
     }
   ],
   "source_checkout_changes": "none",

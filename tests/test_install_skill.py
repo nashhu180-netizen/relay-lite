@@ -162,4 +162,5 @@ class InstallSkillTests(unittest.TestCase):
             payload = json.loads(proc.stdout)
             self.assertEqual("READY", payload["state"])
             self.assertEqual("herdr", payload["environment"])
-            self.assertEqual(str(target / "references/environment-herdr.md"), payload["protocol"])
+            self.assertEqual(str((target / "references/environment-herdr.md").resolve()),
+                             payload["protocol"])

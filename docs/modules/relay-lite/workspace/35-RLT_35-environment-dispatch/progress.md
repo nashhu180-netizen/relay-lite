@@ -20,6 +20,11 @@
 | E-007 | test | evidence/candidate-final.log | pass | 全套58项exit0；包括动态发现/通知与安装/CLI |
 | E-008 | test | evidence/mutation-red.log；mutation.json | observed | 未知环境回退变异，指定测试断言失败exit1，不是导入/环境失败 |
 | E-009 | test | evidence/restored-green.log | pass | 生产代码精确原字节还原；全58项exit0 |
+| E-010 | review-dispatch | dh dispatch | observed | 复核派出：fresh-context-subagent｜path=code_review target_sha=3e7797417a09c8a9e2ee96bf29fd731fed182966 diff_sha256=621d81ba88ce1fe87935318bd37c2390dfbabb7531c0655f91f5690e37dc18fe｜path=code_review｜attempt=1 kind=full session=/root/rlt35_code_review |
+
+| E-011 | review | evidence/code-review.json/md | fail | 初次完整独立复核 CR-001 P1：Windows 短路径断言失败；原报告保留 |
+| E-012 | CI | evidence/ci-windows-failure.log；ci-initial.json | fail | 初次 Ubuntu PASS / Windows 58项1失败，非产品路径逃逸 |
+| E-013 | test | evidence/repair-green.log/json | pass | 断言按 helper 相同 resolve 规范口径比较；全58项 exit0，待双平台CI |
 
 ## 实施验证命令矩阵（开工计划复核 P1 补充）
 
@@ -34,3 +39,5 @@
 独立开工计划复核已确认设计/任务完整，命令矩阵P1采用；watcher通用流程适用全部kind，CLI能力在环境协议，宿主进程句柄在两adapter。
 
 实施里程碑@候选就绪：环境gate/Herdr协议/通用watcher/安装闭包就绪，58项回归与有效单测完成，失败历史保留；下一步fresh code_review。
+
+CR-001 同范围修复：仅测试期望路径规范化；候选登记 miner 两条草稿，不改验收/产品/正式知识库。

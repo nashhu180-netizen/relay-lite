@@ -1,0 +1,19 @@
+Source: GitHub Actions run 37645600395 / job 112875415085 / target 3e7797417a09c8a9e2ee96bf29fd731fed182966
+Whitelist: failing test ID, traceback, path comparison, totals only; no environment/auth lines.
+2026-10-07T15:39:12.9965974Z FAIL: test_environment_gate_is_standalone_after_source_checkout_disappears (test_install_skill.InstallSkillTests.test_environment_gate_is_standalone_after_source_checkout_disappears)
+2026-10-07T15:39:12.9967056Z The installed helper reads only the installed package and its protocol.
+2026-10-07T15:39:12.9967437Z ----------------------------------------------------------------------
+2026-10-07T15:39:12.9967742Z Traceback (most recent call last):
+2026-10-07T15:39:12.9971857Z   File "D:\a\relay-lite\relay-lite\tests\test_install_skill.py", line 165, in test_environment_gate_is_standalone_after_source_checkout_disappears
+2026-10-07T15:39:12.9972648Z     self.assertEqual(str(target / "references/environment-herdr.md"), payload["protocol"])
+2026-10-07T15:39:12.9973401Z AssertionError: 'C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\tmpoypn1c[67 chars]r.md' != 'C:\\Users\\runneradmin\\AppData\\Local\\Temp\\tmpoyp[70 chars]r.md'
+2026-10-07T15:39:12.9974225Z - C:\Users\RUNNER~1\AppData\Local\Temp\tmpoypn1cem\home\.claude\skills\relay-lite\references\environment-herdr.md
+2026-10-07T15:39:12.9974689Z ?          ^^^^^^^^
+2026-10-07T15:39:12.9975101Z + C:\Users\runneradmin\AppData\Local\Temp\tmpoypn1cem\home\.claude\skills\relay-lite\references\environment-herdr.md
+2026-10-07T15:39:12.9975592Z ?          ^^^^^^^^^^^
+2026-10-07T15:39:12.9975697Z 
+2026-10-07T15:39:12.9975700Z 
+2026-10-07T15:39:12.9975830Z ----------------------------------------------------------------------
+2026-10-07T15:39:12.9976112Z Ran 58 tests in 4.004s
+2026-10-07T15:39:12.9976221Z 
+2026-10-07T15:39:12.9976289Z FAILED (failures=1)

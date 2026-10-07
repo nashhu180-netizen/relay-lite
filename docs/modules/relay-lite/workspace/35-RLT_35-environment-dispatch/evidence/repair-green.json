@@ -1,0 +1,5 @@
+{
+  "command": "python3 -m unittest discover -s tests -v",
+  "exit_code": 0,
+  "repair": "CR-001 canonical protocol path comparison"
+}

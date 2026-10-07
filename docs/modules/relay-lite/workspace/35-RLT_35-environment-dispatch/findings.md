@@ -15,3 +15,6 @@
 
 ## 实施取证与修正
 首轮53项因旧watcher标题契约出现1 error，次轮58项因核心缺workspace_id参数映射出现1断言failure；两次失败保留为candidate-first/candidate-green，恢复兼容标题及通用参数映射后58项GREEN。helper补版本类型/默认注册项/所有协议路径/RECEIPT空值/固定错误JSON的负例；没有删除或跳过原测试。Windows若无symlink权限，该负例走已执行的路径越界断言后退出；Linux实测symlink逃逸拒绝，Windows CI不冒充该子路径。
+
+## 独立初审 CR-001
+初次报告 changes-requested，Windows CI 中测试直接比较短路径与 helper.resolve() 规范路径，P1 阻断。已规范化测试期望，保留文件路径与逃逸合同；本地修复58项通过，待双平台 CI 与原 reviewer attempt2，不提前标 resolved。

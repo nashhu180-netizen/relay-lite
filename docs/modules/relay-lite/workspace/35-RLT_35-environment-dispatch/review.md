@@ -52,3 +52,6 @@ normal=[code_review]；待完整候选 fresh 初审，不由施工方自审。
 | tools/environment_config.py:114 | 显式未知环境拒绝→未知值回退default | 改边界 | test_environment_config.EnvironmentConfigTests.test_unknown_empty_and_recovery_conflict_stop | python3 -m unittest discover -s tests -p test_environment_config.py -k test_unknown_empty_and_recovery_conflict_stop -v | c328ffdde94d533e1f6fbb132dd4f15a1b3359227095b6d75941258680410fdf | d8e269e045ef5388c6e6d2c891e81ee0433256c46c79151f4502879258a847b7 | codex-root-rlt35-20261007 | 断言失败 |
 
 证据为mutation.json及mutation-red.log；精确还原hash等于原值，restored-green.log 58项通过。无live Herdr操作或真实副本安装。
+<!-- dh:review-attempt:v1 task=RLT_35 attempt=1 kind=full reviewer_session_id=/root/rlt35_code_review status=punched -->
+
+<!-- dh:review-result:v2 task=RLT_35 path=code_review attempt=1 artifact=docs/modules/relay-lite/workspace/35-RLT_35-environment-dispatch/evidence/code-review.json artifact_sha256=4f3792cfc9bf40da5bc9116e2b3755540969c81d90773cda3b29e0090420ddf2 -->

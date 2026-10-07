@@ -1,0 +1,101 @@
+{
+  "schema": "dh.review-freeze.v2",
+  "task_id": "RLT_35",
+  "card_ref": "docs/modules/relay-lite/dev_plan/P3-环境派发与监控.md#rlt_35",
+  "task_type_marker_sha256": "818b13bd390ce929e8b5cec3572206801c40ef1dc4f833b1d45d27814b90fbee",
+  "classification_facts": {
+    "production_operation": {
+      "value": false,
+      "evidence": "docs/modules/relay-lite/workspace/35-RLT_35-environment-dispatch/brief.md#分类事实"
+    },
+    "irreversible_migration": {
+      "value": false,
+      "evidence": "docs/modules/relay-lite/workspace/35-RLT_35-environment-dispatch/brief.md#分类事实"
+    },
+    "metric_semantics": {
+      "value": false,
+      "evidence": "docs/modules/relay-lite/workspace/35-RLT_35-environment-dispatch/brief.md#分类事实"
+    },
+    "security_or_shared_guarantee": {
+      "value": false,
+      "evidence": "docs/modules/relay-lite/workspace/35-RLT_35-environment-dispatch/brief.md#分类事实"
+    },
+    "behavior_or_rule_semantics_changed": {
+      "value": true,
+      "evidence": "docs/modules/relay-lite/workspace/35-RLT_35-environment-dispatch/brief.md#分类事实"
+    }
+  },
+  "policy_version": "three-tier.v2",
+  "policy_source_digest": "9a775ca60a54bd6bd6647f18acf2d01c87760d304ee37bf8cf9643321990da7a",
+  "policy_sources": [
+    {
+      "path": "tools/dh-policy/three-tier.mjs",
+      "sha256": "86193917583b697c59a6e871e32e3426e3a277ac8d3c7c4d4dbc008847a08914"
+    },
+    {
+      "path": "tools/dh-policy/task-type.mjs",
+      "sha256": "a24074db98a9a0e68fc768c6475a80b312dd2ad3a2ded0d6b34ede2d61089ddd"
+    },
+    {
+      "path": "tools/dh-policy/registry.mjs",
+      "sha256": "3f584e35c059a8fd4455a6ff098c50e55e57c9d29580b9a7828b9c2849688fe2"
+    },
+    {
+      "path": "tools/dh-policy/review-policy.mjs",
+      "sha256": "2d82aa02cfa870659e8647443be3da570bef7f59b438705ba7f73caefc23e886"
+    },
+    {
+      "path": "tools/dh-policy/review-gate.mjs",
+      "sha256": "4673dca40e8f4dbb24ada4b72318d3ce57dc1de788abd4aaae56cfe022ca94d4"
+    },
+    {
+      "path": "tools/dh-policy/policy.mjs",
+      "sha256": "694de48b3bd64459af89b9ec8497db35f256ec320f59c2f6ae21ca0a9c88ff4d"
+    },
+    {
+      "path": "tools/dh-policy/migration.mjs",
+      "sha256": "5f3b09e793a5e5f763f315384f1be86e873ff6f31da06fc1226106ba9c488c06"
+    },
+    {
+      "path": "tools/dh-core.mjs",
+      "sha256": "ba1f41fa636e4b011b9c2a3c1421e4fce89123fb994745600744a08f956a8f82"
+    },
+    {
+      "path": "tools/dh-check.mjs",
+      "sha256": "6bee1b1bea5e96474368a812ad65eeed1c6858eafda9585dc26697472e928240"
+    },
+    {
+      "path": "tools/dh-nav.mjs",
+      "sha256": "150577eb0fa8d14a66ef72da14b597de94481b976598af914d89507af78e4932"
+    },
+    {
+      "path": "tools/dh-r18.mjs",
+      "sha256": "13b0ebd91627c1f65aa25117774162a9ca1f79eac49d6a4a529321dabb00fc6b"
+    },
+    {
+      "path": "tools/dh-dispatch.mjs",
+      "sha256": "5155f285ca6198a5082a77d22e466d8d8bee17b0b4ad8961d1c228c448c041ba"
+    },
+    {
+      "path": "tools/dh-release.mjs",
+      "sha256": "0ec53acaa6b50f0fb7f9134832c62202fefa8dd05fb45f7f91adb97ea72d94e9"
+    },
+    {
+      "path": "tools/dh-snapshot.mjs",
+      "sha256": "620dcb35401cfe969a47b451767255aaa282147682bf640b0c36bdabfccb5328"
+    },
+    {
+      "path": "tools/dh-console/scan.mjs",
+      "sha256": "0f2b36cc019589ac9877720942ae53437b8bf0b2127639e41c9a496dc9edb57a"
+    }
+  ],
+  "required_path_ids": [
+    "code_review"
+  ],
+  "recipe_sha256": "19beb84428ffecffc604ce438171f24e447c2dcbe9060f2788006c410635c0f8",
+  "baseline_sha": "e473f1d6ca99b8ca8a2f0f31280290823cda1ee9",
+  "target_sha": "20eb3797f80a451aa13c06675037f79c9aa6654b",
+  "diff_sha256": "01dd4935c34c729025ce6f07f937fd64869ea7fc7a76dd2683a9bc5b5a24fc2c",
+  "implementer_session_id": "codex-root-rlt35-20261007",
+  "policy_authorization_ref": "docs/modules/relay-lite/workspace/35-RLT_35-environment-dispatch/brief.md#本卡开工授权"
+}

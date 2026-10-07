@@ -1,0 +1,27 @@
+{
+  "headRefOid": "20eb3797f80a451aa13c06675037f79c9aa6654b",
+  "mergeStateStatus": "CLEAN",
+  "mergeable": "MERGEABLE",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-07T15:48:23Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nashhu180-netizen/relay-lite/actions/runs/37646905219/job/112879948508",
+      "name": "relay-lite-python (ubuntu-latest)",
+      "startedAt": "2026-10-07T15:48:13Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-07T15:48:34Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/nashhu180-netizen/relay-lite/actions/runs/37646905219/job/112879948220",
+      "name": "relay-lite-python (windows-latest)",
+      "startedAt": "2026-10-07T15:48:12Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    }
+  ]
+}

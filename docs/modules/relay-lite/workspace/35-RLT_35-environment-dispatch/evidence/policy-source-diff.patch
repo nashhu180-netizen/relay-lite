@@ -1,0 +1,20 @@
+--- frozen-ec10f184db0e8dcfc54d80efb2ffa3c4c9b018ce
++++ current-installed
+@@ -1390,7 +1390,7 @@
+             reviewMd, lessonsPresent, verifyClosed, taskType: r18TaskType,
+             policyActive: r18Plan.policyActive === true,
+             policyVersion: r18Plan.policyVersion ?? null,
+-            reviewGate: r18Plan.policyVersion === "three-tier.v2" ? collectReviewGate({cwd:repoRoot,moduleRoot,workspaceDir:w.dir}) : null,
++            reviewGate: r18Plan.policyVersion === "three-tier.v2" ? collectReviewGate({cwd:createGitContext(moduleRoot).root ?? moduleRoot,moduleRoot,workspaceDir:w.dir}) : null,
+             reviewScope: r18ScopeEval?.res?.ok ? r18ScopeEval.res.reviewScope : null,
+             reviewScopeRecords: scopeIdentified ? r18ScopeEval.res : null,
+           });
+@@ -1590,7 +1590,7 @@
+               // 普通代码提交已进入主干且无未提交路径时，没有可证明的任务分叉 diff；
+               // R30 同样把该情形标为“不适用”。只放松锚点归属，其他 R31 硬字段照常验证。
+               anchorScopeKnown: !(changes.ok && changes.onTrunk && changes.paths.length === 0),
+-              round2Reviewers: typed.policyVersion === "three-tier.v2" ? collectReviewGate({cwd:repoRoot,moduleRoot,workspaceDir:w.dir}).path_verdicts.filter(p=>p.path_id === "code_round_2" && p.state === "PASS").map(p=>p.reviewer_session_id) : mutationRegistrars({ reviewMd, taskId: taskIdsFromWorkspaceName(w.name)[0] ?? null, pathId: reviewPlanForWorkspace(w.name).codePathId || "code_round_2", policyActive: reviewPlanForWorkspace(w.name).policyActive === true }),
++              round2Reviewers: typed.policyVersion === "three-tier.v2" ? collectReviewGate({cwd:createGitContext(moduleRoot).root ?? moduleRoot,moduleRoot,workspaceDir:w.dir}).path_verdicts.filter(p=>p.path_id === "code_round_2" && p.state === "PASS").map(p=>p.reviewer_session_id) : mutationRegistrars({ reviewMd, taskId: taskIdsFromWorkspaceName(w.name)[0] ?? null, pathId: reviewPlanForWorkspace(w.name).codePathId || "code_round_2", policyActive: reviewPlanForWorkspace(w.name).policyActive === true }),
+               testEvidencePresent: r16HasEvidenceType(w.progressMd || "", "test"),
+               ...mutationVerifiers(),
+             });

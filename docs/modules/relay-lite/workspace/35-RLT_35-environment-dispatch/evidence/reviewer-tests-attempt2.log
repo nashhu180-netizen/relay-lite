@@ -1,0 +1,50 @@
+test_all_installs_package_to_both_sides (test_install_skill.InstallSkillTests.test_all_installs_package_to_both_sides) ... ok
+test_cli_requires_all_flag (test_install_skill.InstallSkillTests.test_cli_requires_all_flag) ... usage: python3 -m unittest [-h] --all [--legacy-alias]
+python3 -m unittest: error: the following arguments are required: --all
+usage: python3 -m unittest [-h] --all [--legacy-alias]
+python3 -m unittest: error: the following arguments are required: --all
+usage: python3 -m unittest [-h] --all [--legacy-alias]
+python3 -m unittest: error: the following arguments are required: --all
+usage: python3 -m unittest [-h] --all [--legacy-alias]
+python3 -m unittest: error: unrecognized arguments: extra
+ok
+test_environment_gate_is_standalone_after_source_checkout_disappears (test_install_skill.InstallSkillTests.test_environment_gate_is_standalone_after_source_checkout_disappears)
+The installed helper reads only the installed package and its protocol. ... ok
+test_manifest_fields_after_success (test_install_skill.InstallSkillTests.test_manifest_fields_after_success) ... ok
+test_mid_copy_failure_is_nonzero_and_rerun_converges (test_install_skill.InstallSkillTests.test_mid_copy_failure_is_nonzero_and_rerun_converges)
+HC-RL-A124: tamper one side, inject a mid-copy failure, rerun to converge. ... error: injected mid-copy failure
+ok
+test_overwrites_stale_replica (test_install_skill.InstallSkillTests.test_overwrites_stale_replica) ... ok
+test_package_set_is_closed_and_present (test_install_skill.InstallSkillTests.test_package_set_is_closed_and_present) ... ok
+test_roles_toml_replica_bytes_identical_to_source (test_install_skill.InstallSkillTests.test_roles_toml_replica_bytes_identical_to_source) ... ok
+test_source_missing_file_fails_closed (test_install_skill.InstallSkillTests.test_source_missing_file_fails_closed) ... error: skill source incomplete, missing: templates/card-chain.md
+ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.664s
+
+OK
+installed: /tmp/tmp6h1tbvw0/home/.claude/skills/relay-lite
+installed: /tmp/tmp6h1tbvw0/home/.codex/skills/relay-lite
+installed: /tmp/tmp6h1tbvw0/home/.agents/skills/relay-lite
+installed: /tmp/tmp5reyu5rj/home/.claude/skills/relay-lite
+installed: /tmp/tmp5reyu5rj/home/.codex/skills/relay-lite
+installed: /tmp/tmp5reyu5rj/home/.agents/skills/relay-lite
+installed: /tmp/tmp4irkmny1/home/.claude/skills/relay-lite
+installed: /tmp/tmp4irkmny1/home/.codex/skills/relay-lite
+installed: /tmp/tmp4irkmny1/home/.agents/skills/relay-lite
+installed: /tmp/tmpcl5480v5/home/.claude/skills/relay-lite
+installed: /tmp/tmpcl5480v5/home/.codex/skills/relay-lite
+installed: /tmp/tmpcl5480v5/home/.agents/skills/relay-lite
+installed: /tmp/tmpcl5480v5/home/.claude/skills/relay-lite
+installed: /tmp/tmpcl5480v5/home/.codex/skills/relay-lite
+installed: /tmp/tmpcl5480v5/home/.agents/skills/relay-lite
+installed: /tmp/tmp0m5_n427/home/.claude/skills/relay-lite
+installed: /tmp/tmp0m5_n427/home/.codex/skills/relay-lite
+installed: /tmp/tmp0m5_n427/home/.agents/skills/relay-lite
+installed: /tmp/tmp0m5_n427/home/.claude/skills/relay-lite
+installed: /tmp/tmp0m5_n427/home/.codex/skills/relay-lite
+installed: /tmp/tmp0m5_n427/home/.agents/skills/relay-lite
+installed: /tmp/tmppj8v61nl/home/.claude/skills/relay-lite
+installed: /tmp/tmppj8v61nl/home/.codex/skills/relay-lite
+installed: /tmp/tmppj8v61nl/home/.agents/skills/relay-lite

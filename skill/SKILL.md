@@ -5,7 +5,7 @@ description: 独立的单卡接力分工与跨卡接力计划；orchestrator 直
 
 # relay-lite
 
-> 版本：v2.0.0
+> 版本：v2.1.0
 
 relay-lite 给任意业务仓使用，只提供单卡接力。跨卡接力计划负责卡间依赖和交棒；每张卡内部由 orchestrator 直接分派角色，不建账本或阶段主管。协议来源为独立 relay-lite 仓，不要求其它协议仓 checkout。
 
@@ -32,7 +32,27 @@ relay-lite 给任意业务仓使用，只提供单卡接力。跨卡接力计划
 | watcher | 只启动观察脚本并巡检存活，只报信，对 repo/workspace 零写入 |
 | document（按需） | 用户明确启用时顺序代笔，不代判、不改原始结果或 signal |
 
-编排由用户拉起，直接分派本卡角色；一张卡一个终端空间，每实例一个独立具名 tab/pane。agent kind（claude/codex/devin/omp）与终端载体 Herdr 分开；命令见两 adapter。模型默认提案在 roles.toml，实际分配来自用户确认后的 execution_strategy.md。
+编排由用户拉起，直接分派本卡角色；一张卡一个终端空间，每实例一个独立具名 tab/pane。agent kind（claude/codex/devin/omp 等）与运行环境分开；环境由下节配置选择，派发命令只在选中环境的协议中维护，宿主工具差异见两 adapter。模型默认提案在 roles.toml，实际分配来自用户确认后的 execution_strategy.md。
+
+## 环境配置与派发入口
+
+任何新建、恢复、清理、派单、观察或通知前，先读取包内 `environments.toml`，通过 `environment_config.py` 校验；**非零退出或 state 不是 READY 即停止，不执行任何派发/控制命令**。配置目前有且只有 `herdr`，默认也是 `herdr`。模型提案 `roles.toml` 不参与环境选择。
+
+安装包入口（`<SKILL_DIR>` 为当前所读 skill 的真实目录，不是业务仓或任务文档 workspace）：
+
+```bash
+python3 <SKILL_DIR>/environment_config.py
+python3 <SKILL_DIR>/environment_config.py --environment <用户或派单明确的环境>
+python3 <SKILL_DIR>/environment_config.py --environment <恢复指令或已登记环境> --expected <已登记环境>
+```
+
+仓内开发入口为 `python3 tools/environment_config.py`，工具默认定位兄弟 `skill/`；安装后默认定位自身目录。首次明确 environment 优先，否则取配置 default；恢复必须传入 `execution_strategy.md` 已登记 environment 作为 `--expected`，未指定新选择时同时作为 `--environment`，有冲突停止，不静默切换。存量卡缺该字段时先根据原策略与实际运行身份核实并登记，不借默认值切换环境。
+
+成功 JSON `schema=relay-lite.environment.v1`、`state=READY` 包含选中 `environment`、`config` 和 `protocol`；读取返回的协议路径，按它执行。失败 JSON `state=BLOCKED` 的固定 `reason` 是阻塞原因，不是授权或任务完成 signal；按原角色 fail-closed 出口处理。工具只读取，不启动 agent、执行配置命令或写工件。`RELAY_RECEIPT` 存在含空值时工具拒绝，先按本文角色分流处理，不清除任何 `RELAY_*`。
+
+在既有 `execution_strategy.md` 登记选中 environment、配置/协议来源、CLI版本以及启动后从实际返回核实的 space/tab/pane/agent 身份；未启动写 pending，不预测 ID。恢复同时核已有选择与该环境实态。新增环境需新增其独立协议、注册配置并追加安装器封闭清单/测试，不复制到模型 adapter，也不因注册就自动启用或授权。未知环境、配置损坏、缺 default/协议、路径越界或实际环境不满足均停止，不回退。
+
+Herdr 派发前必须加载当前 `herdr --skill`；配置 gate 与环境协议均通过后按 **space → 独立具名标签页 → 交互式 agent → 派单**。新任务/新批次复用同标签页时先执行下文清理闸，再投递。详见配置所选 [Herdr 环境协议](references/environment-herdr.md)；仅 Herdr 已实现，不宣称其它环境能力。
 
 ## 硬规则
 
@@ -49,11 +69,11 @@ relay-lite 给任意业务仓使用，只提供单卡接力。跨卡接力计划
 - **入口**：单卡 orchestrator 在首次启动/恢复时检查用户交接和已有 `execution_strategy.md`，关联已知总表并记录「总表：`relay-lite:<仓相对路径>`；维护会话：<唯一会话/恢复入口>」。交互单会话在已有进度工件记录，不为此新建工作区。确认没有关联总表的独立卡写「总表：无（独立单卡）」即可；交接提到总表却缺路径时标「总表待定位」，不猜路径、不静默记无。已有在途卡下次恢复时补登记，不重启角色或补造历史。
 - **写入者**：每份总表只由登记的一个协调会话写；单卡时可以是原 orchestrator，交互任务可以是原主会话，不要求另拉常驻 agent。多卡并行时各卡在自己的既有交接工件提供行更新内容和证据指针，由该维护会话顺序汇总，不让多个 executor/orchestrator 并写总表。维护人更换先完成交接并同步关联记录（时机见下条「维护人卡收口前移交」）；worker/reviewer/decider/watcher 默认不写总表；single-task 显式启用文档 agent 时，登记维护会话可按下文顺序委托代笔，维护责任不转移，不扩大文件或消息发送权限。
 - **触发**：首次关联与恢复时先核对原卡、workspace 证据及当前行；进入/解除等待、卡级结果改变（例如复核结束、合入、验收）、准备停下或交棒时，更新对应行的接力情况、下一步/去向、证据引用和核对日期。不抄批次日志，不把未发生的结果写成完成。
-- **非维护卡通知**：关联了总表的非维护卡，在卡级事件（开工、进入/解除等待、卡级结果变化如复核结束/合入/验收、停下、交棒）发生并把待同步行写进自己的交接工件后，由该卡 orchestrator（交互单会话为主会话）向登记的维护会话发一行 Herdr prompt：`[relay-lite] card-chain update <卡号> <交接工件仓相对路径>`（除卡号和路径外不加中文）。维护会话收到后先核原证据，再按顺序汇总更新对应行与核对日期；不因通知直接照抄。通知失败（维护会话不在线/不可达）时走下文「无法更新」出口报告“总表待同步”，不自行写总表。这只是 orchestrator 向维护会话的内部通知，不扩大 worker/reviewer/decider/watcher 的写权或消息权限，也不授予任何开工/合入权限。反方向由维护会话发给他卡的 `card-chain decision` 见「并行开卡」③，同样只是通信，不授予开工/合入权限。
-- **维护人卡收口前移交**：维护会话所在的卡，在收口汇报（宣称整卡完成/交棒）前必须先移交维护权：默认交给下一张已开工且关联本表的卡的 orchestrator（多张时按总表行序取首张）；没有已开工卡时交回用户，标「维护会话：待指定（用户）」；用户可另行指定接收方。移交步骤：交出方用 Herdr prompt 通知接收方 orchestrator（`[relay-lite] card-chain maintainer-handoff <总表仓相对路径>`，发后读 pane 末行确认投递）；接收方在自己的 execution_strategy.md（或进度工件）「卡级总表」登记为维护会话，并回一行确认；交出方收到确认后再改总表页头「维护会话」和自己的登记。交出方不写接收方的工件。接收方未确认/不可达时不算移交完成，按“交回用户”处理（页头写「维护会话：待指定（用户）」并报告用户）。未完成移交不算收口完成。
+- **非维护卡通知**：关联了总表的非维护卡，在卡级事件（开工、进入/解除等待、卡级结果变化如复核结束/合入/验收、停下、交棒）发生并把待同步行写进自己的交接工件后，由该卡 orchestrator（交互单会话为主会话）向登记的维护会话发一行 选中环境的通知入口：`[relay-lite] card-chain update <卡号> <交接工件仓相对路径>`（除卡号和路径外不加中文）。维护会话收到后先核原证据，再按顺序汇总更新对应行与核对日期；不因通知直接照抄。通知失败（维护会话不在线/不可达）时走下文「无法更新」出口报告“总表待同步”，不自行写总表。这只是 orchestrator 向维护会话的内部通知，不扩大 worker/reviewer/decider/watcher 的写权或消息权限，也不授予任何开工/合入权限。反方向由维护会话发给他卡的 `card-chain decision` 见「并行开卡」③，同样只是通信，不授予开工/合入权限。
+- **维护人卡收口前移交**：维护会话所在的卡，在收口汇报（宣称整卡完成/交棒）前必须先移交维护权：默认交给下一张已开工且关联本表的卡的 orchestrator（多张时按总表行序取首张）；没有已开工卡时交回用户，标「维护会话：待指定（用户）」；用户可另行指定接收方。移交步骤：交出方用 选中环境的通知入口 通知接收方 orchestrator（`[relay-lite] card-chain maintainer-handoff <总表仓相对路径>`，发后读 pane 末行确认投递）；接收方在自己的 execution_strategy.md（或进度工件）「卡级总表」登记为维护会话，并回一行确认；交出方收到确认后再改总表页头「维护会话」和自己的登记。交出方不写接收方的工件。接收方未确认/不可达时不算移交完成，按“交回用户”处理（页头写「维护会话：待指定（用户）」并报告用户）。未完成移交不算收口完成。
 - **交棒核对**：关联总表的卡在对外报告“已交棒”或按总表接续下一卡前，逐项核对：①行状态与原卡证据一致；②等待原因/下一步清楚；③交接条件有证据指针，版本交接有提交 SHA；④本次核对日期已更新。普通停下可以报告等待，不要求强行完成。确认项写在原有交接/最终汇报的一行「总表已核对：<路径>；<卡号>；<日期>」，不另造 receipt 或运行账本。对外消息仍需原授权，核对本身不授予下一卡开工/合入/verify 等权限；下一卡开工授权只来自总表该卡行的「自动接续」栏（见下条）。
-- **自动接续**（2026-09-30 用户裁决）：总表每行设「自动接续」栏，**只由用户写定**（或用户明确指示主会话代填，代填必须附用户消息指针，该指针即页头来源），维护会话与任何 orchestrator 只读、不得新增或修改该栏；页头记「自动接续授权：<用户消息/提交 SHA 指针>」，核对时追溯不到用户来源即按「否」。栏值以字面「是」开头才算是，其余（「否」、空白、待定）都按「否」。「是」必须同时写定下一卡 orchestrator 的模型与推理档，可再附其余角色分配；写定的分配视为该卡 model-allocation gate 的明确确认（gate 节的对应例外），下一卡 orchestrator 机械登记到自己的 `execution_strategy.md`，未附的角色由它启动后照 gate 向用户询问。「是」等同于 AGENTS.md 协作流程第 5 条对该卡的开工授权，范围、验收以原卡为准。执行者只有**维护会话**：本卡收口时在「维护人卡收口前移交」之前执行一次；收到非维护卡收口的 `card-chain update` 通知时，核完原证据后也按 ①–④ 对以该卡为前置的下一卡执行，这种情况不触发维护权移交；非收口时机的触发见下条「并行开卡」。非维护卡收口只发通知，不自行执行。对以收口卡为前置的每张下一卡按行序处理：①核对其「接棒条件」——条件必须写明以哪道闸为准（合入 SHA / verify 提交 / 人验结论），且全部前置卡（含其它链路的扇入前置）都有证据指针，任一缺证即不开；含人验的条件由主会话/用户在接力流程外给出结论，orchestrator 不代判；条件在本卡收口之后才满足的（如本卡 verify、人验），收口时只写「等待：<条件>」，收口卡不驻留等待，之后由用户人工放行或指示维护会话再判。②「是」且条件齐全时，按目标仓协作规则做开局准备且只做这五步：Issue 立户（正文取自原卡的目标/范围/验收/档位/风险/停止边界，原卡缺项即按 ④ 停；已有 Issue 则复用）、从目标远端 master 建任务分支与 worktree、开工提交推上去建 Draft MR/PR 并关联 Issue、新开一个 Herdr workspace、按 adapter 写法以写定的模型档拉起该卡 orchestrator；启动 prompt 给原卡路径、总表路径、Issue 号、分支名、worktree 路径、MR/PR 号与写定的分配，由它自己登记，本卡 orchestrator 不写它的工件；读 pane 末行确认投递。多张满足条件的「是」卡逐张全部拉起，维护权按「维护人卡收口前移交」交给行序首张。③「否」时只做到核对，行写「等待：用户放行开工」并报告用户，不建 Issue、不拉 agent。④任一步失败（Issue 建不成或原卡缺项、worktree 冲突、分配未写定、拉起不成或投递未确认）即停当前这张卡：行写「等待：<原因>」，其余「是」卡按行序继续；收口汇报带上失败原因和已建成的半成品（Issue 号、分支、Draft MR/PR 号、workspace），交用户接手或清理；不重试、不修环境、不向用户临时索要分配、不代做下一卡施工；维护权仍按「维护人卡收口前移交」默认规则处理，只是本次失败的卡不算已开工。自动接续不设跨卡常驻编排、不新增角色/账本/脚本；被拉起的 orchestrator 仍按 `single-task` 从入口登记开始执行，对未写定的角色自行走 gate。
-- **并行开卡**（2026-10-06 用户裁决）：接棒条件互不依赖的多张「是」卡（彼此都不是对方的前置，接棒条件写「无」也算）可同时各开一个 Herdr workspace 并行推进，不必等前一张收口；允许路径重叠或改同一文件的卡视同有依赖，按行序串行，拿不准按有依赖处理；因此被串行的卡行写「等待：与 <卡> 路径重叠」，维护会话收到该冲突卡收口通知时，对它同样按 ①–④ 再判，不因它不以冲突卡为前置而漏判。除上条两种收口触发外，维护会话在首次关联/恢复核表时，以及用户新写定「是」后，对当时接棒条件已齐、行状态为「未开始」且尚无已登记 Issue/分支/workspace 的「是」卡按上条 ①–④ 各执行一次（已开工、已收口或留有半成品的卡一律不再拉起，半成品按 ④ 交用户）——这只是「自动接续」同一流程的另一触发点，不是新授权；非收口触发不移交维护权，维护会话照常留在原位。边界：①每张卡仍须本行「自动接续」为「是」且全部前置有证据，有依赖的卡仍等其前置，「否」的卡只核对报告；②维护权仍只一份，并行各卡的 orchestrator 只按「非维护卡通知」发 `card-chain update`，总表仍由维护会话顺序汇总；③询问者唯一：并行期间（同表有两张及以上卡在推进）各卡 orchestrator 不自行向用户发问，只按 single-task「小决策交 decider，问用户攒齐一次」先交 decider、把仍需用户决定的事项登记为本卡 findings D 项，作为「进入等待」卡级事件通知维护会话；维护会话在对应行写「等待：用户决定（<卡> findings D 项）」，在维护会话的最近自然停点把各卡待决项按卡分组一次问用户（命中停卡、安全、生产影响的立即问），再用 Herdr prompt `[relay-lite] card-chain decision <卡号> <用户原始消息指针>`（如维护会话名 + 答复时间；只传指针，不在 prompt 里放答复原文）把每卡答复的来源转给该卡 orchestrator（读 pane 末行确认投递），由它在本卡 findings 登记来源（经维护会话转达的用户答复、时间）。维护会话不写他卡工件、不改写或代答；只剩一张卡在推进时恢复由本卡 orchestrator 自问；④并行不改变每卡的 model-allocation gate、Issue/分支/Draft MR/PR、一卡一 worktree 与收口规则，也不新增跨卡常驻编排。
+- **自动接续**（2026-09-30 用户裁决）：总表每行设「自动接续」栏，**只由用户写定**（或用户明确指示主会话代填，代填必须附用户消息指针，该指针即页头来源），维护会话与任何 orchestrator 只读、不得新增或修改该栏；页头记「自动接续授权：<用户消息/提交 SHA 指针>」，核对时追溯不到用户来源即按「否」。栏值以字面「是」开头才算是，其余（「否」、空白、待定）都按「否」。「是」必须同时写定下一卡 orchestrator 的模型与推理档，可再附其余角色分配；写定的分配视为该卡 model-allocation gate 的明确确认（gate 节的对应例外），下一卡 orchestrator 机械登记到自己的 `execution_strategy.md`，未附的角色由它启动后照 gate 向用户询问。「是」等同于 AGENTS.md 协作流程第 5 条对该卡的开工授权，范围、验收以原卡为准。执行者只有**维护会话**：本卡收口时在「维护人卡收口前移交」之前执行一次；收到非维护卡收口的 `card-chain update` 通知时，核完原证据后也按 ①–④ 对以该卡为前置的下一卡执行，这种情况不触发维护权移交；非收口时机的触发见下条「并行开卡」。非维护卡收口只发通知，不自行执行。对以收口卡为前置的每张下一卡按行序处理：①核对其「接棒条件」——条件必须写明以哪道闸为准（合入 SHA / verify 提交 / 人验结论），且全部前置卡（含其它链路的扇入前置）都有证据指针，任一缺证即不开；含人验的条件由主会话/用户在接力流程外给出结论，orchestrator 不代判；条件在本卡收口之后才满足的（如本卡 verify、人验），收口时只写「等待：<条件>」，收口卡不驻留等待，之后由用户人工放行或指示维护会话再判。②「是」且条件齐全时，按目标仓协作规则做开局准备且只做这五步：Issue 立户（正文取自原卡的目标/范围/验收/档位/风险/停止边界，原卡缺项即按 ④ 停；已有 Issue 则复用）、从目标远端 master 建任务分支与 worktree、开工提交推上去建 Draft MR/PR 并关联 Issue、按选中环境协议新开一个 space、按环境协议与 adapter 的宿主写法以写定的模型档拉起该卡 orchestrator；启动 prompt 给原卡路径、总表路径、Issue 号、分支名、worktree 路径、MR/PR 号与写定的分配，由它自己登记，本卡 orchestrator 不写它的工件；读 pane 末行确认投递。多张满足条件的「是」卡逐张全部拉起，维护权按「维护人卡收口前移交」交给行序首张。③「否」时只做到核对，行写「等待：用户放行开工」并报告用户，不建 Issue、不拉 agent。④任一步失败（Issue 建不成或原卡缺项、worktree 冲突、分配未写定、拉起不成或投递未确认）即停当前这张卡：行写「等待：<原因>」，其余「是」卡按行序继续；收口汇报带上失败原因和已建成的半成品（Issue 号、分支、Draft MR/PR 号、workspace），交用户接手或清理；不重试、不修环境、不向用户临时索要分配、不代做下一卡施工；维护权仍按「维护人卡收口前移交」默认规则处理，只是本次失败的卡不算已开工。自动接续不设跨卡常驻编排、不新增角色/账本/脚本；被拉起的 orchestrator 仍按 `single-task` 从入口登记开始执行，对未写定的角色自行走 gate。
+- **并行开卡**（2026-10-06 用户裁决）：接棒条件互不依赖的多张「是」卡（彼此都不是对方的前置，接棒条件写「无」也算）可同时按各卡选中环境各开一个 space 并行推进，不必等前一张收口；允许路径重叠或改同一文件的卡视同有依赖，按行序串行，拿不准按有依赖处理；因此被串行的卡行写「等待：与 <卡> 路径重叠」，维护会话收到该冲突卡收口通知时，对它同样按 ①–④ 再判，不因它不以冲突卡为前置而漏判。除上条两种收口触发外，维护会话在首次关联/恢复核表时，以及用户新写定「是」后，对当时接棒条件已齐、行状态为「未开始」且尚无已登记 Issue/分支/workspace 的「是」卡按上条 ①–④ 各执行一次（已开工、已收口或留有半成品的卡一律不再拉起，半成品按 ④ 交用户）——这只是「自动接续」同一流程的另一触发点，不是新授权；非收口触发不移交维护权，维护会话照常留在原位。边界：①每张卡仍须本行「自动接续」为「是」且全部前置有证据，有依赖的卡仍等其前置，「否」的卡只核对报告；②维护权仍只一份，并行各卡的 orchestrator 只按「非维护卡通知」发 `card-chain update`，总表仍由维护会话顺序汇总；③询问者唯一：并行期间（同表有两张及以上卡在推进）各卡 orchestrator 不自行向用户发问，只按 single-task「小决策交 decider，问用户攒齐一次」先交 decider、把仍需用户决定的事项登记为本卡 findings D 项，作为「进入等待」卡级事件通知维护会话；维护会话在对应行写「等待：用户决定（<卡> findings D 项）」，在维护会话的最近自然停点把各卡待决项按卡分组一次问用户（命中停卡、安全、生产影响的立即问），再用 选中环境的通知入口 `[relay-lite] card-chain decision <卡号> <用户原始消息指针>`（如维护会话名 + 答复时间；只传指针，不在 prompt 里放答复原文）把每卡答复的来源转给该卡 orchestrator（读 pane 末行确认投递），由它在本卡 findings 登记来源（经维护会话转达的用户答复、时间）。维护会话不写他卡工件、不改写或代答；只剩一张卡在推进时恢复由本卡 orchestrator 自问；④并行不改变每卡的 model-allocation gate、Issue/分支/Draft MR/PR、一卡一 worktree 与收口规则，也不新增跨卡常驻编排。
 - **无法更新**：路径不存在、维护会话不可用、无写权或文件冲突时，不创建替代表或覆盖他人修改；在本卡既有交接工件保留待更新的行内容及证据位置，并向用户报告「总表待同步」和原因。未核对前不能宣称已交棒、不能依赖旧摘要放行后续；不阻断无关的已授权卡内工作。恢复后先核原证据再补表，不能仅凭旧摘要恢复。
 
 ## 适用边界：交互型任务走单会话
@@ -88,7 +108,7 @@ relay-lite 给任意业务仓使用，只提供单卡接力。跨卡接力计划
 
 - worker 派单 prompt 首行固定为 `[relay-lite:single-task] worker · phase=<phase> · agent=<role>#<instance> · batch=<n|na> · round=<n> · workspace=<repo-relative-path>`；存量单卡标头按「存量单卡兼容」读取。
 - phase 闭集：`plan` / `plan-review` / `batch` / `batch-review` / `workflow-final` / `e2-code-review` / `decision` / `watcher` / `human-acceptance`；`batch=1|2|3|na`。
-- `RELAY_RECEIPT` fail closed 分流：进程环境存在 `RELAY_RECEIPT` 时，产出型 builder/executor/reviewer/decider（含已启用的 document）只写本角色精确 `BLOCKED.*.md` 单行 signal 后立即停止；watcher 保持 repo/workspace 零写入，只用 Herdr prompt 非 durable 通知 orchestrator 后立即停止，不写 `BLOCKED`。两个分支均不得清除任何 `RELAY_*` 环境变量。
+- `RELAY_RECEIPT` fail closed 分流：进程环境存在 `RELAY_RECEIPT` 时，产出型 builder/executor/reviewer/decider（含已启用的 document）只写本角色精确 `BLOCKED.*.md` 单行 signal 后立即停止；watcher 保持 repo/workspace 零写入，只用 选中环境的通知入口 非 durable 通知 orchestrator 后立即停止，不写 `BLOCKED`。两个分支均不得清除任何 `RELAY_*` 环境变量。
 
 ### model-allocation gate（启动任何 agent 之前的硬闸）
 
@@ -104,7 +124,7 @@ relay-lite 给任意业务仓使用，只提供单卡接力。跨卡接力计划
 `reviewer gpt-6.1-sol-high` 按模型 `gpt-6.1-sol` 与推理档 `high` 分开填写，不把后缀当模型 ID。`batch-reviewer` 默认参考 `roles.toml` 的 `[executor]` 模型、推理档和启动参数，其只读约束由派单 prompt 承担；只读约束由派单承担。相应启动模板见随 skill 安装的 `roles.toml`：`codex -m <模型> -c model_reasoning_effort=<推理档> --dangerously-bypass-approvals-and-sandbox`。未列出的角色保持原有默认或用户指定；本表是新建分配的默认提案，不覆盖在途卡的明确确认，不替代下方启动确认闸。single-task 确认后的分配仍写入 `execution_strategy.md`，不创建计划级模型 config。
 
 - orchestrator 必须先向用户展示全部拟启动角色/实例的模型与推理档提案表，并明确询问确认；推荐默认仅是提案，不写死模型。用户可逐角色修改；**未获明确确认不得启动任何 agent**。唯一例外：卡级总表「自动接续」栏由用户写定的分配（见该节），视为对应角色的明确确认，其余角色仍照本条询问。
-- 确认后由 orchestrator 机械地把确认来源、角色/实例、模型、推理档写入 `execution_strategy.md`；未启动的 tab/pane 标 pending，启动后补齐实际 Herdr workspace/tab/pane 与观察来源并逐项比对。默认由 orchestrator 维护 `execution_strategy.md`，watcher 与其它角色只读；启用 document 时按下文首次建卡/代笔合同登记，由 orchestrator 核对分配事实。授权与模型确认事实保留在此，业务决定只按下文「决定落点」引用 findings。
+- 确认后由 orchestrator 机械地把确认来源、角色/实例、模型、推理档写入 `execution_strategy.md`；未启动的 tab/pane 标 pending，启动后补齐实际 environment/space/tab/pane 与观察来源并逐项比对。默认由 orchestrator 维护 `execution_strategy.md`，watcher 与其它角色只读；启用 document 时按下文首次建卡/代笔合同登记，由 orchestrator 核对分配事实。授权与模型确认事实保留在此，业务决定只按下文「决定落点」引用 findings。
 - 恢复时可沿用已有明确确认且分配未变的快照；新增/更换角色或实例、换模型或推理档必须再次询问确认。超时、静默或最大工具权限均不推定确认；最大工具权限不扩张 commit/push/PR/merge/deploy/verify/人验授权。
 
 ### 生命周期与计数
@@ -121,7 +141,7 @@ relay-lite 给任意业务仓使用，只提供单卡接力。跨卡接力计划
 
 - 仅当该批 batch reviewer 的 durable signal 为 PASS **且**本批工件齐全（本批交付物、验证证据、executor signal、review 产物、reviewer durable PASS）后，orchestrator 对本批 executor 与 batch reviewer **各执行一次 `/clear`** 并分别复验已清理，之后才启动下一批。终端 idle/done 或 executor DONE 不替代此门。
 - **新的独立任务**：复用标签页前，先核前任务已按原合同停下，且工件、证据与原角色 signal 已保存；对该标签页内的旧会话**先 clear 并确认，再投递新派单**。清理完成后 worker 重新读取新任务的 AGENTS、精确派单与指定 workspace，不能沿用前任务授权或写权。全新实例的空会话按真实启动事实登记，不伪造执行过 `/clear`；原合同要求新 workspace/实例时仍照原合同创建。
-- **执行与确认**：使用该 agent kind 已核实支持的原生会话清理命令（支持 `/clear` 时使用 `/clear`，其它 kind 使用已核实的等效命令），与新派单分两次投递；命令送达后，核对实际 pane 的原生清理成功提示或新空会话状态，再发派单。仅命令已输入、`state_change_seq` 推进、idle/done 或屏幕变空，都不能证明上下文已清理。在既有 `execution_strategy.md` 记录清理对象、对应任务/批次、命令与确认依据，不新建清理账本。前批已 clear 且复验成功、期间未再承接任务时，直接使用该已确认空会话，不重复 clear；恢复时回查原记录与 Herdr 实态，无法确认仍停在清理门。
+- **执行与确认**：使用该 agent kind 已核实支持的原生会话清理命令（支持 `/clear` 时使用 `/clear`，其它 kind 使用已核实的等效命令），与新派单分两次投递；命令送达后，核对实际 pane 的原生清理成功提示或新空会话状态，再发派单。仅命令已输入、`state_change_seq` 推进、idle/done 或屏幕变空，都不能证明上下文已清理。在既有 `execution_strategy.md` 记录清理对象、对应任务/批次、命令与确认依据，不新建清理账本。前批已 clear 且复验成功、期间未再承接任务时，直接使用该已确认空会话，不重复 clear；恢复时回查原记录与 选中环境实态，无法确认仍停在清理门。
 - FAIL/整改期间禁止 `/clear`，保持原 executor/原 reviewer session，不借清理清零整改计数；清理失败或无法复验时不得启动下一批，也不盲目重复发送 `/clear`。watcher 常驻、不 clear；decider 按需拉起，不纳入每批固定 clear。
 - 同任务补证与 E2 targeted attempt 2 沿用原会话，不作为新任务 clear；workflow-final 每轮和要求 fresh 的独立复核仍换未参与实施的新实例，不能把旧实例 `/clear` 后冒充 fresh。清理失败或结果未知时不投递新任务、不盲重发。clear 不删除或改写历史工件、signal、失败、`review_round`/`remediation_count`，不清除 `RELAY_*`，不为未闭合原任务放行或重置额度。
 
@@ -147,19 +167,36 @@ relay-lite 给任意业务仓使用，只提供单卡接力。跨卡接力计划
 - **其它记录**：机械进度按原始结果回填；方案、决定、模型配置与验收状态由原责任方确认再供后续消费。人验只引用用户真实判断，human-acceptance 不授予代签权；决定与知会写入 findings，执行策略只放对应指针，progress 不放决定。编排核身份、路径、版本和确认引用，不替 reviewer 判断内容。确认记录指向具体章节/结论与版本；无关章节追加不使旧确认失效，修改已确认内容则重新核对。
 - **顺序与恢复**：明确委托的人工文档由 document 顺序写，原责任方不再同时写入这些文件；未委托文件保留原写者。可按需复用同一文档会话，写完本次 signal 即停，下次由编排派单，不常驻轮询。验证/复核期间冻结相关候选文件；并发修改、来源漂移、缺证或中断时保留事实及待同步项，不猜、不覆盖他人改动。恢复核原始来源、请求与当前文件，避免重复追加；必要记录未同步不宣称交棒、不清理现场。失联保留待同步，换实例沿用确认规则，不静默恢复多写者。
 - **效果**：由实际执行侧评估准确性、遗漏、及时性/可接续性、交接纠错负担及可得耗时用量，document 只转录。费用未知写未知，无可比基线不声称省钱，不为评估新增台账。这些是可演练、可审计的协议约束，现有工具不提供沙箱隔离或自动阻断保证。
-- **优先级**：仅覆盖 single-task 中明确委托文件的默认 sole writer、取证段中的人工落笔要求及总表代笔要求；决定权、取证、RELAY_RECEIPT、独立复核、授权和 watcher 零写入不变。四类恢复依据保留：原角色 signals、经责任方确认的报告及原始来源、经编排核对的执行策略、Herdr 实态；不能只凭文档摘要恢复。
+- **优先级**：仅覆盖 single-task 中明确委托文件的默认 sole writer、取证段中的人工落笔要求及总表代笔要求；决定权、取证、RELAY_RECEIPT、独立复核、授权和 watcher 零写入不变。四类恢复依据保留：原角色 signals、经责任方确认的报告及原始来源、经编排核对的执行策略、选中环境实态；不能只凭文档摘要恢复。
 
 ### watcher 节拍与安全 Enter
 
-本模式的常驻观察者是 **watcher**（`phase=watcher`），只启动固定观察脚本与巡检，只报信。自然语言「监督 / 监控 / monitor」是它的自然语言别名。
+#### watcher 通用启动与监控步骤
 
-- 监控范围固定（2026-10-07 用户修订）：所在 Herdr workspace 的其他 agent，每轮按 `workspace_id` 重新发现，新拉起的角色自动纳入；排除 watcher 自身和主编排，不按名字前缀或派单名单筛选。主编排始终只作通知对象，无论是否在这个 space；每轮 `get <编排名>` 解析 `--notify` 对应主编排的实际 pane 身份后排除该 pane，不靠模型猜角色，不静默排除其它角色。
-- 固定脚本负责比对：`python3 <SPACE_WATCH> --workspace <Herdr_workspace_id> --notify <编排名> --self <watcher_Herdr名>`。`SPACE_WATCH` 在仓内为 `tools/space_watch.py`，安装后为 `<skill目录>/space_watch.py`；Herdr workspace ID 与标头里的任务文档 workspace 路径分别填写，不能混用。第一轮成功快照建基线，随后每 120 秒 list 全部 agent、按 workspace_id 筛选并按 pane ID get 状态（`agent` 是 kind，不是名字；未命名成员同样按 pane 监控）；新增/离开、`agent_status` 或 `state_change_seq` 有变化即通知，无变化静默。通知只是即时提示，不是 durable signal。
-- 投递确认由脚本执行 `herdr agent prompt --wait --until working --timeout 5000` 并核通知对象同 pane、最终 `working` 与 `state_change_seq` 推进（极快结束未捕获 working 也保守报未确认）；失败/超时/未确认不提交比较基线，输出固定 `SPACE_WATCH_BLOCKED reason=...`、仅白名单状态 diff 的 `UNCONFIRMED` 提示并非零退出，交 watcher 报信。脚本不读取/保存终端正文，不发送 Enter、不盲目重发。watcher 需人工核实际投递结果后由编排恢复，可能已送达的未知结果不得当成未发送再补发。
-- watcher 常驻，对 repo/workspace **完全只读**：只拉起已批准的脚本子进程并巡检其存活，不再由模型自己目测比较状态；不写 signal/progress/execution_strategy/轮询日志/通知日志或任何文档，不路由、不分派、不启动 agent。快照仅在脚本内存，无日志文件，stdout/stderr 不重定向进仓或任务工作区。启动后立即核脚本进程，再每 120 秒核 PID/退出码；正常运行静默，退出则一次 Herdr prompt 通知 orchestrator 并核投递，无法送达明确报告 blocked 后停止，不自行重拉 agent 或无限重启。检查精确子进程 PID，不以包含脚本路径的 shell 命令文本作为存活证据。
-- 启动前核 `HERDR_ENV=1` 与当前 watcher 身份；默认可按 `HERDR_PANE_ID` 自动定位，自填 `--self` 也必须在目标 workspace 且与已提供的 pane 身份一致。`RELAY_RECEIPT` 存在（含空值）时不启动脚本，watcher 只按既有 fail closed 规则通知并停止，不清除环境变量。
-- 安全 Enter：仅当三条件**同时**成立才由 watcher 发一次并复验——①本次派单文本仍停在输入框（含 Devin queued 指令仍排队未发出）；②`state_change_seq` 未推进；③当前界面不是审批/确认 UI。任一不满足即不按；一次仍失败则通知 orchestrator 并交编排换 fresh 实例，禁止连按。脚本不承担安全 Enter 判断。
+**所有 agent 共用同一 watcher 合同**，不按 watcher 自身或被监控对象的 kind 改规则。Codex/Claude 等 adapter 仅处理宿主的持久进程工具差异；环境协议处理 CLI 与观察能力。当前 Herdr 的实现脚本为 `space_watch.py`，不为未来未实现环境猜监控命令。当前 Herdr 参数映射为真实 `workspace_id` → `--workspace`、编排身份 → `--notify`、watcher 身份 → `--self`，调用命令只在环境协议维护。
+
+1. **编排准备**：完成模型/实例确认与环境配置 gate；核真实 space ID、通知对象 `notify`、watcher `self`，写入现有 execution_strategy。按选中环境协议给 watcher 独立具名 tab，启动交互式 agent，投递下方模板。任务文档 workspace 路径与终端 space ID 分开，不从焦点或名字推测身份。
+2. **watcher 启动**：先执行 `RELAY_RECEIPT` 分流和环境/身份 preflight，通过后只启动该环境已批准的固定观察脚本。使用宿主支持的持久后台进程工具，拿到真实子进程句柄；不把外层包装工具的“运行中”当脚本存活，不用 shell 命令文本匹配证明 PID。
+3. **确认接管**：watcher 立即核精确子进程存活/退出状态，一次非 durable 通知编排脚本启动结果并按环境协议确认投递。仅有 watcher agent 启动或包装工具返回不足以依赖监控；编排核实际 watcher 身份与该启动确认后再依赖它。无法取得持久句柄/启动确认时报告 blocked，不重启重发；缺席时编排用有接收者的有界前台等待，不结束回合后无人接收地空等。
+4. **固定观察**：脚本第一轮成功快照建内存基线，随后每 120 秒动态发现本 space 的其他 agent；排除 watcher 自身和主编排，不按 kind 筛选，不按名字前缀或派单名单筛选，新角色自动纳入。比较 `agent_status` 与 `state_change_seq`，新增/离开/变化才通知，无变化静默。watcher 只巡检精确进程句柄/退出码，不再自己目测比对各 agent 状态。通知只是即时提示，不是 durable signal。
+5. **通知与异常**：环境协议规定真实接收对象与投递确认。投递失败/超时/未知时不提交比较基线，不盲重发；可能已送达不能当未发。正常运行静默，脚本退出只一次通知编排并核投递，无法送达报告 blocked 后停止，不自动重拉 agent、重启脚本或无限重试。编排收到提示后读原角色 durable signal 与独立报告，再路由；idle/done 不证明任务完成。
+
+watcher 对 repo/workspace **完全只读**：不写 signal/progress/execution_strategy/轮询日志/通知日志或任何文档，不路由、不分派、不启动 agent。状态快照仅在脚本内存，stdout/stderr 留在宿主临时进程输出，不重定向到仓或工作区；启动/巡检用短工具等待，120 秒节拍由脚本维持，模型不长时间阻塞。watcher 常驻，不逐批 clear。
+
+**安全 Enter**：只有①本次派单仍在输入框（含 queued 未提交指令）、②`state_change_seq` 未推进、③不是审批/确认 UI，三条件同时成立才由 watcher 发一次并复验；一次失败交编排按原授权路由，禁止连按。脚本不读取/保存终端正文，永不发键。仅此人工核对按原授权读取实际 UI，证据先白名单过滤。
+
+#### watcher 专用派单模板（所有 kind 通用）
+
+```text
+[relay-lite:single-task] worker · phase=watcher · agent=watcher#<实例> · batch=na · round=1 · workspace=<任务工作区>
+environment=<已校验环境>；space_id=<真实ID>；notify=<编排身份>；self=<watcher身份>。
+读 AGENTS、核心 watcher 通用合同、环境协议与自己的宿主 adapter；RELAY_RECEIPT preflight。
+只运行环境协议指定的固定脚本；取得真实持久子进程句柄后立即核存活/退出，确认启动结果报给编排。
+每120秒巡检该句柄；脚本动态观察本space其它agent，排除self/编排，不按kind或名单过滤。
+变化才通知，无变化静默；通知未知不盲重发；脚本退出一次报信并确认，失败blocked后停。
+不写仓库或工作区文件，不存终端正文，不路由、不派活、不启动agent，不自动重启脚本。
+```
 
 ### 恢复依据
 
-恢复权威只有四类：原角色自写的 durable signals、独立 review/decision 工件及其原始来源、由 orchestrator 核对的 `execution_strategy.md`、Herdr 实态。`progress.md` 只是施工证据索引、watcher 通知只是即时提示，二者都不是运行真相；恢复/重启时从四类权威重建，不依赖终端存活状态。 `findings.md` 是决定与遗留的检索入口，沿其来源引用回查上述独立工件及用户原始裁决，不新增第五类运行权威；摘要缺源、冲突或仍待用户决定时，不推进依赖该决定的动作。
+恢复权威只有四类：原角色自写的 durable signals、独立 review/decision 工件及其原始来源、由 orchestrator 核对的 `execution_strategy.md`、选中环境实态。`progress.md` 只是施工证据索引、watcher 通知只是即时提示，二者都不是运行真相；恢复/重启时从四类权威重建，不依赖终端存活状态。 `findings.md` 是决定与遗留的检索入口，沿其来源引用回查上述独立工件及用户原始裁决，不新增第五类运行权威；摘要缺源、冲突或仍待用户决定时，不推进依赖该决定的动作。

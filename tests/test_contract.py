@@ -77,6 +77,53 @@ class PackageTests(unittest.TestCase):
                 self.assertIn('清理命令与派单不可合并', text)
                 self.assertIn('失败或未知不派新单、不盲重发', text)
 
+    def test_environment_gate_is_shared_before_carrier_commands(self):
+        config = tomllib.loads((ROOT/'skill/environments.toml').read_text(encoding='utf-8'))
+        self.assertEqual('herdr', config['default'])
+        self.assertEqual({'herdr'}, set(config['environments']))
+        protocol = ROOT/'skill'/config['environments']['herdr']['protocol']
+        self.assertTrue(protocol.is_file())
+        for rel in DOCS:
+            text = (ROOT/'skill'/rel).read_text(encoding='utf-8')
+            self.assertIn('environment_config.py', text, rel)
+            self.assertIn('非零退出', text, rel)
+            self.assertIn('--expected', text, rel)
+            self.assertIn('protocol', text, rel)
+            self.assertNotIn('herdr agent start', text, rel)
+            self.assertNotIn('herdr tab create', text, rel)
+            self.assertNotIn('herdr agent prompt', text, rel)
+        text = protocol.read_text(encoding='utf-8')
+        self.assertLess(text.index('herdr --skill'), text.index('herdr workspace create'))
+        self.assertLess(text.index('herdr workspace create'), text.index('herdr tab create'))
+        self.assertLess(text.index('herdr tab create'), text.index('herdr agent start'))
+        for guard in ('交互式 agent', '原生清理成功', '不盲重发', 'HERDR_ENV', 'RELAY_RECEIPT'):
+            self.assertIn(guard, text)
+
+    def test_watcher_lifecycle_is_common_to_all_kinds(self):
+        core = (ROOT/'skill/SKILL.md').read_text(encoding='utf-8')
+        shared = core.split('#### watcher 通用启动与监控步骤', 1)[1].split('### 恢复依据', 1)[0]
+        for guard in ('所有 agent 共用同一 watcher 合同', '真实子进程句柄', '确认接管',
+                      '每 120 秒', '排除 watcher 自身和主编排', '不按 kind',
+                      '无变化静默', '退出只一次通知', '不自动重拉', '完全只读',
+                      'durable signal', '所有 kind 通用'):
+            self.assertIn(guard, shared)
+        self.assertNotIn('write_stdin', shared)
+        self.assertNotIn('run_in_background', shared)
+        for rel in DOCS[1:]:
+            text = (ROOT/'skill'/rel).read_text(encoding='utf-8')
+            self.assertIn('watcher 通用启动与监控步骤', text)
+            self.assertIn('所有 agent 的监控规则相同', text)
+            self.assertNotIn('herdr agent prompt', text)
+
+    def test_host_process_handles_are_kept_in_their_adapters(self):
+        codex = (ROOT/'skill/references/adapter-codex.md').read_text(encoding='utf-8')
+        claude = (ROOT/'skill/references/adapter-claude-code.md').read_text(encoding='utf-8')
+        for guard in ('session_id', 'write_stdin', 'Script running with cell ID',
+                      '不是脚本 session_id', 'await tools.exec_command', '真实返回', '不超过60秒'):
+            self.assertIn(guard, codex)
+        for guard in ('run_in_background=true', 'task_id', '立即', '不超过60秒'):
+            self.assertIn(guard, claude)
+
     def test_roles_and_new_dispatch_use_executor(self):
         roles = tomllib.loads((ROOT/'skill/roles.toml').read_text(encoding='utf-8'))
         self.assertEqual({'orchestrator','builder','plan-reviewer','executor','batch-reviewer','reviewer','decider','watcher'},set(roles))

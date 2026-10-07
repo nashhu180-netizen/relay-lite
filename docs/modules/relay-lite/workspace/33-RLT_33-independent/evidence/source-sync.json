@@ -1,0 +1,13 @@
+{
+  "old_local_master": "5a47a4f98d01e77f9a78994765dc59d8b54dd6a5",
+  "remote_merged_master": "8cbff631af90198484036f60c2a82a2b032ff680",
+  "local_sync_merge": "3b8a0e7386a97f7f8ba449eb0d77d9a2ebd65759",
+  "tree_equal_remote": true,
+  "both_parents_preserved": true,
+  "conflicts_resolved": [
+    "docs/relay/agent-playground/agent-workbench/aw-mvp/relay_plan.md"
+  ],
+  "unrelated_local_commits_pushed": false,
+  "retired_python_cache_backup": "/tmp/rlt33-retired-python-cache-ef_o24oy",
+  "legacy_private_prompts": "preserved in original local-only path; prior ignore restored in git info/exclude; contents not read or published"
+}

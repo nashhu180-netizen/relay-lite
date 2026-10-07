@@ -1,0 +1,35 @@
+{
+  "state": "submitted_ack_pending",
+  "attempt": 19,
+  "identity": "01a11599-07ad-7b93-8097-042301220688",
+  "target": "kpi-agg/w6F:p1",
+  "prompt_result": {
+    "id": "cli:agent:prompt",
+    "result": {
+      "agent": {
+        "agent": "codex",
+        "agent_session": {
+          "agent": "codex",
+          "kind": "id",
+          "source": "herdr:codex",
+          "value": "01a11599-07ad-7b93-8097-042301220688"
+        },
+        "agent_status": "working",
+        "cwd": "/home/nash/work/wf-analytics-platform/.dh-worktrees/WFP_08",
+        "focused": false,
+        "foreground_cwd": "/home/nash/work/wf-analytics-platform/.dh-worktrees/WFP_08",
+        "interactive_ready": true,
+        "name": "wfp08-orch",
+        "pane_id": "w6F:p1",
+        "revision": 756,
+        "state_change_seq": 1672,
+        "tab_id": "w6F:t1",
+        "terminal_id": "term_65d3c503a3e305e",
+        "terminal_title": "⠙ Resume WFP_08 orchestration | WFP_08",
+        "terminal_title_stripped": "Resume WFP_08 orchestration | WFP_08",
+        "workspace_id": "w6F"
+      },
+      "type": "agent_prompted"
+    }
+  }
+}

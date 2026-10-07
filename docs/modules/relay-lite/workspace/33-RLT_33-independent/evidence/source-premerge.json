@@ -1,0 +1,57 @@
+{
+  "pull": {
+    "headRefOid": "de6bf37219421a73d0e284a81878105f7bbc0c64",
+    "isDraft": false,
+    "mergeable": "MERGEABLE",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-07T09:39:14Z",
+        "conclusion": "FAILURE",
+        "detailsUrl": "https://github.com/nashhu180-netizen/dh-relay/actions/runs/37601729387/job/112727455708",
+        "name": "relay-core (Node test)",
+        "startedAt": "2026-10-07T09:36:04Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-07T09:37:08Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/nashhu180-netizen/dh-relay/actions/runs/37601729387/job/112727456180",
+        "name": "relay-tests (PowerShell runner, windows-latest)",
+        "startedAt": "2026-10-07T09:36:05Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-07T09:37:07Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/nashhu180-netizen/dh-relay/actions/runs/37601729387/job/112727455502",
+        "name": "relay-tests (PowerShell runner, ubuntu-latest)",
+        "startedAt": "2026-10-07T09:36:04Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-07T09:36:09Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/nashhu180-netizen/dh-relay/actions/runs/37601729387/job/112727455843",
+        "name": "relay-light (Python unittest)",
+        "startedAt": "2026-10-07T09:36:04Z",
+        "status": "COMPLETED",
+        "workflowName": "CI"
+      }
+    ]
+  },
+  "workflow": {
+    "id": 37601729387,
+    "head_sha": "de6bf37219421a73d0e284a81878105f7bbc0c64",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/nashhu180-netizen/dh-relay/actions/runs/37601729387"
+  },
+  "target": "2246b16cb82f86a594f7b2c36365e7851fe11263"
+}

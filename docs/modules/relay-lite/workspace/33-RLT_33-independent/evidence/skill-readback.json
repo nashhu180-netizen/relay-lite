@@ -1,0 +1,50 @@
+{
+  "backup": "/tmp/rlt33-skills-before-5_n1_usn",
+  "source_repo": "/home/nash/work/relay-lite",
+  "source_head": "7a3346f3c2f1f6cd010df382ccd06f96b513e453",
+  "installs": [
+    {
+      "target": "/home/nash/.claude/skills/relay-lite",
+      "file_count": 6,
+      "source_head": "7a3346f3c2f1f6cd010df382ccd06f96b513e453",
+      "source_dirty": false,
+      "hashes_verified": true
+    },
+    {
+      "target": "/home/nash/.codex/skills/relay-lite",
+      "file_count": 6,
+      "source_head": "7a3346f3c2f1f6cd010df382ccd06f96b513e453",
+      "source_dirty": false,
+      "hashes_verified": true
+    },
+    {
+      "target": "/home/nash/.agents/skills/relay-lite",
+      "file_count": 6,
+      "source_head": "7a3346f3c2f1f6cd010df382ccd06f96b513e453",
+      "source_dirty": false,
+      "hashes_verified": true
+    },
+    {
+      "target": "/home/nash/.claude/skills/relay-light",
+      "file_count": 6,
+      "source_head": "7a3346f3c2f1f6cd010df382ccd06f96b513e453",
+      "source_dirty": false,
+      "hashes_verified": true
+    },
+    {
+      "target": "/home/nash/.codex/skills/relay-light",
+      "file_count": 6,
+      "source_head": "7a3346f3c2f1f6cd010df382ccd06f96b513e453",
+      "source_dirty": false,
+      "hashes_verified": true
+    },
+    {
+      "target": "/home/nash/.agents/skills/relay-light",
+      "file_count": 6,
+      "source_head": "7a3346f3c2f1f6cd010df382ccd06f96b513e453",
+      "source_dirty": false,
+      "hashes_verified": true
+    }
+  ],
+  "live_process_changes": "none"
+}

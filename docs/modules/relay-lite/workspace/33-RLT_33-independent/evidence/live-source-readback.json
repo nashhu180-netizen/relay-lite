@@ -1,0 +1,8 @@
+{
+  "source_checkout": "/home/nash/work/dh-relay",
+  "source_sha": "5a47a4f98d01e77f9a78994765dc59d8b54dd6a5",
+  "table": "docs/relay/agent-playground/agent-workbench/aw-mvp/relay_plan.md",
+  "sha256": "b8a7a5aa6729ba3d5355132b72c8f5f3466de7afbfaf31530c2449df5f7343d5",
+  "authority": "existing maintenance-session-owned local master; not auto-adopted into migration table",
+  "disposition": "preserve; awaiting user on handoff timing"
+}

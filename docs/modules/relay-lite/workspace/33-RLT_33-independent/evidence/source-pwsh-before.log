@@ -1,0 +1,758 @@
+=== relay-contract-schema.ps1 ===
+PASS  params SchemaVersion is string
+PASS  params tail bytes is positive int
+PASS  params probe threshold is positive int
+PASS  params stall threshold is positive int
+PASS  good plan accepted
+PASS  cycle rejected
+PASS  bad hash rejected
+PASS  unknown plan field rejected
+PASS  proposal generation rejected
+PASS  non-positive plan version rejected
+PASS  enum tokens are case sensitive
+PASS  date without time is not ISO timestamp
+PASS  node role enum rejected
+PASS  node next action enum rejected
+PASS  unknown node field rejected
+PASS  bad resume attempt rejected
+PASS  non-string dependency rejected
+PASS  duplicate node rejected
+PASS  unknown dependency rejected
+PASS  good active plan accepted
+PASS  active plan missing hash rejected
+PASS  good authority accepted
+PASS  zero generation rejected
+PASS  good receipt accepted
+PASS  receipt missing launch rejected
+PASS  receipt session field rejected
+PASS  receipt attempt type rejected
+PASS  good result schema accepted
+PASS  result enum is case sensitive
+PASS  git snapshot extra field rejected
+PASS  non-final result status rejected
+PASS  decision checkpoint schema accepted
+PASS  working checkpoint question rejected
+PASS  checkpoint answer field rejected
+PASS  observation event accepted
+PASS  event kind is case sensitive
+PASS  user answered event kind rejected
+PASS  non-control nonce rejected
+PASS  control missing nonce rejected
+PASS  complete control event accepted
+PASS  handoff header schema accepted
+SUITE PASS
+=== relay-contract-identity.ps1 ===
+PASS  good result accepted
+PASS  wrong plan rejected as stale plan
+PASS  wrong plan hash rejected as stale plan
+PASS  wrong node rejected
+PASS  stale attempt classified stale
+PASS  future attempt with current launch and session rejected
+PASS  wrong generation rejected
+PASS  wrong session rejected
+PASS  wrong launch rejected
+PASS  duplicate final rejected
+PASS  decision final rejected by schema
+PASS  working final rejected by schema
+PASS  decision checkpoint accepted
+PASS  working followup accepted
+PASS  checkpoint wrong session rejected
+PASS  checkpoint wrong launch rejected
+PASS  checkpoint stale attempt -> stale
+PASS  checkpoint after final rejected
+PASS  generated stale event validates
+PASS  B freezes transitive dependent C
+PASS  A freezes transitive dependent C
+PASS  independent B remains unfrozen
+PASS  chain A freezes B C D transitively
+PASS  chain C freezes D
+PASS  independent E has empty freeze set
+PASS  independent E is absent from every freeze set
+PASS  complete handoff header parsed
+PASS  handoff missing session rejected
+PASS  handoff bad first line rejected
+SUITE PASS
+=== relay-contract-transitions.ps1 ===
+PASS  terminal matrix edge set equals design oracle
+PASS  result matrix edge set equals design oracle
+PASS  launching -> launching unlisted
+PASS  launching -> running legal P1 edge
+PASS  launching -> idle unlisted
+PASS  launching -> stopped unlisted
+PASS  launching -> exited legal P1 edge
+PASS  launching -> unknown legal P1 edge
+PASS  running -> launching unlisted
+PASS  running -> running unlisted
+PASS  running -> idle legal P1 edge
+PASS  running -> stopped legal P1 edge
+PASS  running -> exited legal P1 edge
+PASS  running -> unknown legal P1 edge
+PASS  idle -> launching unlisted
+PASS  idle -> running legal P1 edge
+PASS  idle -> idle unlisted
+PASS  idle -> stopped legal P1 edge
+PASS  idle -> exited legal P1 edge
+PASS  idle -> unknown legal P1 edge
+PASS  stopped -> launching unlisted
+PASS  stopped -> running legal P1 edge
+PASS  stopped -> idle unlisted
+PASS  stopped -> stopped unlisted
+PASS  stopped -> exited legal P1 edge
+PASS  stopped -> unknown legal P1 edge
+PASS  exited -> launching unlisted
+PASS  exited -> running unlisted
+PASS  exited -> idle unlisted
+PASS  exited -> stopped unlisted
+PASS  exited -> exited unlisted
+PASS  exited -> unknown unlisted
+PASS  unknown -> launching unlisted
+PASS  unknown -> running legal P1 edge
+PASS  unknown -> idle legal P1 edge
+PASS  unknown -> stopped legal P1 edge
+PASS  unknown -> exited legal P1 edge
+PASS  unknown -> unknown unlisted
+PASS  working -> working unlisted
+PASS  working -> decision_required legal P1 edge
+PASS  working -> succeeded legal P1 edge
+PASS  working -> dependency_blocked legal P1 edge
+PASS  working -> interrupted_unknown legal P1 edge
+PASS  working -> quota_exhausted reserved
+PASS  decision_required -> working legal P1 edge
+PASS  decision_required -> decision_required unlisted
+PASS  decision_required -> succeeded legal P1 edge
+PASS  decision_required -> dependency_blocked legal P1 edge
+PASS  decision_required -> interrupted_unknown legal P1 edge
+PASS  decision_required -> quota_exhausted reserved
+PASS  succeeded -> working unlisted
+PASS  succeeded -> decision_required unlisted
+PASS  succeeded -> succeeded unlisted
+PASS  succeeded -> dependency_blocked unlisted
+PASS  succeeded -> interrupted_unknown unlisted
+PASS  succeeded -> quota_exhausted unlisted
+PASS  dependency_blocked -> working unlisted
+PASS  dependency_blocked -> decision_required unlisted
+PASS  dependency_blocked -> succeeded unlisted
+PASS  dependency_blocked -> dependency_blocked unlisted
+PASS  dependency_blocked -> interrupted_unknown unlisted
+PASS  dependency_blocked -> quota_exhausted unlisted
+PASS  interrupted_unknown -> working unlisted
+PASS  interrupted_unknown -> decision_required unlisted
+PASS  interrupted_unknown -> succeeded unlisted
+PASS  interrupted_unknown -> dependency_blocked unlisted
+PASS  interrupted_unknown -> interrupted_unknown unlisted
+PASS  interrupted_unknown -> quota_exhausted unlisted
+PASS  quota_exhausted -> working reserved
+PASS  quota_exhausted -> decision_required unlisted
+PASS  quota_exhausted -> succeeded unlisted
+PASS  quota_exhausted -> dependency_blocked unlisted
+PASS  quota_exhausted -> interrupted_unknown unlisted
+PASS  quota_exhausted -> quota_exhausted unlisted
+PASS  exited has no outgoing edges
+PASS  terminal matrix has no self loops
+PASS  result matrix has no self loops
+PASS  unknown has exactly four outgoing edges
+PASS  unknown edges require trusted probe or diagnosis
+PASS  result failure closes pair
+PASS  terminal failure closes pair
+PASS  dual legal pair accepted
+PASS  quota P1 edge reserved
+PASS  decision required quota edge reserved
+PASS  idle to running requires host observed new turn
+PASS  idle outgoing guards contain no resume
+PASS  matrix and params schema versions match
+PASS  unknown state rejected
+PASS  transition states are case sensitive
+SUITE PASS
+=== relay-contract-redaction.ps1 ===
+PASS  api key values leave no residue
+PASS  api key marker emitted
+PASS  api key hit counted
+PASS  sk token prefix removed with full value
+PASS  private key content leaves no residue
+PASS  private key marker emitted
+PASS  PEM block removed as a whole
+PASS  private key hit counted
+PASS  password leaves no residue
+PASS  password marker emitted
+PASS  password hit counted
+PASS  default output obeys byte limit
+PASS  sanitize before truncate removes boundary residue
+PASS  explicit MaxBytes override obeyed
+PASS  plain text passes unchanged
+PASS  handoff fixture sanitize leaves no residue
+PASS  result fixture sanitize leaves no residue
+PASS  event fixture sanitize leaves no residue
+PASS  session-tail residue fails closed
+SUITE PASS
+=== relay-contract-failures.ps1 ===
+PASS  halfwritten result rejected
+PASS  unknown result enum rejected
+PASS  probe error event schema accepted
+PASS  probe threshold suggests fail-closed pair
+PASS  probe suggested pair is legal
+PASS  probe below threshold does not advance
+PASS  decision required probe loss suggests fail-closed pair
+PASS  decision required probe pair is legal
+PASS  no progress past threshold is stalled
+PASS  stall suggested pair is legal
+PASS  stall snapshot state is case sensitive
+PASS  exit without result falls back to interrupted unknown
+PASS  exit fallback result transition is legal
+PASS  exit snapshot state is case sensitive
+PASS  succeeded review result does not complete task
+PASS  task completion field rejected
+SUITE PASS
+=== relay-runner-authority.ps1 ===
+PASS  params have eight keys including launch deadline and psmux keys
+PASS  launch deadline is positive integer
+PASS  first proposal activates generation one
+PASS  authority validates
+PASS  active plan validates
+PASS  immutable proposal stored
+PASS  activation event order is deterministic
+PASS  event occurred_at uses injected clock
+PASS  CAS conflict rejected
+PASS  CAS conflict leaves authority state bytes unchanged
+PASS  CAS rejection event recorded
+PASS  skipped plan version rejected
+PASS  wrong run rejected
+PASS  wrong proposer rejected
+PASS  dropping old node rejected
+PASS  changed old role rejected
+PASS  changed old next action rejected
+PASS  resume from another node rejected
+PASS  resume from wrong attempt rejected
+PASS  compatible replan activates
+PASS  new dependency pointing to old node rejected at B
+PASS  dropping old dependency rejected at C
+PASS  open run rejects invalid state snapshot
+PASS  proposal rejects invalid candidate state
+PASS  invalid candidate writes no authority files
+PASS  invalid candidate writes no proposal file
+PASS  invalid candidate records one rejection event
+PASS  bad plan hash rejected before activation
+PASS  existing different proposal is immutable when CAS passes
+PASS  single node is ready
+PASS  first attempt identifiers deterministic
+PASS  launch projects launching before first tick
+PASS  open run restores state exactly from file
+PASS  receipt validates with fake backend
+PASS  launch deadline derived from injected clock
+PASS  receipt exists before adapter launch
+PASS  launch receipt event exists
+PASS  launched node cannot start again
+PASS  launch-mismatch.json fail closes
+PASS  launch-mismatch.json reason recorded
+PASS  launch-mismatch.json pause reason is launch-failed
+PASS  launch handle mismatch literal covered
+PASS  launch-fail.json fail closes
+PASS  launch-fail.json reason recorded
+PASS  launch-fail.json pause reason is launch-failed
+PASS  adapter and fake launch failure literals covered
+PASS  fake adapter has exactly nine keys
+PASS  state rejects unknown completion field
+PASS  state rejects done task state
+PASS  create new refuses overwrite
+PASS  event id is deterministic
+PASS  event occurred_at changes with stepped injected clock
+PASS  fake launch script exhaustion rejected
+PASS  fake unknown session rejected
+PASS  unused P1 adapter verb rejected
+PASS  empty fake tape fails closed
+PASS  fake adapter exposes launch failure reason
+PASS  invalid internal event throws event-invalid
+PASS  invalid internal state throws state-invalid
+ASSERTIONS 59
+SUITE PASS
+=== relay-runner-ingest.ps1 ===
+PASS  succeeded result accepted
+PASS  final projected as succeeded
+PASS  succeeded review keeps task active
+PASS  next action review preserved
+PASS  node has exactly fourteen fields
+PASS  final result stored
+PASS  stored final validates
+PASS  accepted result event appended
+PASS  succeeded single node is not ready
+PASS  closed node is not observable
+PASS  duplicate final rejected immutable
+PASS  duplicate leaves final bytes unchanged
+PASS  result task state key rejected
+PASS  wrong generation classified stale
+PASS  stale result does not advance status
+PASS  stale result leaves state authority bytes unchanged
+PASS  wrong session result rejected
+PASS  result without attempt rejected
+PASS  halfwritten result rejected
+PASS  unknown node result rejected
+PASS  bad result enum rejected
+PASS  checkpoint wrong session rejected
+PASS  checkpoint answer key rejected
+PASS  halfwritten checkpoint rejected
+PASS  empty result rejects without throw or state change
+PASS  array result rejects without throw or state change
+PASS  empty checkpoint rejects without throw or state change
+PASS  single probe error remains below threshold
+PASS  same state working checkpoint accepted
+PASS  checkpoint snapshot stored
+PASS  checkpoint accepted event appended
+PASS  checkpoint refreshes progress time
+PASS  decision checkpoint projected
+PASS  working followup resumes projection
+PASS  final after decision sequence accepted
+PASS  checkpoint after final rejected
+PASS  blocked result requests replan
+PASS  blocked ack followed by stop
+PASS  blocked result accepted before stop return
+PASS  stop call observes accepted result event already persisted
+PASS  blocked final probes stopped session to exited without pausing task
+PASS  replan required suppresses ready nodes
+PASS  runner never invokes suspend or resume
+PASS  runner and fake adapter expose no input API
+PASS  blocked stop failure is recorded without changing accepted state
+ASSERTIONS 45
+SUITE PASS
+=== relay-runner-failures.ps1 ===
+PASS  launch deadline fail closes
+PASS  launch deadline event
+PASS  launch deadline paused invariant
+PASS  launch deadline no ready node
+PASS  launch deadline no further probe
+PASS  launch deadline authority bytes invariant
+PASS  probe loss projects both dimensions
+PASS  probe loss reason
+PASS  three probe failures recorded
+PASS  probe loss paused invariant
+PASS  probe loss no ready node
+PASS  probe loss no further probe
+PASS  probe loss authority bytes invariant
+PASS  stall threshold fail closes
+PASS  stall event recorded
+PASS  stall paused invariant
+PASS  stall no ready node
+PASS  stall no further probe
+PASS  stall authority bytes invariant
+PASS  periodic checkpoint prevents stall
+PASS  heartbeat remains running with progress
+PASS  decision wait forty ticks is not stalled
+PASS  decision wait still fail closes after three probe errors
+PASS  decision probe loss paused invariant
+PASS  decision probe loss no ready node
+PASS  decision probe loss no further probe
+PASS  decision probe loss authority bytes invariant
+PASS  exit without result fail closes
+PASS  early exit paused invariant
+PASS  early exit no ready node
+PASS  early exit no further probe
+PASS  early exit authority bytes invariant
+PASS  host exit uses fail closed observation
+PASS  host exit paused invariant
+PASS  host exit no ready node
+PASS  host exit no further probe
+PASS  host exit authority bytes invariant
+PASS  stopped fake session emits no host observation
+PASS  illegal terminal jump rejected
+PASS  illegal transition event recorded
+PASS  illegal jump paused invariant
+PASS  illegal jump no ready node
+PASS  illegal jump no further probe
+PASS  illegal jump authority bytes invariant
+PASS  worker interruption accepted and paused
+PASS  worker interruption paused invariant
+PASS  worker interruption no ready node
+PASS  worker interruption no further probe
+PASS  worker interruption authority bytes invariant
+PASS  quota final rejected reserved
+PASS  quota fallback projected interruption
+PASS  quota final not committed
+PASS  quota fallback paused invariant
+PASS  quota fallback no ready node
+PASS  quota fallback no further probe
+PASS  quota fallback authority bytes invariant
+PASS  halfwritten result rejected without pause or advance
+PASS  blocked final remains blocked after later probe errors
+PASS  blocked final business projection is unchanged
+PASS  blocked final does not emit probe-lost
+PASS  replan resets blocked A to waiting
+PASS  B is ready before resumed A
+PASS  B launches and probes after replan
+PASS  paused dependency keeps C waiting and not ready
+PASS  later tick keeps dependent C waiting and not ready
+ASSERTIONS 65
+SUITE PASS
+=== relay-runner-replay-blocked.ps1 ===
+PASS  blocked replay full signature exact equality
+PASS  blocked A1 exact session stopped
+PASS  A1 exit observed before v2 activation
+PASS  v2 starts B as launch two
+PASS  v2 starts fresh A attempt two
+PASS  fresh A receives resume source
+PASS  A2 succeeds
+PASS  A remains active overall after success
+PASS  B succeeds and replan flag clears
+PASS  late A1 produces stale plan event
+PASS  late A1 leaves state bytes unchanged
+PASS  late A1 leaves A2 final unchanged
+PASS  late A1 does not stop current session
+PASS  replay never calls suspend or resume
+PASS  exactly three receipts
+PASS  receipt sessions are unique
+PASS  fresh A session differs from A1
+PASS  trace records late stale reason
+ASSERTIONS 18
+SUITE PASS
+=== relay-runner-replay-decision.ps1 ===
+PASS  A and B launch in same first tick
+PASS  dependent C initially waits
+PASS  decision checkpoint accepted at tick three
+PASS  decision freezes dependent C
+PASS  independent B continues during decision
+PASS  C not ready while A unresolved
+PASS  wrong session followup rejected
+PASS  wrong followup leaves decision and freeze intact
+PASS  independent B succeeds while A waits
+PASS  A remains idle during decision wait
+PASS  host tape observes natural new turn
+PASS  no resume or suspend call
+PASS  same session working followup accepted
+PASS  working followup unfreezes C
+PASS  A success launches C in same tick
+PASS  C succeeds at tick ten
+PASS  all nodes end succeeded
+PASS  all tasks remain active overall
+PASS  decision replay full signature exact equality
+PASS  events contain no answer or user kind
+PASS  all replay events validate
+PASS  latest checkpoint snapshot is working
+PASS  replay and fake adapter expose no input API
+ASSERTIONS 23
+SUITE PASS
+=== relay-psmux-adapter.ps1 ===
+PASS  adapter has exactly nine keys
+PASS  backend is psmux
+PASS  session name is sanitized
+PASS  launch succeeds with exact receipt session ()
+PASS  launch returns session name
+PASS  launch returns psmux ids
+PASS  launch returns process ids
+PASS  launch returns exact window title
+PASS  registry file exists
+PASS  registry binds launch id
+PASS  nested-session variable cleared during psmux call
+PASS  nested-session variable restored
+PASS  client launcher receives exact name
+PASS  launch command order is fixed (collision check, wait for session, then titles)
+PASS  adapter never runs new-session or attach through exec (window owns the session)
+PASS  client launcher receives exact non-detached new-session argv
+PASS  title format is fixed
+PASS  recent pane probes running
+PASS  registry records activity fingerprint and time
+PASS  probe fingerprints screen via capture-pane
+PASS  stop confirms exact exit
+PASS  stop records stopped time
+PASS  unknown stop fails closed
+PASS  suspend is unavailable in p1
+PASS  resume is unavailable in p1
+PASS  adapter emits no observations
+PASS  every call has four fixed fields
+PASS  launch call observes receipt file
+PASS  collision launch fails closed
+PASS  collision does not create session
+PASS  newfail launch fails closed
+PASS  invisible launch fails closed
+PASS  invisible cleanup kills orphan
+PASS  unattached launch fails closed
+PASS  unattached cleanup kills orphan
+PASS  missing probe state
+PASS  first probe after launch reports running even when screen is quiet (F-015)
+PASS  idle probe state
+PASS  idle stays idle while screen unchanged
+PASS  dead probe state
+PASS  stage-1 timeout kills session and stops the client process (R2-01)
+PASS  stage-1 psmux failure after client start also cleans up (R2-01)
+PASS  client launcher exception becomes psmux-command-failed instead of escaping (R2-03)
+PASS  stop with transiently empty list but live pane still kills and confirms (R2-02)
+PASS  session missing from list while pane process alive is a probe error, not exited
+PASS  psmux failure becomes probe error
+PASS  ambiguous exact session fails closed
+PASS  stop timeout fails closed
+PASS  no equals-prefixed target is used
+PASS  adapter exposes no terminal input or imprecise existence command
+PASS  adapter never calls attach (F-016: attach -t ignores target)
+PASS  params has exactly eight keys
+PASS  new deadlines are positive
+ASSERTIONS 53
+SUITE PASS
+=== relay-psmux-real.ps1 ===
+SUITE SKIP relay-psmux-real (set RELAY_REAL_TERMINAL=1)
+=== relay-host-loop.ps1 ===
+PASS  first tick spawns orchestrator exactly once
+PASS  spawned proposal keeps host active
+PASS  next tick CAS activates proposal v1
+PASS  proposal is renamed consumed
+PASS  ready A launches after activation
+PASS  working checkpoint is ingested
+PASS  checkpoint tmp is renamed consumed
+PASS  decision checkpoint is projected
+PASS  decision freezes dependent C
+PASS  blocked result requests replan
+PASS  blocked result stops exact A session
+PASS  blocked result tmp is renamed consumed
+PASS  replanner spawns once for generation one
+PASS  proposal v2 activates and clears replan flag
+PASS  replanner remains deduplicated across later ticks
+PASS  v2 launches new prerequisite B
+PASS  B launch is recorded by adapter
+PASS  B success launches fresh A attempt two
+PASS  fresh A receives resume_from identity
+PASS  A2 success launches dependent C
+PASS  bad result is rejected and still consumed
+PASS  consumed bad result is not ingested twice
+PASS  all succeeded makes host tick terminal
+[relay-host] tick=14 A=launching/succeeded B=running/succeeded C=running/succeeded
+PASS  host loop returns 0 when terminal
+PASS  every tick returns one status line
+PASS  host state has exactly four contract fields
+PASS  host state persists spawner generations
+PASS  host state records consumed artifact paths
+/tmp/relay-test-host-2d8bc60f2b7d47e39c867918c3a90296/timeline.md
+PASS  timeline has two header lines plus one row per event
+PASS  timeline rows include event identity columns
+[relay-host] tick=1 waiting-for-plan
+[relay-host] max ticks reached; unfinished=
+PASS  MaxTicks returns 2 for unfinished run
+[relay-host] tick=1 waiting-for-plan
+[relay-host] tick=2 A=unknown/working C=waiting/waiting
+[relay-host] done with unfinished=A=paused/launch-failed,C=waiting/
+PASS  failed launch pauses node A
+PASS  host loop returns 3 when done with a paused node (R1-04)
+PASS  outcome maps all-succeeded to 0 and not-done to 2
+PASS  host, worker entry and dogfood wrapper expose no forbidden control or input path
+ASSERTIONS 35
+SUITE PASS
+=== relay-agent-tool.ps1 ===
+relay-worker-entry: unsupported -Cli value 'CLAUDE' (case-sensitive: claude|codex|zcode)
+relay-worker-entry: unsupported -Cli value 'CLAUDE' (case-sensitive: claude|codex|zcode)
+relay-worker-entry: unsupported -Cli value 'CODEX' (case-sensitive: claude|codex|zcode)
+PASS  missing receipt exits 3
+PASS  missing receipt prints fixed diagnostic
+PASS  working checkpoint reports success
+PASS  working checkpoint written to attempt directory
+PASS  working checkpoint passes frozen schema
+PASS  checkpoint identity has seven exact receipt fields
+PASS  checkpoint carries note and tried list
+PASS  checkpoint leaves no partial file
+PASS  decision checkpoint passes frozen schema
+PASS  decision checkpoint preserves prompt fields
+PASS  decision checkpoint without note gets a default progress note
+PASS  invalid decision exits 4
+PASS  invalid decision does not replace valid checkpoint
+PASS  result writes handoff tail and tmp result
+PASS  handoff first line passes frozen header validator
+PASS  handoff includes supplied body
+PASS  tail is sanitized before persistence
+PASS  tail is bounded by SessionTailMaxBytes
+PASS  result passes frozen schema
+PASS  result contains complete git snapshot metadata
+PASS  result leaves no partial file
+PASS  result without changed paths or tests passes with empty arrays
+PASS  proposal fills hash and passes frozen schema
+PASS  proposal hash equals canonical hash
+PASS  proposal leaves no partial file
+PASS  invalid proposal exits 4
+PASS  invalid proposal writes no inbox artifact
+PASS  propose without receipt uses RELAY_RUN_ROOT inbox
+PASS  propose without receipt and run root fails closed
+PASS  worker entry dry run exits 0
+PASS  worker entry prints injected environment
+PASS  worker entry prints brief-derived command without launch
+PASS  worker entry dry run accepts zcode
+PASS  zcode dry run prints injected environment
+PASS  zcode dry run prints prompt-form command without launch
+PASS  worker entry rejects miscased cli instead of silently dispatching
+PASS  worker entry rejects miscased codex instead of silently dispatching
+PowerShell 7.6.6
+[relay-worker] session=S-0001 launch=L-0001 node=A attempt=1
+RELAY_RECEIPT=/tmp/relay-test-agent-tool-4bb7146cd26d4b8c869b4bda6ea6900c/FAKE-RUN/launches/L-0001.json
+RELAY_RUN_ROOT=/tmp/relay-test-agent-tool-4bb7146cd26d4b8c869b4bda6ea6900c/FAKE-RUN
+RELAY_ATTEMPT_DIR=/tmp/relay-test-agent-tool-4bb7146cd26d4b8c869b4bda6ea6900c/FAKE-RUN/attempts/A/1
+RELAY_TOOL=/home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/host/relay-agent-tool.ps1
+PASS  worker entry exits nonzero under real -NoExit launcher on miscased cli
+PASS  worker entry rejects cli outside validateset
+PASS  worker entry launches zcode with prompt-form argv
+PowerShell 7.6.6
+[relay-worker] session=S-0001 launch=L-0001 node=A attempt=1
+PASS  worker entry real-launch branch rejects miscased cli without invoking any cli
+PowerShell 7.6.6
+[relay-worker] session=S-0001 launch=L-0001 node=A attempt=1
+PASS  worker entry real-launch branch rejects miscased codex without invoking any cli
+ASSERTIONS 42
+SUITE PASS
+=== relay-policy.ps1 ===
+Exit-RelayPolicyMissingInput: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/policy/Invoke-RelayPolicyCheck.ps1:101
+Line |
+ 101 |  … Test-Path -LiteralPath $AfterPath))) { Exit-RelayPolicyMissingInput }
+     |                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | relay-policy: missing required input
+Exit-RelayPolicyGuardError: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/policy/Invoke-RelayPolicyCheck.ps1:140
+Line |
+ 140 |    Exit-RelayPolicyGuardError ("relay-policy: guard error: " + $_.Exce …
+     |    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | relay-policy: guard error: policy-path-dotdot:
+     | tools/relay/../protocol/evil.ps1
+Exit-RelayPolicyGuardError: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/policy/Invoke-RelayPolicyCheck.ps1:140
+Line |
+ 140 |    Exit-RelayPolicyGuardError ("relay-policy: guard error: " + $_.Exce …
+     |    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | relay-policy: guard error: policy-path-dotdot: src/alpha/../gamma/x.ts
+Exit-RelayPolicyGuardError: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/policy/Invoke-RelayPolicyCheck.ps1:140
+Line |
+ 140 |    Exit-RelayPolicyGuardError ("relay-policy: guard error: " + $_.Exce …
+     |    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | relay-policy: guard error: policy-path-dotdot:
+     | .dh-relay/../.dh-runtime/n.json
+Exit-RelayPolicyGuardError: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/policy/Invoke-RelayPolicyCheck.ps1:140
+Line |
+ 140 |    Exit-RelayPolicyGuardError ("relay-policy: guard error: " + $_.Exce …
+     |    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | relay-policy: guard error: policy-path-not-relative:
+     | D:/repo/.dh-runtime/n.json
+Exit-RelayPolicyGuardError: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/policy/Invoke-RelayPolicyCheck.ps1:140
+Line |
+ 140 |    Exit-RelayPolicyGuardError ("relay-policy: guard error: " + $_.Exce …
+     |    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | relay-policy: guard error: policy-path-not-relative: ~/.dh-runtime/n.json
+Exit-RelayPolicyGuardError: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/policy/Invoke-RelayPolicyCheck.ps1:140
+Line |
+ 140 |    Exit-RelayPolicyGuardError ("relay-policy: guard error: " + $_.Exce …
+     |    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | relay-policy: guard error: policy-path-not-relative: /.dh-runtime/n.json
+Exit-RelayPolicyGuardError: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/policy/Invoke-RelayPolicyCheck.ps1:140
+Line |
+ 140 |    Exit-RelayPolicyGuardError ("relay-policy: guard error: " + $_.Exce …
+     |    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | relay-policy: guard error: policy-path-quoted:
+     | ".dh-runtime/relay/\346\226\260.json"
+Exit-RelayPolicyGuardError: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/policy/Invoke-RelayPolicyCheck.ps1:140
+Line |
+ 140 |    Exit-RelayPolicyGuardError ("relay-policy: guard error: " + $_.Exce …
+     |    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | relay-policy: guard error: policy-path-quoted:
+     | ".dh-runtime/relay/\346\226\260.json"
+Exit-RelayPolicyGuardError: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/policy/Invoke-RelayPolicyCheck.ps1:140
+Line |
+ 140 |    Exit-RelayPolicyGuardError ("relay-policy: guard error: " + $_.Exce …
+     |    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | relay-policy: guard error: policy-list-entry-not-string: "nested"
+Exit-RelayPolicyInputError: /home/nash/work/dh-relay/.dh-worktrees/RLT_33/tools/policy/Invoke-RelayPolicyCheck.ps1:109
+Line |
+ 109 |  … nt -eq 0) { Exit-RelayPolicyInputError 'relay-policy: empty after-pat …
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | relay-policy: empty after-path snapshot
+PASS  normalize backslash and case
+PASS  collapse internal ./ segments
+PASS  Get-RelayPolicyPath throws on drive-relative path
+PASS  leading-slash and drive-module forms both throw not-relative
+PASS  non-relative wins over dotdot when both present
+PASS  guard error message includes the offending path
+PASS  not-relative guard error also includes the offending path
+PASS  path containing NUL throws control-char
+PASS  path containing bare CR throws control-char with path
+PASS  git-quoted path throws quoted with path
+PASS  tilde-dollar lock file is a normal relative path
+PASS  tilde-slash still throws not-relative
+PASS  posix ~user/ throws not-relative
+PASS  bare tilde throws not-relative
+PASS  leading-only quote throws quoted
+PASS  trailing-only quote throws quoted
+PASS  control-char outranks quoted
+PASS  quoted outranks not-relative
+PASS  not-relative outranks dotdot
+PASS  prefix must not swallow relayX
+PASS  under-root is case insensitive
+PASS  empty or null path is fail-closed
+PASS  all under tools/relay is ok
+PASS  dh-crew path is forbidden-root
+PASS  production file outside relay is rejected
+PASS  active state path is forbidden-root
+PASS  unknown path is unclassified
+PASS  authority fixture parses
+PASS  allow set includes authorized business code prefix
+PASS  allow set includes derived harness workspace
+PASS  allow set excludes bare module root
+PASS  incomplete snapshot throws
+PASS  authorized business code is writable
+PASS  exact file scope is writable
+PASS  sibling of exact file scope is rejected
+PASS  fixed relay content roots are writable
+PASS  unauthorized business path is rejected
+PASS  null snapshot is missing-authority
+PASS  empty written set is ok
+PASS  module relay folder hits
+PASS  legal module slug relay is not a hit
+PASS  legal module workspace is not a hit
+PASS  workspace card relay folder hits
+PASS  legal module workspace predicate is not a hit
+PASS  pre-existing module relay folder is not a hit
+PASS  new module relay folder with marker is rejected
+PASS  new workspace relay folder with marker is rejected
+PASS  new legacy root write is rejected
+PASS  unprobed marker is fail-closed
+PASS  legal module docs/modules/relay is not killed
+PASS  legal module workspace is not killed by landing
+PASS  module relay shape without marker is ok
+PASS  five side-effect categories split
+PASS  git observation stays in git bucket
+PASS  git ref is not fed to content policy
+PASS  git ref would violate content policy if mixed
+PASS  unknown category is unclassified
+PASS  content mode without args exits 2
+PASS  content mode with clean input exits 0
+PASS  dev-isolation rejects path with ..
+PASS  content rejects path with ..
+PASS  landing rejects path with ..
+PASS  dev-isolation rejects absolute drive path with exit 3
+PASS  content rejects tilde path with exit 3
+PASS  landing rejects leading-slash path with exit 3
+PASS  NUL-separated list is split, forbidden root still caught in dev-isolation
+PASS  NUL-separated list is split, legacy root still caught in landing
+PASS  CR-only separated list is split, forbidden root still caught
+PASS  CR-only separated list is split, legacy root still caught in landing
+PASS  git-quoted path in landing exits 3 instead of silently passing
+PASS  git-quoted path in dev-isolation exits 3
+PASS  JSON list with null entry exits 3
+PASS  JSON list with nested array entry exits 3
+PASS  porcelain status-prefixed entry is not silently accepted as under tools/relay/
+PASS  mode all multi-verdict reason is policy-violation:multi
+PASS  empty after-path file exits 2
+PASS  malformed snapshot array exits 3
+PASS  snapshot with null cards exits 3
+PASS  git status matches after-before snapshot
+PASS  oracle rejects unauthorized gamma write
+PASS  oracle allows authorized alpha write
+PASS  CLI independent check matches oracle
+SKIP  restricted-write ACL checks (Windows-only: icacls)
+ASSERTIONS 82
+SUITE PASS
+=== relay-contract-reason-coverage.ps1 ===
+PASS  production reason codes covered: 70
+SUITE PASS
+=== relay-light-log.ps1 ===
+/home/nash/work/dh-relay/ (unittest.loader._FailedTest./home/nash/work/dh-relay/) ... ERROR
+
+======================================================================
+ERROR: /home/nash/work/dh-relay/ (unittest.loader._FailedTest./home/nash/work/dh-relay/)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: /home/nash/work/dh-relay/
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named '/home/nash/work/dh-relay/'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
+RELAY TESTS FAIL (1)

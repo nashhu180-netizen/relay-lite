@@ -1,0 +1,1 @@
+DONE path=requirement_direction verdict=PASS candidate=db18185b160c653eebe2121727b9f9f85c22716b source=d8f88ae948ae6767daea4dae491eea5b292b07e6 evidence=review.requirement.md tables=2 import_commit=9458e4fab52e5d39f67ddaa7ecd4e76370937f7a status=paused_ack_received_waiting_new_merge

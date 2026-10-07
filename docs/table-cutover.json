@@ -1,0 +1,55 @@
+{
+  "source_sha": "5a47a4f98d01e77f9a78994765dc59d8b54dd6a5",
+  "user_decision": "2026-10-07 migrate latest tables and coordinate existing maintainer",
+  "status": "paused_ack_received_waiting_new_merge",
+  "tables": [
+    {
+      "source": "docs/relay/agent-playground/agent-workbench/aw-mvp/relay_plan.md",
+      "new_active": "docs/relay/agent-playground/agent-workbench/aw-mvp/relay_plan.md",
+      "snapshot": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/latest-table-5a47a4f9.md",
+      "sha256": "b8a7a5aa6729ba3d5355132b72c8f5f3466de7afbfaf31530c2449df5f7343d5",
+      "maintainer": "AW_07 orchestrator#2",
+      "ack": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/rlt33-aw07-cutover-ack.md",
+      "source_sha": "5a47a4f98d01e77f9a78994765dc59d8b54dd6a5",
+      "source_ref": "local master",
+      "import_commit": "9458e4fab52e5d39f67ddaa7ecd4e76370937f7a"
+    },
+    {
+      "source": "docs/relay/wf-analytics-platform/workflow-platform/wfp-p1-obd-p5/relay_plan.md",
+      "new_active": "docs/relay/wf-analytics-platform/workflow-platform/wfp-p1-obd-p5/relay_plan.md",
+      "snapshot": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/latest-table-65f87a0a.md",
+      "sha256": "8fdc182475da21baf5f2613d4a009182e993dda7274d45c7113e01cf8c88d777",
+      "maintainer": "WFP_08 orchestrator wfp08-orch / kpi-agg w6F:p1",
+      "ack": "docs/modules/relay-lite/workspace/33-RLT_33-independent/evidence/rlt33-wfp-cutover-ack.md",
+      "source_sha": "65f87a0adab6d7bf4915c99c317f709dab3b32fd",
+      "source_ref": "unmerged PR158 docs/wfp08-chain-resume-20261007",
+      "import_commit": "9458e4fab52e5d39f67ddaa7ecd4e76370937f7a"
+    }
+  ],
+  "source_checkout_changes": "none",
+  "notice_attempts": [
+    {
+      "tool": "codex_tui.send_message_to_thread",
+      "thread": "01a11500-d7f7-7e52-85e6-cb8459427549",
+      "result": "thread already has an active writer; not delivered"
+    },
+    {
+      "tool": "codex_tui.send_message_to_thread",
+      "thread": "01a11599-07ad-7b93-8097-042301220688",
+      "result": "thread already has an active writer; not delivered"
+    },
+    {
+      "tool": "herdr --session kpi-agg agent prompt",
+      "target": "w62:p1",
+      "identity": "AW_07 Codex 01a11500-d7f7-7e52-85e6-cb8459427549",
+      "result": "agent_prompted; sequence1583->1587 and working; ack pending"
+    },
+    {
+      "tool": "herdr --session kpi-agg agent prompt",
+      "target": "w6F:p1",
+      "identity": "wfp08-orch Codex 01a11599-07ad-7b93-8097-042301220688",
+      "result": "agent_prompted; target was already working; durable ack pending"
+    }
+  ],
+  "user_message_transport_instruction": "2026-10-07 user: 你想办法传达消息给他们; explicit existing Herdr session transport used despite caller outside pane"
+}

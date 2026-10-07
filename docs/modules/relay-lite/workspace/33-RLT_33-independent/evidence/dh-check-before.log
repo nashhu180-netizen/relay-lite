@@ -1,0 +1,28 @@
+=== dh-check: relay-lite ===
+设计文档·验收清单: (未解析到)
+
+❌ 失败 8:
+  design/README.md　R0 DESIGN_INPUTS_STRUCTURE_INVALID 设计验收契约不可判定；修正入口 marker、输入清单、模式混用或结构后重试
+  workspace/33-RLT_33-independent/brief.md　R3 缺「覆盖任务」段（brief 必须三段齐）
+  workspace/33-RLT_33-independent/brief.md　R3 缺「边界」段（brief 必须三段齐）
+  workspace/33-RLT_33-independent/review.md　R4 缺「独立复核区」（review 三区缺一）
+  workspace/33-RLT_33-independent/review.md　R4 缺「AI 提交区」（review 三区缺一）
+  workspace/33-RLT_33-independent/review.md　R4 缺「人类签名区」（review 三区缺一）
+  workspace/33-RLT_33-independent/task_plan.md　R2 第18行残留占位 {space_watch.py,install_skill.py}
+  design/README.md　R29 DESIGN_INPUTS_STRUCTURE_INVALID worktree 快照的设计验收契约不可判定（state=invalid）；只保留一份合法权威契约后重试
+
+⚠️  警告 9:
+  workspace/33-RLT_33-independent/review.md　R1 缺锚点暗号 <!-- dh:v1 -->（存量文件，新任务模板已自带）
+  workspace/33-RLT_33-independent/task_plan.md　R1 缺锚点暗号 <!-- dh:v1 -->（存量文件，新任务模板已自带）
+  workspace/33-RLT_33-independent/execution_strategy.md　R1 缺锚点暗号 <!-- dh:v1 -->（存量文件，新任务模板已自带）
+  dev_plan/P1-独立交付.md　R19 dev_plan 新文件命名建议为 P{N}-{计划名}-开发方案.md（warn 级，不自动改名）
+  workspace/33-RLT_33-independent/brief.md　R14 任务「RLT_33」找不到 DevPlan 计划卡验收口径，无法核对 brief 是否漂移
+  AGENTS.md　R10 缺「宪章 / 硬规则」区（绝不能违反的闸该挂这）
+  AGENTS.md　R10 未见「入口闸」（动代码前先落户 / 跳步补录）——Codex 看不到就会先码后补
+  AGENTS.md　R10 缺「任务类型阅读矩阵」（索引）
+  design/README.md　R26 DESIGN_INPUTS_STRUCTURE_INVALID 设计验收契约 state=invalid，治理派生已停止；只保留一份合法权威契约后重试。
+
+合计: 8 失败, 9 警告
+
+=== 任务卡写法软报告（只读 warn，不影响退出码） ===
+三字段空转: 0 | 单条验收密度: 0 | 缺少增量边界: 0

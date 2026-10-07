@@ -1,0 +1,75 @@
+{
+  "branch": "upload/RLT_33-issue-1",
+  "base": "c6daa0c6a7ea24aeefa3f223c274a750cf0fad08",
+  "candidate": "db18185b160c653eebe2121727b9f9f85c22716b",
+  "transfers": [
+    {
+      "commit": "37b7104e32bb136b25f4f3e990ef07c5de2397ed",
+      "files": 60
+    },
+    {
+      "commit": "64ee8a9401edf918d22a9d43f41d9d7120be35d2",
+      "files": 60
+    },
+    {
+      "commit": "4da304338e3d5e407ef214f72169d22d20457090",
+      "files": 60
+    },
+    {
+      "commit": "33faa7d6ba92a6a31863ae5c052692ba30463eff",
+      "files": 60
+    },
+    {
+      "commit": "46b0c8bb4a0a5b3bf39b5f67a565febefc33a3bf",
+      "files": 60
+    },
+    {
+      "commit": "75d05612f2b4fb81c78f20a58c0ce3bc5f43d594",
+      "files": 60
+    },
+    {
+      "commit": "a8faec36d8513e78c028bbf5f817bac888b832e8",
+      "files": 60
+    },
+    {
+      "commit": "c5a9b8a6c2c27c6ccc63687ffba39be0b4e7e35a",
+      "files": 60
+    },
+    {
+      "commit": "a23b06c7eb6916a65fc471b2faa4e895a2f05f57",
+      "files": 60
+    },
+    {
+      "commit": "cde049725d1ded7ccd21dc8ce114b3d0b0db6f56",
+      "files": 60
+    },
+    {
+      "commit": "c16cc65b29c97f5a7fd9783f517c93bd9d25db89",
+      "files": 60
+    },
+    {
+      "commit": "55ebe0aa40fed8aa30b3366dc9ce90a5a5de8fa2",
+      "files": 60
+    },
+    {
+      "commit": "30c46388358533fcf7107fd6a05686a3c4784b84",
+      "files": 60
+    },
+    {
+      "commit": "169f636794eb3adad74f9e519eea036063ffd3a9",
+      "files": 60
+    },
+    {
+      "commit": "f3dd7a5a2cc6e406afaea7e9e11a9e14658dbc78",
+      "files": 60
+    },
+    {
+      "commit": "a6adea5256788e70c9a5c3183353eb18be998a71",
+      "files": 60
+    },
+    {
+      "commit": "c81bf7f3af6728e5fde62024a8054e8041310aad",
+      "files": 10
+    }
+  ]
+}

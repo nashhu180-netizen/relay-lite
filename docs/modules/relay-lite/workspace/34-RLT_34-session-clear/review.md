@@ -39,7 +39,13 @@ normal=[code_review]；完整 fresh 初审已 approved，无 open P0/P1，独立
 无人判结果项，不代签用户人验。
 
 ## 自动收口记录
-未进入放行；待实际复核与 CI/合入态验证。
+- 任务 ID：RLT_34
+- 开工授权依据：brief.md#本卡开工授权；用户“确认开工”，2026-10-07，目标 origin/master，本卡完整交付。
+- 验收执行者：Codex /root（实施/集成），fresh 独立核验 /root/rlt34_code_review。
+- 验收证据：E-001～E-014，独立原 JSON、CI 与 integration.json。
+- 展示版本：实现 merge 6abcacd5d5e3fc7e514b804cdbb7d97893ae6d38；产品与独立被审 e6adef4 逐字一致。
+- 放行结论：协议产品验收与独立复核/CI/合入态复验通过，无人判、无风险接受；verify 与机械回填归远端后生效关闭本卡。
+- 合入 / 集成复验 / 回填 / 清理结果：实现已合入、41项复验通过；其余按后续真实事实记录。
 
 ## 有效单测·变异点登记
 

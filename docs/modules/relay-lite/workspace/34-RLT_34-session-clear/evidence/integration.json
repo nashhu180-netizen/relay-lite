@@ -1,0 +1,27 @@
+{
+  "actual_merge_sha": "6abcacd5d5e3fc7e514b804cdbb7d97893ae6d38",
+  "implementation_pr": {
+    "headRefOid": "c716b9a9570342c58e8f1f1ad1c1cbb9b45c0320",
+    "mergeCommit": {
+      "oid": "6abcacd5d5e3fc7e514b804cdbb7d97893ae6d38"
+    },
+    "mergedAt": "2026-10-07T14:45:42Z",
+    "state": "MERGED",
+    "url": "https://github.com/nashhu180-netizen/relay-lite/pull/8"
+  },
+  "reviewed_product_sha": "e6adef4fe009972bc86071a636e03009e54337d0",
+  "product_byte_equivalence": true,
+  "tests_command": [
+    "/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "tests_returncode": 0,
+  "tests_count": 41,
+  "dh_check_returncode": 0,
+  "review_gate_state": "PASS"
+}

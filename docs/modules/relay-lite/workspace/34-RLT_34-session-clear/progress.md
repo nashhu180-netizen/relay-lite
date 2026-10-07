@@ -23,3 +23,7 @@
 | E-010 | check | dh gate relay-lite 34-RLT_34-session-clear --review-json；evidence/review-gate.json | pass | dh.review-gate.v2 PASS，无 reason codes，绑定独立原产物与完整候选 |
 | E-011 | ci | evidence/ci-implementation.json | pass | e6adef4 Ubuntu/Windows 两平台 CI success，非最终收口结果 |
 | E-012 | check | evidence/check-premerge.log、check-premerge-corrected.log | pass | R21 覆盖态登记与阶段性结果字样已按真实证据修正；dh 最终 exit0；M5 仍待交付 |
+| E-013 | integration | evidence/integration.json、integrated-tests.log、integrated-review-gate.json | pass | PR8 实际合入 6abcacd5d5e3fc7e514b804cdbb7d97893ae6d38，四个产品/测试文件与独立被审候选逐字相同；41项回归、dh check、原证绑定门通过 |
+| E-014 | ci | evidence/ci-final-source.json | pass | 最新实现PR source c716b9a Ubuntu/Windows success |
+
+实施路线偏离：为保留原 freeze 所绑定的 e6adef4 祖先链便于严格原证复跑，服务端采用 merge commit（仓库允许），未采用 task_plan 原 squash 路线；范围、验收、代码候选和授权不变，不为此重派代码复核。

@@ -5,7 +5,7 @@
 normal=[code_review]；待完整候选 fresh 初审，不由施工方自审。
 
 ## AI 提交区
-**Confidence Challenge**：配置选择与安装包需真实执行负例；协议/fixtures不证明live Herdr。本地58项与变异还原通过，仍待fresh复核/CI/合入复验/verify。
+**Confidence Challenge**：配置选择与安装包需真实执行负例；协议/fixtures不证明live Herdr。58项、变异还原、fresh初审及唯一修复复核、双平台CI、实际合入复验与verify均齐备；协议/离线证据不证明liveHerdr。
 
 ## 完成条件逐条挂证据
 
@@ -18,7 +18,7 @@ normal=[code_review]；待完整候选 fresh 初审，不由施工方自审。
 | RL35-M5 | 三端隔离安装包含配置、校验工具和环境协议，并纳入 manifest 哈希；安装缺件失败，安装后引用可独立解析，不依赖此仓 checkout。 | AI | E-007、E-009（协议/CLI/隔离安装） | 通过：E-007～009、E-015～016、E-019～020 |
 | RL35-M6 | Herdr 派发前明确加载当前 herdr --skill；有环境/实际 ID/当前 CLI 语法核对及用户拓扑优先级，缺失时停止。 | AI | E-007、E-009（协议/CLI/隔离安装） | 通过：E-007～009、E-015～016、E-019～020 |
 | RL35-M7 | 所有 agent 的 watcher 入口覆盖启动、真实子进程确认、120 秒动态监控、通知确认/退出处置与 durable signal 路由；复用现有脚本测试对新增/离开/状态变化/排除项/未知通知/无写入的证明，协议样例无工具调用层级混淆。 | AI | E-007、E-009（协议/CLI/隔离安装） | 通过：E-007～009、E-015～016、E-019～020 |
-| RL35-M8 | 适用回归、有效单测 RED -> 恢复 GREEN、fresh 独立代码复核、必要 CI、合入态复验及 verify 齐备。 | AI | E-007～E-009 | 未齐备（本地取证结束，待复核及Git交付） |
+| RL35-M8 | 适用回归、有效单测 RED -> 恢复 GREEN、fresh 独立代码复核、必要 CI、合入态复验及 verify 齐备。 | AI | E-007～E-009 | 通过：E-007～009、015～020；verify=c03ca83d19591b83678400043e1e1cb773b947fd（有限归档后生效） |
 
 ## 需求对齐证据
 
@@ -43,7 +43,7 @@ normal=[code_review]；待完整候选 fresh 初审，不由施工方自审。
 | RL35-M5 | CLI负例/隔离安装/协议测试/独立复核/CI/Git | machine | RL35-M5 | 等价覆盖 | P3 同名验收 | 本地、独立复核及实际合入复验证据通过 | Python3.12/Linux | 用户需求/独立review | live Herdr不在合同 | 1 | 代码/协议事实核验 | 本卡开工授权 |
 | RL35-M6 | CLI负例/隔离安装/协议测试/独立复核/CI/Git | machine | RL35-M6 | 等价覆盖 | P3 同名验收 | 本地、独立复核及实际合入复验证据通过 | Python3.12/Linux | 用户需求/独立review | live Herdr不在合同 | 1 | 代码/协议事实核验 | 本卡开工授权 |
 | RL35-M7 | CLI负例/隔离安装/协议测试/独立复核/CI/Git | machine | RL35-M7 | 等价覆盖 | P3 同名验收 | 本地、独立复核及实际合入复验证据通过 | Python3.12/Linux | 用户需求/独立review | live Herdr不在合同 | 1 | 代码/协议事实核验 | 本卡开工授权 |
-| RL35-M8 | CLI负例/隔离安装/协议测试/独立复核/CI/Git | machine | RL35-M8 | 部分覆盖 | P3 同名验收 | 合入复验完成，验收记录随本verify提交归档 | Python3.12/Linux | 用户需求/独立review | live Herdr不在合同 | 1 | 代码/协议事实核验 | 本卡开工授权 |
+| RL35-M8 | CLI负例/隔离安装/协议测试/独立复核/CI/Git | machine | RL35-M8 | 等价覆盖 | P3 同名验收 | 合入复验通过、verify=c03ca83d19591b83678400043e1e1cb773b947fd 已生成，有限归档后完成远端交付 | Python3.12/Linux | 用户需求/独立review | live Herdr不在合同 | 1 | 代码/协议事实核验 | 本卡开工授权 |
 
 ## 有效单测·变异点登记
 
@@ -63,3 +63,5 @@ normal=[code_review]；待完整候选 fresh 初审，不由施工方自审。
 
 ## 自动验收记录
 实际执行者：codex-root-rlt35-20261007。验收时间：2026-10-08T00:19:47+08:00（Asia/Shanghai）。授权：brief.md#本卡开工授权；用户确认及随后继续，未撤销/缩窄。机器项RL35-M1～M7由协议/CLI/隔离安装、独立复核、双平台CI及实际主干58项/原证PASS覆盖；RL35-M8的verify由本提交留痕，再有限PR归档。无人判项，不代签。风险0；Verification=full。本次未更新真实skill副本或操作Herdr。
+
+自动验收结果：Verification=full，Risk-Count=0，RL35-M1～M8 全部合同证据齐备；verify SHA：c03ca83d19591b83678400043e1e1cb773b947fd。有限收口PR合入后远端销户生效。

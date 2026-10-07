@@ -1,0 +1,6 @@
+.dh-worktrees/
+__pycache__/
+*.pyc
+.env
+.env.*
+.claude/

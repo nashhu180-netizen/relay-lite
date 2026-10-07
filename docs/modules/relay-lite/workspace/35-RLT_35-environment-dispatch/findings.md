@@ -18,3 +18,5 @@
 
 ## 独立初审 CR-001
 初次报告 changes-requested，Windows CI 中测试直接比较短路径与 helper.resolve() 规范路径，P1 阻断。已规范化测试期望，保留文件路径与逃逸合同；本地修复58项通过，待双平台 CI 与原 reviewer attempt2，不提前标 resolved。
+
+CR-001 关闭依据：evidence/code-review-attempt2.json，原 reviewer 确认 resolved；修复候选20eb3797的 Ubuntu/Windows CI均SUCCESS。原初审失败与原 Windows CI失败不更改。

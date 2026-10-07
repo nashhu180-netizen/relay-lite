@@ -21,10 +21,19 @@
 | E-008 | test | evidence/mutation-red.log；mutation.json | observed | 未知环境回退变异，指定测试断言失败exit1，不是导入/环境失败 |
 | E-009 | test | evidence/restored-green.log | pass | 生产代码精确原字节还原；全58项exit0 |
 | E-010 | review-dispatch | dh dispatch | observed | 复核派出：fresh-context-subagent｜path=code_review target_sha=3e7797417a09c8a9e2ee96bf29fd731fed182966 diff_sha256=621d81ba88ce1fe87935318bd37c2390dfbabb7531c0655f91f5690e37dc18fe｜path=code_review｜attempt=1 kind=full session=/root/rlt35_code_review |
+| E-011 | review-dispatch | dh dispatch | observed | 复核派出：fresh-context-subagent｜path=code_review target_sha=20eb3797f80a451aa13c06675037f79c9aa6654b diff_sha256=01dd4935c34c729025ce6f07f937fd64869ea7fc7a76dd2683a9bc5b5a24fc2c CR-001 targeted repair｜path=code_review｜attempt=2 kind=targeted session=/root/rlt35_code_review |
+| E-012 | review | evidence/code-review.json/md | fail | 初次完整独立复核 CR-001 P1：Windows 短路径断言失败；原报告保留 |
+| E-013 | CI | evidence/ci-windows-failure.log；ci-initial.json | fail | 初次 Ubuntu PASS / Windows 58项1失败，非产品路径逃逸 |
+| E-014 | test | evidence/repair-green.log/json | pass | 断言按 helper 相同 resolve 规范口径比较；全58项 exit0，待双平台CI |
 
-| E-011 | review | evidence/code-review.json/md | fail | 初次完整独立复核 CR-001 P1：Windows 短路径断言失败；原报告保留 |
-| E-012 | CI | evidence/ci-windows-failure.log；ci-initial.json | fail | 初次 Ubuntu PASS / Windows 58项1失败，非产品路径逃逸 |
-| E-013 | test | evidence/repair-green.log/json | pass | 断言按 helper 相同 resolve 规范口径比较；全58项 exit0，待双平台CI |
+| E-015 | CI | evidence/ci-repair.json | pass | 修复候选20eb3797两平台58项SUCCESS；初次失败保留 |
+
+| E-016 | review | evidence/code-review-attempt2.json/md、reviewer-tests-attempt2.log | pass | 同实例唯一定向复核approved，CR-001 resolved，安装器9项通过 |
+
+| E-017 | check | evidence/review-gate-policy-drift.json | fail | 独立路径PASS但安装版dh-check在等待期间更新，引起冻结来源摘要漂移；不放行旧freeze |
+| E-018 | policy-binding | evidence/policy-source-diff.patch | observed | 仅dh-check两处改为实际Git根cwd；normal额度/分类/collector及校验器均不变，同候选重生成当前源绑定 |
+
+| E-019 | check | evidence/review-gate.json、check-premerge.log | pass | 当前策略来源重绑定后严格原证PASS/exit0；dh0失败6警告 |
 
 ## 实施验证命令矩阵（开工计划复核 P1 补充）
 
@@ -41,3 +50,5 @@
 实施里程碑@候选就绪：环境gate/Herdr协议/通用watcher/安装闭包就绪，58项回归与有效单测完成，失败历史保留；下一步fresh code_review。
 
 CR-001 同范围修复：仅测试期望路径规范化；候选登记 miner 两条草稿，不改验收/产品/正式知识库。
+
+阶段汇报@独立复核收敛：完整初审P1→同实例唯一定向approved；双平台CI、当前源绑定原证闸PASS。采用仓库允许的merge commit保留被审候选祖先，便于合入后原证重建；范围和验收不变，待实际合入及verify，不提前完成。

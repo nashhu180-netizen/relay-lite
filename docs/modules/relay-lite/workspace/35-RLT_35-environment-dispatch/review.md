@@ -55,3 +55,8 @@ normal=[code_review]；待完整候选 fresh 初审，不由施工方自审。
 <!-- dh:review-attempt:v1 task=RLT_35 attempt=1 kind=full reviewer_session_id=/root/rlt35_code_review status=punched -->
 
 <!-- dh:review-result:v2 task=RLT_35 path=code_review attempt=1 artifact=docs/modules/relay-lite/workspace/35-RLT_35-environment-dispatch/evidence/code-review.json artifact_sha256=4f3792cfc9bf40da5bc9116e2b3755540969c81d90773cda3b29e0090420ddf2 -->
+<!-- dh:review-attempt:v1 task=RLT_35 attempt=2 kind=targeted reviewer_session_id=/root/rlt35_code_review status=punched -->
+
+<!-- dh:review-result:v2 task=RLT_35 path=code_review attempt=2 artifact=docs/modules/relay-lite/workspace/35-RLT_35-environment-dispatch/evidence/code-review-attempt2.json artifact_sha256=df826290af89e6bdec4cd46948d9e4e91f69641fefc9a0ed5f6d3020447036eb -->
+
+独立复核结论：初次 CR-001 P1 原证保留；同 reviewer 唯一 attempt2 定向 approved、CR-001 resolved；修复候选双平台 CI SUCCESS。

@@ -50,3 +50,5 @@
 2026-10-07：实际合入态与维护者切换证据齐备，独立本机主树干净index上按本卡开工授权写verify(relay-lite) bed13739844d9009f223e7c35212b8da97118fe2，任务分支FF承接（空提交不覆盖待归档记录）。六项机器验收full/H=0，无用户人签；DevPlan已完成是本有限收口PR合入前候选，不提前删除树或关闭Issue。
 
 2026-10-07：源有限PR159按0238a13最新CI37606460913整体SUCCESS/必要三job PASS后实际squash fde68d870b6bff25caf677a12343c923453ada67；消息verify(dh-relay)/full/Risk0已远端核。source本地2fb5b1e普通merge保留5a47及3940历史、树同远端，无无关push。证据已保存，新仓有限收口仅文档/证据/as-built，任务验收与原业务人验分开。
+
+2026-10-07：独立有限收口PR4已建；bd2509b候选的Windows/Ubuntu CI37607279283成功，独立closeout报告PASS（source实际合入/primary候选区分）。最后将报告/DONE及dh日志机械归档，新head仍需最新CI；实际PR4合入/verify祖先/安装hash读回后关闭本卡两Issue和清理本卡，计划候选届时生效。本收口不再衍生新PR；同卡最终只读回证据可在平台comment与私有/tmp记录。

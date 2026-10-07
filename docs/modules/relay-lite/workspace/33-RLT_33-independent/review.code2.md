@@ -85,3 +85,20 @@
 | P3 | 无 |
 
 定向结论：`PASS`。固定 `import_commit` 保存本次迁入审计，允许原维护者在切换后按其授权维护 live 表；它不放宽当前暂停、维护权、合入或路径恢复的任何闸门。
+
+## 最终补充：CI 完整历史读取
+
+审阅范围仅限 `.github/workflows/ci.yml` 的 checkout 深度和相应失败归因；原 Windows/Ubuntu matrix、Python 3.12 与 `python -m unittest discover -s tests -v` 命令未变。
+
+- `fdcb6fc` 引入的固定迁入审计必须读取祖先 `9458e4f`。默认 Actions checkout 是 shallow，故 CI `37602646669` 的 Ubuntu/Windows 两个 job 都不能取得该对象；失败保持为失败，没有 skip、fallback 或把审计改为只校验当前文件。
+- 独立复现：在 depth-1 的隔离 clone 中执行该迁移测试，`git merge-base --is-ancestor 9458e4f HEAD` 以 128 退出，随后测试 ERROR。这与记录的 shallow-history 归因一致，未显示产品或环境基线失败。
+- 唯一联动是 checkout@v4 增加 `with: fetch-depth: 0`，使 CI 拥有 `import_commit` 的完整历史；矩阵与 39 项测试仍保持原样。完整本地 Git 的 `/tmp/rlt33-import-audit-tests.log` 仍为 39 tests / exit 0；安装包无 Git 路径不运行 repository contract，因此不受影响。
+
+| 级别 | 结论 |
+|---|---|
+| P0 | 无 |
+| P1 | 无 |
+| P2 | 无 |
+| P3 | 无 |
+
+定向结论：`PASS`。`fetch-depth: 0` 修复审计前提，不改变表切换暂停状态、维护权或合入闸门；修复后的远端 matrix 仍须以实际 CI 结论为准。

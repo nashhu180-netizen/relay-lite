@@ -32,3 +32,5 @@
 本次miner按fresh agent实际抽2条候选→模块knowledge/教训库-候选.md，状态待裁决，不入正册；mine.log保存只读备料。
 
 2026-10-07：固定本仓9458e4f迁入版本审计已定向代码轮2/需求PASS；隔离clone改live表后迁移审计仍PASS，篡改固定快照触发AssertionError拒绝（独立reviewer验证）。39全套PASS见import-audit-tests.log；不会用正常维护变化篡改冻结证据。
+
+2026-10-07：固定导入审计要求Git历史，首个fdcb6fc CI37602646669因默认浅checkout缺9458对象，两系统FAILURE保留；这是本卡CI配置遗漏，不归因产品/环境基线。新CI显式fetch-depth:0，保留原Windows/Ubuntu两门与39测试，不skip审计。安装包仍不依赖Git。

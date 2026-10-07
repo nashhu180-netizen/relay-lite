@@ -1,0 +1,17 @@
+{
+  "schema": "dh.review-report.v2",
+  "task_id": "RLT_34",
+  "path_id": "code_review",
+  "attempt": 1,
+  "kind": "full",
+  "reviewer_session_id": "/root/rlt34_code_review",
+  "implementer_session_id": "codex-root-rlt34-20261007",
+  "baseline_sha": "43f68e0822785e57d640aa32d885148ba97ff8ac",
+  "target_sha": "e6adef4fe009972bc86071a636e03009e54337d0",
+  "diff_sha256": "7acbd4404927f0b053aae0874293636a15f778cd9b8af995765beed7f9ea1da6",
+  "dispatch_ref": "E-007",
+  "verdict": "approved",
+  "fresh_context": true,
+  "participated_in_implementation": false,
+  "findings": []
+}

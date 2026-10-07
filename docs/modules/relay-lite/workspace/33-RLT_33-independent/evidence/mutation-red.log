@@ -1,0 +1,15 @@
+test_changed_or_unmanaged_retired_file_preserved_without_mutating_any_target (test_contract.PackageTests.test_changed_or_unmanaged_retired_file_preserved_without_mutating_any_target) ... error: retired file has no trustworthy managed manifest
+FAIL
+
+======================================================================
+FAIL: test_changed_or_unmanaged_retired_file_preserved_without_mutating_any_target (test_contract.PackageTests.test_changed_or_unmanaged_retired_file_preserved_without_mutating_any_target)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/rlt33-mutation/tests/test_contract.py", line 107, in test_changed_or_unmanaged_retired_file_preserved_without_mutating_any_target
+    self.assertFalse((home/'.claude/skills/relay-lite').exists())
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 0.345s
+
+FAILED (failures=1)

@@ -1,0 +1,8 @@
+test_changed_or_unmanaged_retired_file_preserved_without_mutating_any_target (test_contract.PackageTests.test_changed_or_unmanaged_retired_file_preserved_without_mutating_any_target) ... error: retired file has no trustworthy managed manifest
+error: retired managed file changed; preserve and resolve explicitly
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.005s
+
+OK

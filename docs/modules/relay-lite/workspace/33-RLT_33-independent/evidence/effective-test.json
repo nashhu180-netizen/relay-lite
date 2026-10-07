@@ -1,0 +1,23 @@
+{
+  "task": "RLT_33",
+  "selected_by": "code_review2",
+  "candidate_sha": "db18185b160c653eebe2121727b9f9f85c22716b",
+  "production_file": "tools/install_skill.py",
+  "mutation": "remove install_all all-target retired-file preflight loop",
+  "test_command": [
+    "python3",
+    "-m",
+    "unittest",
+    "test_contract.PackageTests.test_changed_or_unmanaged_retired_file_preserved_without_mutating_any_target",
+    "-v"
+  ],
+  "cwd_purpose": "isolated exact-SHA clone tests directory",
+  "expected_failure": "existing changed/unmanaged alias would create preceding target",
+  "red_exit": 1,
+  "red_assertion": "AssertionError: True is not false",
+  "restored_sha256": "0c46b3bc2141828405c545273d8f497b3328831215dd8ac07c7ac051d85f8b9c",
+  "original_sha256": "0c46b3bc2141828405c545273d8f497b3328831215dd8ac07c7ac051d85f8b9c",
+  "green_exit": 0,
+  "restoration": "byte-for-byte exact",
+  "result": "PASS"
+}

@@ -55,9 +55,9 @@ normal=[code_review]；完整 fresh 初审已 approved，无 open P0/P1，独立
 
 | 命题 | 事实证明方式 | 最终裁决者(machine\|human) | 稳定 ID | 覆盖态 | 等价判据 | 实际执行结果 | 版本环境 | 独立 oracle | 未覆盖边界 | contractVersion | arbiterCapability | arbiterAuthorization |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| RL34-M1 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M1 | 部分 | P2 同名验收条件 | 本地协议回归通过，后续交付待验证 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
-| RL34-M2 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M2 | 部分 | P2 同名验收条件 | 本地协议回归通过，后续交付待验证 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
-| RL34-M3 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M3 | 部分 | P2 同名验收条件 | 本地协议回归通过，后续交付待验证 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
-| RL34-M4 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M4 | 部分 | P2 同名验收条件 | 本地协议回归通过，后续交付待验证 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
-| RL34-M5 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M5 | 部分 | P2 同名验收条件 | 本地协议回归通过，后续交付待验证 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
+| RL34-M1 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M1 | 等价覆盖 | P2 同名验收条件 | 协议断言和 fresh 独立语义复核均满足原文验收 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
+| RL34-M2 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M2 | 等价覆盖 | P2 同名验收条件 | 协议断言和 fresh 独立语义复核均满足原文验收 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
+| RL34-M3 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M3 | 等价覆盖 | P2 同名验收条件 | 协议断言和 fresh 独立语义复核均满足原文验收 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
+| RL34-M4 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M4 | 等价覆盖 | P2 同名验收条件 | 协议断言和 fresh 独立语义复核均满足原文验收 | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
+| RL34-M5 | 协议断言/独立复核/CI/Git读回 | machine | RL34-M5 | 部分 | P2 同名验收条件 | 待完成最新 CI、实际合入态复验及 verify | Python 3.12.3 / Linux | 用户原话与原协议边界、fresh复核报告 | 不承诺真实 Herdr 运行 | 1 | 文档与代码事实核验 | 本卡开工授权 |
 <!-- dh:review-attempt:v1 task=RLT_34 attempt=1 kind=full reviewer_session_id=/root/rlt34_code_review status=punched -->

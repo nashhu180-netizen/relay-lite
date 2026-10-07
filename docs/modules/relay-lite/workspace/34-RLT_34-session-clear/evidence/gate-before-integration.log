@@ -1,0 +1,34 @@
+=== dh gate: relay-lite / 34-RLT_34-session-clear ===
+
+【workspace/34-RLT_34-session-clear】
+  ✅ 三档复核证据与候选绑定
+  ✅ review.md 存在
+  ✅ review 三区齐（独立复核 / AI 提交 / 人类签名）
+  ✅ review 登记了完成条件证据（粗判，细则归 dh-check R4）
+  ✅ code_review 初审已登记（code_review 初审登记行非空（§3.9 单轮完整复核））
+  ✅ 复核产物绑定已验
+  ❌ 有 verify 提交命中（git log grep ^verify(）
+  ⚠ 传感器活性（失败计数有没有在跑）（传感器无数据：零 attempt 事件。可能是收口尝试还没开始，也可能是事件源根本没接通——后者的表现就是这道闸永远安静地报平安）
+
+门：未全过（上面 ❌ 即拦点；➖ 为不适用·不计拦；⚠ 为提醒·不计拦）
+── 节点流转（开工区 S0~S3·派生·试水不拦） ──
+  （找不到 references/节点表.md 或解析不出节点，跳过）
+
+── 节点流转（收口区 E0~E13·派生·试水不拦） ──
+  （找不到 references/节点表.md 或解析不出节点，跳过）
+
+
+── 跳步检测（软报告·试水期不拦）──
+  ✅ 未发现「声称状态 vs 现场证据」矛盾
+
+── 教训 miner（软报告·没跑只提醒不拦）──
+  ⚠ workspace/34-RLT_34-session-clear 未见 miner 教训抽取记录——收口跑过 dh mine 了吗？复盘派单模板见 references/miner-收口回流.md#复盘派单模板-v2
+
+── 阶段汇报足迹（软报告·试水期不拦）──
+  ✅ 新工作区均有阶段汇报足迹
+  · workspace/34-RLT_34-session-clear 已见 候选就绪
+
+── TDD 结论（软报告·试水期不拦）──
+  ✅ 未发现代码 diff 缺 TDD 结论行（或本次仅文档变更）
+
+（只读派生、不落盘；跳步/miner/阶段汇报足迹/TDD 结论均先软报告试水，攒够数据再议升硬闸）

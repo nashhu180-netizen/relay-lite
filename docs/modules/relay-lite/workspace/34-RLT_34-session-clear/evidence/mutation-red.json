@@ -1,0 +1,20 @@
+{
+  "cwd": "/home/nash/work/relay-lite/.dh-worktrees/RLT_34",
+  "interpreter": "/usr/bin/python3",
+  "command": [
+    "/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_contract.py",
+    "-k",
+    "test_new_task_clear_is_a_predispatch_gate",
+    "-v"
+  ],
+  "returncode": 1,
+  "head": "126c82e665d4eb642a2cef4cc144a77c3f30e01c",
+  "uncommitted_diff_sha256": "9a5771ccba3a061574641c6d27a0380ca3633695b1b961d4f5cdb0dc080f07d8"
+}

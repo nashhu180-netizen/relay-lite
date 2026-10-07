@@ -1,0 +1,14 @@
+{
+  "anchor": "skill/SKILL.md:123",
+  "original": "先 clear 并确认，再投递新派单",
+  "mutant": "保留旧会话上下文，直接投递新派单",
+  "semantic_kind": "改边界",
+  "test": "test_contract.PackageTests.test_new_task_clear_is_a_predispatch_gate",
+  "command": "python3 -m unittest discover -s tests -p test_contract.py -k test_new_task_clear_is_a_predispatch_gate -v",
+  "applied_hash": "8990dbd9ec3baca15eb0798fb9ec01f9c21d1e79",
+  "restored_hash": "99ad89962d53d1b6d31b9dd188fea26b43d5b223",
+  "result": "断言失败",
+  "red_exit": 1,
+  "restored_green_exit": 0,
+  "registrar": "codex-root-rlt34-20261007"
+}

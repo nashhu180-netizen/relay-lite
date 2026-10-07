@@ -10,6 +10,7 @@
 - claude kind：PATH shim 不可靠时 `herdr pane run <pane_id> "claude --model <确认模型> --effort <确认档> --dangerously-skip-permissions"`，再 `herdr agent rename <pane_id> <名>`。
 - devin/omp 启动参数按本卡已确认配置，不猜模型。只读角色的写权由派单明确限制；最大工具权限不扩大任务授权。
 - 提示词仅发 ASCII 文件指针，长中文派单放获授权文件。调用 agent prompt 后核本次 state_change_seq 推进、实际 pane 与已提交状态；确认未送达时按协议报阻塞，未知投递不盲重发。pane idle/done 不是任务完成证据。
+- 新批次或新的独立任务派单前，先执行核心 `SKILL.md`「新批次与新任务的标签页会话清理闸」：复用标签页时核实际 pane 与 kind，单独投递该 kind 已核实支持的原生会话清理命令，确认清理成功后再投递派单文件指针。清理命令与派单不可合并；`state_change_seq` 推进仅证明状态变化，清理结果另核原生提示/新空会话。失败或未知不派新单、不盲重发；同任务整改/E2 定向复查、fresh 独立复核及 watcher 沿核心各自边界。不是向 shell 运行 `clear`。
 - 等待须有接收者：watcher 提示只用于唤醒，放行仍读独立 durable signal；watcher 缺席时用有接收者的前台等待，每次不超过 120 秒。不要结束回合后无人接收地空等。
 
 ## single-task 单卡接力（本侧适配）

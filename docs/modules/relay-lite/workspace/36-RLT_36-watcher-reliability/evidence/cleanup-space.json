@@ -1,0 +1,11 @@
+{
+  "space": "w6Y",
+  "close_exit": 0,
+  "first_readback_decode_error": "empty stdout on CLI nonzero exit, no repeat close",
+  "readback_exit": 1,
+  "workspace_list_read_exit": 0,
+  "space_present_in_list": false,
+  "monitor_pid": 740665,
+  "monitor_absent": true,
+  "other_spaces_controlled": false
+}

@@ -374,13 +374,13 @@ class ProtocolTests(unittest.TestCase):
         root = Path(__file__).resolve().parent.parent / "skill"
         for rel in ["SKILL.md", "references/adapter-codex.md", "references/adapter-claude-code.md"]:
             text = (root / rel).read_text(encoding="utf-8")
-            section = text.split("### watcher 节拍与安全 Enter", 1)[1].split("### 恢复依据", 1)[0]
-            for token in ["space_watch.py", "workspace_id", "排除 watcher 自身和主编排", "--workspace", "--notify", "120", "存活", "不再"]:
+            link = 'references/watcher.md' if rel == 'SKILL.md' else 'watcher.md'
+            self.assertIn('](' + link + ')', text, rel)
+            section = (root/'references/watcher.md').read_text(encoding="utf-8")
+            for token in ["space_watch.py", "workspace_id", "排除 watcher 自身和主编排", "--workspace", "--notify", "120", "存活", "不再", "phase=watcher", "--self"]:
                 self.assertIn(token, section, rel)
             self.assertIn("不按名字前缀", section)
-            if rel != "SKILL.md":
-                self.assertIn("phase=watcher", section)
-                self.assertIn("--self", section)
+
 
 
 if __name__ == "__main__":

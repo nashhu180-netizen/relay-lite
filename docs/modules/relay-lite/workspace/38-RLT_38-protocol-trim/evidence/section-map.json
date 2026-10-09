@@ -1,0 +1,47 @@
+[
+  {
+    "source": "skill/SKILL.md",
+    "section": "## 卡级总表维护与交棒核对",
+    "destination": "skill/references/card-chain.md",
+    "original_chars": 4526,
+    "action": "move_with_explicit_read_trigger"
+  },
+  {
+    "source": "skill/SKILL.md",
+    "section": "### 编排职责与执行边界",
+    "destination": "skill/references/orchestration.md",
+    "original_chars": 2602,
+    "action": "move_with_explicit_read_trigger"
+  },
+  {
+    "source": "skill/SKILL.md",
+    "section": "### 范围外既有失败",
+    "destination": "skill/references/verification.md",
+    "original_chars": 2233,
+    "action": "move_with_explicit_read_trigger"
+  },
+  {
+    "source": "skill/SKILL.md",
+    "section": "### 文档 agent（single-task 可选分工）",
+    "destination": "skill/references/document-role.md",
+    "original_chars": 2334,
+    "action": "move_with_explicit_read_trigger"
+  },
+  {
+    "source": "skill/SKILL.md",
+    "section": "### watcher 节拍与安全 Enter",
+    "destination": "skill/references/watcher.md",
+    "original_chars": 2456,
+    "action": "move_with_explicit_read_trigger"
+  },
+  {
+    "source": "skill/references/adapter-codex.md",
+    "destination": "skill/SKILL.md + routed contracts + skill/templates/dispatch.md",
+    "action": "deduplicate_common_rules_keep_host_calls"
+  },
+  {
+    "source": "skill/references/adapter-claude-code.md",
+    "destination": "skill/SKILL.md + routed contracts + skill/templates/dispatch.md",
+    "action": "deduplicate_common_rules_keep_host_calls"
+  }
+]

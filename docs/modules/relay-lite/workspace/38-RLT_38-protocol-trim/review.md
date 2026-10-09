@@ -17,3 +17,15 @@
 
 ## 人类签名区
 无人判条目，不代签真实体验。
+
+## 需求对齐证据
+| 需求 / 人验项 | 场景与操作路径 | 证据 (E-00x) | 结论 |
+|---|---|---|---|
+| 字符负担 | 相同Unicode口径复算所有skill md/toml | E-002 | 已测，见size-ledger |
+| 规则保真与按需读取 | 旧新节映射及安装入口遍历 | E-003 | 机器项通过，语义待独立复核 |
+| 分发完整性 | 六临时副本、缺包拒绝及生产分发清单变异 | E-004 | 80项通过、有效RED及恢复 |
+
+## 有效单测·变异点登记
+| 变异点锚点(生产代码 path:line) | 原值→变异值 | 语义类别 | 对应测试 ID | 运行命令 | 施加 hash | 还原 hash | 登记人(重核须=轮2实例) | 施加后结果 |
+|---|---|---|---|---|---|---|---|---|
+| tools/install_skill.py:23 | 分发card-chain→漏掉合同 | 改边界 | test_installed_reading_routes_are_closed_and_template_is_unique | python3 -m unittest discover -s tests -p test_contract.py -k installed_reading_routes -v | 015516cfcbc1fc6acb36d53a94a91f10d9d58c11 | 81ace255b44dbf0fedcaab1cf854967d1506866b | codex-root-rlt38-20261009 | 断言失败 |

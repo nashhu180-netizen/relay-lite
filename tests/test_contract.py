@@ -71,6 +71,61 @@ class PackageTests(unittest.TestCase):
                                     for link in links if '://' not in link]
                     self.assertIn(guide.resolve(), destinations, entry)
 
+    def test_installed_reading_routes_are_closed_and_template_is_unique(self):
+        expected = {
+            'references/card-chain.md', 'references/orchestration.md',
+            'references/verification.md', 'references/document-role.md',
+            'references/watcher.md', 'templates/dispatch.md',
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            for manifest in install_skill.install_all(ROOT/'skill', Path(tmp), legacy_alias=True):
+                target = manifest.parent.resolve()
+                queue = [target/'SKILL.md']
+                seen = set()
+                while queue:
+                    doc = queue.pop()
+                    if doc in seen:
+                        continue
+                    self.assertTrue(doc.is_file(), str(doc))
+                    seen.add(doc)
+                    text = doc.read_text(encoding='utf-8')
+                    for link in re.findall(r'\[[^\]]+\]\(([^)]+)\)', text):
+                        if '://' in link or link.startswith('#'):
+                            continue
+                        dest = (doc.parent/link.split('#', 1)[0]).resolve()
+                        self.assertTrue(dest.is_relative_to(target), link)
+                        self.assertTrue(dest.is_file(), str(dest))
+                        if dest.suffix == '.md':
+                            queue.append(dest)
+                self.assertTrue(expected <= {p.relative_to(target).as_posix() for p in seen})
+                for rel in expected:
+                    self.assertEqual((ROOT/'skill'/rel).read_bytes(), (target/rel).read_bytes())
+                # Concrete worker dispatch appears once, with all contextual fields retained.
+                marker = '[relay-lite:single-task] worker · phase=<phase> · agent=<角色>#<实例>'
+                self.assertEqual(1, sum(p.read_text(encoding='utf-8').count(marker) for p in seen))
+                template = (target/'templates/dispatch.md').read_text(encoding='utf-8')
+                for field in ('目标与当前位置', '授权与停止线', '验证责任', '对照基线',
+                              '执行合同', '临时现场', '证据与写者', '决定引用',
+                              '通过/阻塞', '后续去向', 'decision专用'):
+                    self.assertIn(field + '：', template)
+                core = (target/'SKILL.md').read_text(encoding='utf-8')
+                for trigger in ('首次执行及恢复', '必须读', '明确启用', '总表待定位'):
+                    self.assertIn(trigger, core)
+
+    def test_missing_routed_contract_rejects_before_install(self):
+        for rel in ('references/card-chain.md', 'references/orchestration.md',
+                    'references/verification.md', 'references/document-role.md',
+                    'references/watcher.md', 'templates/dispatch.md'):
+            with self.subTest(rel=rel), tempfile.TemporaryDirectory() as tmp:
+                package = Path(tmp)/'package'
+                shutil.copytree(ROOT/'skill', package/'skill')
+                shutil.copytree(ROOT/'tools', package/'tools', ignore=shutil.ignore_patterns('__pycache__'))
+                (package/'skill'/rel).unlink()
+                home = Path(tmp)/'home'
+                with self.assertRaises(install_skill.InstallError):
+                    install_skill.install_all(package/'skill', home)
+                self.assertFalse(home.exists())
+
     def test_missing_decision_guide_rejects_package_before_any_install(self):
         with tempfile.TemporaryDirectory() as tmp:
             package = Path(tmp)/'package'
@@ -133,7 +188,7 @@ class PackageTests(unittest.TestCase):
             self.assertIn(guard, text)
 
     def test_watcher_lifecycle_is_common_to_all_kinds(self):
-        core = (ROOT/'skill/SKILL.md').read_text(encoding='utf-8')
+        core = (ROOT/'skill/references/watcher.md').read_text(encoding='utf-8')
         shared = core.split('#### watcher 通用启动与监控步骤', 1)[1].split('### 恢复依据', 1)[0]
         for guard in ('所有 agent 共用同一 watcher 合同', '真实子进程句柄', '确认接管',
                       '每 120 秒', '排除 watcher 自身和主编排', '不按 kind',
@@ -163,11 +218,16 @@ class PackageTests(unittest.TestCase):
         self.assertIn('gpt-6.1-sol',roles['executor']['launch'])
         for rel in DOCS:
             text = (ROOT/'skill'/rel).read_text(encoding='utf-8')
-            self.assertIn('[relay-lite:single-task]',text)
-            self.assertIn('builder/executor/reviewer/decider',text)
+            protocol = text + (ROOT/'skill/templates/dispatch.md').read_text(encoding='utf-8')
+            self.assertIn('[relay-lite:single-task]',protocol)
+            self.assertIn('builder/executor/reviewer/decider',protocol)
             self.assertNotIn('builder/coder/',text)
             for retired in ('stage-lead','<RELAY_LOG>','## 五阶段','## 账本用法','[relay-lite] worker · node='):
                 self.assertNotIn(retired,text)
+            if rel != 'SKILL.md':
+                self.assertIn('../templates/dispatch.md', text)
+                text += (ROOT/'skill/templates/dispatch.md').read_text(encoding='utf-8')
+                text += (ROOT/'skill/SKILL.md').read_text(encoding='utf-8')
             for field in ('review_round','remediation_count','RELAY_RECEIPT','execution_strategy.md'):
                 self.assertIn(field,text)
         self.assertFalse((ROOT/'tools/relay_log.py').exists())

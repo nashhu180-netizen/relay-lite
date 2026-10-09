@@ -1,0 +1,8 @@
+{
+  "anchor": "tools/install_skill.py:19",
+  "mutation": "remove references/card-chain.md from distribution set",
+  "mutated_git_blob": "015516cfcbc1fc6acb36d53a94a91f10d9d58c11",
+  "restored_git_blob": "81ace255b44dbf0fedcaab1cf854967d1506866b",
+  "red_exit": 1,
+  "restored_exact_bytes": true
+}

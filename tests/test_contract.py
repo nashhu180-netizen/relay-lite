@@ -1,6 +1,7 @@
 """Migration conservation and standalone package boundaries."""
 import hashlib
 import json
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -49,6 +50,38 @@ class MigrationTests(unittest.TestCase):
             self.assertEqual(extra['sha256'],hashlib.sha256(body).hexdigest())
 
 class PackageTests(unittest.TestCase):
+    def test_decision_guide_is_reachable_from_every_installed_entry(self):
+        # A dangling reference makes the new role guidance unavailable to workers.
+        # Exercise the installed consumer, not SKILL_FILES as its own oracle.
+        with tempfile.TemporaryDirectory() as tmp:
+            manifests = install_skill.install_all(ROOT/'skill', Path(tmp), legacy_alias=True)
+            self.assertEqual(6, len(manifests))
+            for manifest_path in manifests:
+                target = manifest_path.parent
+                guide = target/'references/decision-guide.md'
+                self.assertTrue(guide.is_file(), str(guide))
+                self.assertEqual((ROOT/'skill/references/decision-guide.md').read_bytes(), guide.read_bytes())
+                manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+                self.assertEqual(hashlib.sha256(guide.read_bytes()).hexdigest(),
+                                 manifest['files']['references/decision-guide.md'])
+                for entry in DOCS:
+                    doc = target/entry
+                    links = re.findall(r'\[[^\]]+\]\(([^)]+)\)', doc.read_text(encoding='utf-8'))
+                    destinations = [(doc.parent/link.split('#', 1)[0]).resolve()
+                                    for link in links if '://' not in link]
+                    self.assertIn(guide.resolve(), destinations, entry)
+
+    def test_missing_decision_guide_rejects_package_before_any_install(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            package = Path(tmp)/'package'
+            shutil.copytree(ROOT/'skill', package/'skill')
+            shutil.copytree(ROOT/'tools', package/'tools', ignore=shutil.ignore_patterns('__pycache__'))
+            (package/'skill/references/decision-guide.md').unlink()
+            home = Path(tmp)/'home'
+            with self.assertRaisesRegex(install_skill.InstallError, 'decision-guide'):
+                install_skill.install_all(package/'skill', home)
+            self.assertFalse(home.exists())
+
     def test_new_task_clear_is_a_predispatch_gate(self):
         core = (ROOT/'skill/SKILL.md').read_text(encoding='utf-8')
         title = '### 新批次与新任务的标签页会话清理闸'

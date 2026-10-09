@@ -1,0 +1,14 @@
+test_decision_guide_is_reachable_from_every_installed_entry (test_contract.PackageTests.test_decision_guide_is_reachable_from_every_installed_entry) ... FAIL
+
+======================================================================
+FAIL: test_decision_guide_is_reachable_from_every_installed_entry (test_contract.PackageTests.test_decision_guide_is_reachable_from_every_installed_entry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/nash/work/relay-lite/.dh-worktrees/RLT_37/tests/test_contract.py", line 62, in test_decision_guide_is_reachable_from_every_installed_entry
+    self.assertTrue(guide.is_file(), str(guide))
+AssertionError: False is not true : /tmp/tmp94i14p95/.claude/skills/relay-lite/references/decision-guide.md
+
+----------------------------------------------------------------------
+Ran 1 test in 0.100s
+
+FAILED (failures=1)

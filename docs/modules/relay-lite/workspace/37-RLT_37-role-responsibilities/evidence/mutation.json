@@ -1,0 +1,23 @@
+{
+  "anchor": "tools/install_skill.py:SKILL_FILES",
+  "change": "remove references/decision-guide.md from managed package",
+  "test": "test_contract.PackageTests.test_decision_guide_is_reachable_from_every_installed_entry",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_contract.py",
+    "-k",
+    "decision_guide_is_reachable",
+    "-v"
+  ],
+  "mutated_sha256": "b26aaa8c0b5ed4893ed41fbcfc62d98e52bfc59cf7cb4e652877eb12b243e286",
+  "exit_code": 1,
+  "assertion_failure": true,
+  "restored_sha256": "0311c9beb6a2b43bd5f541534d10d9928318b498b80669274958986d65fa9afd",
+  "original_sha256": "0311c9beb6a2b43bd5f541534d10d9928318b498b80669274958986d65fa9afd"
+}

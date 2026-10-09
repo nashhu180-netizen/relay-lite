@@ -1,0 +1,10 @@
+=== dh mine: relay-lite ===
+
+用法：dh mine <模块> <工作区>　（备一份 miner 简报，拿去 spawn subagent 抽教训候选）
+
+本模块工作区（5）：
+  · 33-RLT_33-independent
+  · 34-RLT_34-session-clear
+  · 35-RLT_35-environment-dispatch
+  · 36-RLT_36-watcher-reliability
+  · 37-RLT_37-role-responsibilities

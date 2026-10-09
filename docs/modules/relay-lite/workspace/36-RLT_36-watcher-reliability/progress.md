@@ -14,3 +14,7 @@
 | E-008 | observed | evidence/live/startup-failure.json与runtime-models.json | observed | duplicate--no-daemon启动失败保留，修正重复参数后三角色实argv/cwd/模型确认；未改用户配置。 |
 | E-010 | test | evidence/candidate-final.log、check-candidate.log；76项，exit0，dh exit0 | pass | 完整候选本地验证；未替代独立复核和远端CI。 |
 | E-011 | miner | evidence/miner-input.txt；fresh实例/root/rlt36_miner→lesson_candidates.md | observed | dh mine只读备料exit0；候选草稿留本工作区，不越界写知识库，不代替独立代码复核。 |
+| E-009 | review-dispatch | session=/root/rlt36_code_review path=code_review target_sha=fa9c21fa2dcce7f55760ef19f93ac28a3188e34b diff_sha256=9d351c5118e97824b9530b283d0186cb647a0f572078b12bec87c22aab9d149a baseline_sha=dfbe56371b569ff768e7bcd82eeb8d204d55dfea; attempt=1 kind=full fresh=true | observed | 完整候选绑定独立gpt-6.1-sol/high实例；只允许写两份原报告。 |
+| E-012 | ci | evidence/pr16-candidate-ci.json；候选fa9c21f两平台SUCCESS，PR16为draft | pass | 初始候选平台CI；证据提交后须读取最新source检查，未合入。 |
+| E-013 | review-result | evidence/code-review-1.md/json；fresh独立实例原报告approved，无findings，另跑76项通过 | pass | normal完整代码复核一次闭合，无定向复查资格/必要。 |
+| E-014 | gate | evidence/review-gate.json；dh.review-gate.v2 PASS exit0 | pass | 原报告、Git候选/diff/派出身份/政策摘要由共享collector核验，未自造PASS。 |

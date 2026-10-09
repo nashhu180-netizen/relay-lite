@@ -34,3 +34,10 @@ normal=[code_review]，完整候选后fresh一轮；待候选提交后派出。
 | 变异点锚点(生产代码 path:line) | 原值→变异值 | 语义类别 | 对应测试 ID | 运行命令 | 施加 hash | 还原 hash | 登记人(重核须=轮2实例) | 施加后结果 |
 |---|---|---|---|---|---|---|---|---|
 | tools/task_wait.py:80 | 精确派单不匹配则忽略→if False放过不匹配 | 改边界 | test_task_wait.TaskWaitTests.test_wrong_dispatch_old_round_or_partial_write_never_ready | python3 -m unittest discover -s tests -p test_task_wait.py -k wrong_dispatch_old_round -v | 43d3c84dc8ea423be73f9e282aabc19f78f30e318f354770e7c50d4ed4951e47 | 5526592c267158079f3d549df7e409aa148c3a28f11946bba4dd1ccf894797a0 | codex-root-rlt36-20261009 | 业务断言失败，exit1；精确还原后76项通过exit0，见E-005 |
+
+<!-- dh:review-attempt:v1 task=RLT_36 attempt=1 kind=full reviewer_session_id=/root/rlt36_code_review status=punched -->
+完整候选fa9c21f已派fresh code_review，唯一允许报告路径evidence/code-review-1.md/json。
+
+<!-- dh:review-result:v2 task=RLT_36 path=code_review attempt=1 artifact=docs/modules/relay-lite/workspace/36-RLT_36-watcher-reliability/evidence/code-review-1.json artifact_sha256=96c299b0bb1522bbb9b2da2bc96739325098af04ce34ddf5098076b458a5476d -->
+
+独立/root/rlt36_code_review完整一轮approved，findings=[]，精确候选fa9c21f；原报告evidence/code-review-1.md/json只机械绑定，未改原字节。

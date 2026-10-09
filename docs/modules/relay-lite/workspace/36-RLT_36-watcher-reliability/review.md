@@ -15,7 +15,7 @@ normal=[code_review]，完整候选后fresh一轮；待候选提交后派出。
 | RL36-M3 | 临时只读观察失败保留基线后恢复；身份/RELAY_RECEIPT 硬闸不放宽；同 space 监控重复启动有单实例保护。 | AI | E-005；观察恢复、receipt/身份、singleton行为单测 | 已满足 |
 | RL36-M4 | 提供主编排只读有界 signal 等待入口；watcher 暂停/缺席时能发现精确本批结果，READY 不是 PASS，仍核原报告与 durable signal。 | AI | E-005/007；tests/test_task_wait.py；live/orch-report.md、精确信号与实态 | 已满足 |
 | RL36-M5 | 隔离真实 Herdr 演练证明 watcher agent 空闲/暂停及通知忙碌场景下，worker 完成后主编排实际核结果并完成已授权交接。 | AI | E-007；live/scene-A.json、scene-B-monitor-stop.json、final.json及两角色原report/signal | 已满足 |
-| RL36-M6 | 安装包闭集同步，行为回归/有效 RED→恢复 GREEN、fresh code_review、双平台 CI、实际合入复验与 verify 齐备。 | AI | E-005/013/014/015；本次verify提交及有限收口归档 | 机器验收已满足，远端收口归档待完成 |
+| RL36-M6 | 安装包闭集同步，行为回归/有效 RED→恢复 GREEN、fresh code_review、双平台 CI、实际合入复验与 verify 齐备。 | AI | E-005/013/014/015；本次verify提交及有限收口归档 | 已满足（verify54df853，证据远端归档按有限收口PR） |
 
 ## 需求对齐证据
 | 需求 / 人验项 | 场景与操作路径 | 证据 (E-00x) | 结论（满足 / 不满足 / 待人验） |
@@ -49,3 +49,5 @@ normal=[code_review]，完整候选后fresh一轮；待候选提交后派出。
 当前实际主干b940ca0与所审fa9c21f产品同字节；76项、dh/check和collector PASS。as-built中“最终复核/CI/合入/verify未完成”为实施候选快照，最终交付状态以本工作区E-013起的真实证据与源卡status为准，保留原快照，不重写历史。
 
 源码和协议交付不代表现有业务space或安装副本升级；本卡不部署、不重启、不开始下一卡。有限收口只归档本任务机器证据与源卡机械状态，不改变产品或验收合同。
+
+verify54df853已在实际合入后的主干提交，E-017。有限收口PR中的“已完成”为归档候选；只有远端包含全部证据后实际销户/清理。实现gate的PASS范围为所审候选及实现证据（E-014/015），有限收口按技能要求只读核验状态/verify/目标可达性，不新增代码复核路或伪造原报告。

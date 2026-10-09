@@ -1,0 +1,161 @@
+test_active_table_bodies_preserve_all_authorization_and_status_bytes (test_contract.MigrationTests.test_active_table_bodies_preserve_all_authorization_and_status_bytes) ... ok
+test_inventory_exactly_matches_preconstruction_plan (test_contract.MigrationTests.test_inventory_exactly_matches_preconstruction_plan) ... ok
+test_both_adapters_require_clear_before_dispatch (test_contract.PackageTests.test_both_adapters_require_clear_before_dispatch) ... ok
+test_changed_or_unmanaged_retired_file_preserved_without_mutating_any_target (test_contract.PackageTests.test_changed_or_unmanaged_retired_file_preserved_without_mutating_any_target) ... error: retired file has no trustworthy managed manifest
+error: retired managed file changed; preserve and resolve explicitly
+ok
+test_environment_gate_is_shared_before_carrier_commands (test_contract.PackageTests.test_environment_gate_is_shared_before_carrier_commands) ... ok
+test_host_process_handles_are_kept_in_their_adapters (test_contract.PackageTests.test_host_process_handles_are_kept_in_their_adapters) ... ok
+test_isolated_package_installs_and_observer_help_runs_without_source_checkout (test_contract.PackageTests.test_isolated_package_installs_and_observer_help_runs_without_source_checkout) ... ok
+test_legacy_alias_is_explicit_and_removes_only_unchanged_managed_retired_file (test_contract.PackageTests.test_legacy_alias_is_explicit_and_removes_only_unchanged_managed_retired_file) ... ok
+test_new_task_clear_is_a_predispatch_gate (test_contract.PackageTests.test_new_task_clear_is_a_predispatch_gate) ... ok
+test_roles_and_new_dispatch_use_executor (test_contract.PackageTests.test_roles_and_new_dispatch_use_executor) ... ok
+test_watcher_lifecycle_is_common_to_all_kinds (test_contract.PackageTests.test_watcher_lifecycle_is_common_to_all_kinds) ... ok
+test_all_registered_protocols_must_exist_before_any_selection (test_environment_config.EnvironmentConfigTests.test_all_registered_protocols_must_exist_before_any_selection) ... ok
+test_default_and_explicit_selection_real_cli (test_environment_config.EnvironmentConfigTests.test_default_and_explicit_selection_real_cli) ... ok
+test_invalid_default_rejected_even_with_valid_explicit_selection (test_environment_config.EnvironmentConfigTests.test_invalid_default_rejected_even_with_valid_explicit_selection) ... ok
+test_malformed_and_closed_schema_stop (test_environment_config.EnvironmentConfigTests.test_malformed_and_closed_schema_stop) ... ok
+test_missing_config_and_argument_syntax_are_fixed_json (test_environment_config.EnvironmentConfigTests.test_missing_config_and_argument_syntax_are_fixed_json) ... ok
+test_missing_protocol_and_path_escapes_stop (test_environment_config.EnvironmentConfigTests.test_missing_protocol_and_path_escapes_stop) ... ok
+test_other_registered_environment_selects_its_own_protocol (test_environment_config.EnvironmentConfigTests.test_other_registered_environment_selects_its_own_protocol) ... ok
+test_receipt_empty_is_rejected_before_configuration_read (test_environment_config.EnvironmentConfigTests.test_receipt_empty_is_rejected_before_configuration_read) ... ok
+test_receipt_presence_precedes_environment_and_does_not_expose_value (test_environment_config.EnvironmentConfigTests.test_receipt_presence_precedes_environment_and_does_not_expose_value) ... ok
+test_repository_configuration_has_only_herdr (test_environment_config.EnvironmentConfigTests.test_repository_configuration_has_only_herdr) ... ok
+test_required_runtime_environment_is_strict_and_secret_free (test_environment_config.EnvironmentConfigTests.test_required_runtime_environment_is_strict_and_secret_free) ... ok
+test_unknown_empty_and_recovery_conflict_stop (test_environment_config.EnvironmentConfigTests.test_unknown_empty_and_recovery_conflict_stop) ... ok
+test_version_types_and_duplicate_keys_are_not_coerced (test_environment_config.EnvironmentConfigTests.test_version_types_and_duplicate_keys_are_not_coerced) ... ok
+test_all_installs_package_to_both_sides (test_install_skill.InstallSkillTests.test_all_installs_package_to_both_sides) ... ok
+test_cli_requires_all_flag (test_install_skill.InstallSkillTests.test_cli_requires_all_flag) ... usage: python3 -m unittest [-h] --all [--legacy-alias]
+python3 -m unittest: error: the following arguments are required: --all
+usage: python3 -m unittest [-h] --all [--legacy-alias]
+python3 -m unittest: error: the following arguments are required: --all
+usage: python3 -m unittest [-h] --all [--legacy-alias]
+python3 -m unittest: error: the following arguments are required: --all
+usage: python3 -m unittest [-h] --all [--legacy-alias]
+python3 -m unittest: error: unrecognized arguments: extra
+ok
+test_environment_gate_is_standalone_after_source_checkout_disappears (test_install_skill.InstallSkillTests.test_environment_gate_is_standalone_after_source_checkout_disappears)
+The installed helper reads only the installed package and its protocol. ... ok
+test_manifest_fields_after_success (test_install_skill.InstallSkillTests.test_manifest_fields_after_success) ... ok
+test_mid_copy_failure_is_nonzero_and_rerun_converges (test_install_skill.InstallSkillTests.test_mid_copy_failure_is_nonzero_and_rerun_converges)
+HC-RL-A124: tamper one side, inject a mid-copy failure, rerun to converge. ... error: injected mid-copy failure
+ok
+test_overwrites_stale_replica (test_install_skill.InstallSkillTests.test_overwrites_stale_replica) ... ok
+test_package_set_is_closed_and_present (test_install_skill.InstallSkillTests.test_package_set_is_closed_and_present) ... FAIL
+test_roles_toml_replica_bytes_identical_to_source (test_install_skill.InstallSkillTests.test_roles_toml_replica_bytes_identical_to_source) ... ok
+test_source_missing_file_fails_closed (test_install_skill.InstallSkillTests.test_source_missing_file_fails_closed) ... error: skill source incomplete, missing: templates/card-chain.md
+ok
+test_approval_or_unknown_ui_is_deferred_without_submission (test_space_watch.HerdrDeliveryTests.test_approval_or_unknown_ui_is_deferred_without_submission) ... ok
+test_busy_target_submission_needs_no_state_transition (test_space_watch.HerdrDeliveryTests.test_busy_target_submission_needs_no_state_transition) ... ok
+test_error_payload_and_duplicate_or_malformed_inventory (test_space_watch.HerdrDeliveryTests.test_error_payload_and_duplicate_or_malformed_inventory) ... ok
+test_idle_or_done_target_can_be_submitted_without_observed_working (test_space_watch.HerdrDeliveryTests.test_idle_or_done_target_can_be_submitted_without_observed_working) ... ok
+test_rejected_timeout_or_invalid_reply_does_not_send_enter (test_space_watch.HerdrDeliveryTests.test_rejected_timeout_or_invalid_reply_does_not_send_enter) ... ok
+test_submission_is_pinned_to_exact_pane_and_uses_no_wait_or_keys (test_space_watch.HerdrDeliveryTests.test_submission_is_pinned_to_exact_pane_and_uses_no_wait_or_keys) ... ok
+test_submitted_event_does_not_claim_prompt_consumption (test_space_watch.HerdrDeliveryTests.test_submitted_event_does_not_claim_prompt_consumption) ... ok
+test_three_docs_and_watcher_dispatch_use_fixed_workspace_scope (test_space_watch.ProtocolTests.test_three_docs_and_watcher_dispatch_use_fixed_workspace_scope) ... FAIL
+test_baseline_and_unchanged_are_silent (test_space_watch.SpaceWatchTests.test_baseline_and_unchanged_are_silent) ... ok
+test_deferred_before_submission_is_coalesced_then_sent_once (test_space_watch.SpaceWatchTests.test_deferred_before_submission_is_coalesced_then_sent_once) ... installed: /tmp/tmpmoy451v5/home/.claude/skills/relay-lite
+installed: /tmp/tmpmoy451v5/home/.codex/skills/relay-lite
+installed: /tmp/tmpmoy451v5/home/.agents/skills/relay-lite
+installed: /tmp/tmpytu5j0ge/home/.claude/skills/relay-lite
+installed: /tmp/tmpytu5j0ge/home/.codex/skills/relay-lite
+installed: /tmp/tmpytu5j0ge/home/.agents/skills/relay-lite
+installed: /tmp/tmp7uwpe0j0/home/.claude/skills/relay-lite
+installed: /tmp/tmp7uwpe0j0/home/.codex/skills/relay-lite
+installed: /tmp/tmp7uwpe0j0/home/.agents/skills/relay-lite
+installed: /tmp/tmposdt6o8d/home/.claude/skills/relay-lite
+installed: /tmp/tmposdt6o8d/home/.codex/skills/relay-lite
+installed: /tmp/tmposdt6o8d/home/.agents/skills/relay-lite
+installed: /tmp/tmposdt6o8d/home/.claude/skills/relay-lite
+installed: /tmp/tmposdt6o8d/home/.codex/skills/relay-lite
+installed: /tmp/tmposdt6o8d/home/.agents/skills/relay-lite
+installed: /tmp/tmp88d826g_/home/.claude/skills/relay-lite
+installed: /tmp/tmp88d826g_/home/.codex/skills/relay-lite
+installed: /tmp/tmp88d826g_/home/.agents/skills/relay-lite
+installed: /tmp/tmp88d826g_/home/.claude/skills/relay-lite
+installed: /tmp/tmp88d826g_/home/.codex/skills/relay-lite
+installed: /tmp/tmp88d826g_/home/.agents/skills/relay-lite
+installed: /tmp/tmpcjlbn6hn/home/.claude/skills/relay-lite
+installed: /tmp/tmpcjlbn6hn/home/.codex/skills/relay-lite
+installed: /tmp/tmpcjlbn6hn/home/.agents/skills/relay-lite
+SPACE_WATCH_DEFERRED reason=notification_target_not_ready
+ok
+test_departure_and_reentry (test_space_watch.SpaceWatchTests.test_departure_and_reentry) ... ok
+test_duplicate_runtime_is_rejected_and_release_is_reusable (test_space_watch.SpaceWatchTests.test_duplicate_runtime_is_rejected_and_release_is_reusable) ... ok
+test_dynamic_new_final_including_names_without_prefix (test_space_watch.SpaceWatchTests.test_dynamic_new_final_including_names_without_prefix) ... ok
+test_environment_and_receipt_before_any_command (test_space_watch.SpaceWatchTests.test_environment_and_receipt_before_any_command) ... SPACE_WATCH_BLOCKED reason=herdr_environment_required
+SPACE_WATCH_BLOCKED reason=herdr_environment_required
+SPACE_WATCH_BLOCKED reason=relay_receipt_present
+ok
+test_failed_notification_preserves_unknown_event_without_replay (test_space_watch.SpaceWatchTests.test_failed_notification_preserves_unknown_event_without_replay) ... SPACE_WATCH_UNCONFIRMED reason=notification_unconfirmed [relay-lite] space-change w68 toy-builder working:1:pane-toy-builder -> done:1:pane-toy-builder
+ok
+test_full_notification_lifecycle_has_no_orchestrator_echo (test_space_watch.SpaceWatchTests.test_full_notification_lifecycle_has_no_orchestrator_echo) ... ok
+test_list_get_race_is_not_false_disappearance (test_space_watch.SpaceWatchTests.test_list_get_race_is_not_false_disappearance) ... ok
+test_missing_seq_and_failed_get_fail_closed (test_space_watch.SpaceWatchTests.test_missing_seq_and_failed_get_fail_closed) ... ok
+test_other_worker_changed_during_notify_is_reported_next_poll (test_space_watch.SpaceWatchTests.test_other_worker_changed_during_notify_is_reported_next_poll) ... ok
+test_polls_at_120_seconds_with_no_files (test_space_watch.SpaceWatchTests.test_polls_at_120_seconds_with_no_files) ... ok
+test_recipient_excluded_by_pane_even_when_list_has_no_name (test_space_watch.SpaceWatchTests.test_recipient_excluded_by_pane_even_when_list_has_no_name) ... ok
+test_recipient_identity_rediscovered_after_replacement (test_space_watch.SpaceWatchTests.test_recipient_identity_rediscovered_after_replacement) ... ok
+test_replacement_with_same_status_and_sequence (test_space_watch.SpaceWatchTests.test_replacement_with_same_status_and_sequence) ... ok
+test_report_1257_working_to_done_once (test_space_watch.SpaceWatchTests.test_report_1257_working_to_done_once) ... ok
+test_runtime_hard_guard_is_not_retried (test_space_watch.SpaceWatchTests.test_runtime_hard_guard_is_not_retried) ... ok
+test_self_and_principal_orchestrator_are_excluded_inside_workspace (test_space_watch.SpaceWatchTests.test_self_and_principal_orchestrator_are_excluded_inside_workspace) ... ok
+test_sequence_change_without_status_change (test_space_watch.SpaceWatchTests.test_sequence_change_without_status_change) ... ok
+test_shell_monitor_survives_watcher_agent_disappearance (test_space_watch.SpaceWatchTests.test_shell_monitor_survives_watcher_agent_disappearance) ... ok
+test_status_change_without_sequence_change (test_space_watch.SpaceWatchTests.test_status_change_without_sequence_change) ... ok
+test_transient_read_failure_recovers_without_consuming_delta (test_space_watch.SpaceWatchTests.test_transient_read_failure_recovers_without_consuming_delta) ... SPACE_WATCH_DEGRADED reason=herdr_command_failed
+SPACE_WATCH_RECOVERED
+ok
+test_unconfirmed_notification_continues_without_resending (test_space_watch.SpaceWatchTests.test_unconfirmed_notification_continues_without_resending) ... SPACE_WATCH_UNCONFIRMED reason=notification_unconfirmed [relay-lite] space-change w68 toy-builder working:1:pane-toy-builder -> done:1:pane-toy-builder
+ok
+test_unnamed_agents_use_pane_not_kind_labels (test_space_watch.SpaceWatchTests.test_unnamed_agents_use_pane_not_kind_labels) ... ok
+test_workspace_identity_and_self_target_are_checked (test_space_watch.SpaceWatchTests.test_workspace_identity_and_self_target_are_checked) ... ok
+test_cli_reports_pending_then_ready_with_native_exit_codes (test_task_wait.TaskWaitTests.test_cli_reports_pending_then_ready_with_native_exit_codes) ... ok
+test_conflicting_done_and_blocked_fail_closed (test_task_wait.TaskWaitTests.test_conflicting_done_and_blocked_fail_closed) ... ok
+test_matching_blocked_is_ready_for_inspection_not_success (test_task_wait.TaskWaitTests.test_matching_blocked_is_ready_for_inspection_not_success) ... ok
+test_outside_workspace_or_symlinks_are_rejected (test_task_wait.TaskWaitTests.test_outside_workspace_or_symlinks_are_rejected) ... ok
+test_ready_preserves_original_bytes_and_requires_owner_review (test_task_wait.TaskWaitTests.test_ready_preserves_original_bytes_and_requires_owner_review) ... ok
+test_receipt_stops_before_signal_read (test_task_wait.TaskWaitTests.test_receipt_stops_before_signal_read) ... ok
+test_timeout_is_bounded_pending (test_task_wait.TaskWaitTests.test_timeout_is_bounded_pending) ... ok
+test_worker_finishes_during_wait_without_watcher (test_task_wait.TaskWaitTests.test_worker_finishes_during_wait_without_watcher) ... ok
+test_wrong_dispatch_old_round_or_partial_write_never_ready (test_task_wait.TaskWaitTests.test_wrong_dispatch_old_round_or_partial_write_never_ready) ... ok
+
+======================================================================
+FAIL: test_package_set_is_closed_and_present (test_install_skill.InstallSkillTests.test_package_set_is_closed_and_present)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/nash/work/relay-lite/.dh-worktrees/RLT_36/tests/test_install_skill.py", line 60, in test_package_set_is_closed_and_present
+    self.assertEqual(
+AssertionError: Tuples differ: ('SKI[168 chars]ironment_config.py', 'templates/card-chain.md') != ('SKI[168 chars]ironment_config.py', 'task_wait.py', 'templates/card-chain.md')
+
+First differing element 8:
+'templates/card-chain.md'
+'task_wait.py'
+
+Second tuple contains 1 additional elements.
+First extra element 9:
+'templates/card-chain.md'
+
+  ('SKILL.md',
+   'references/adapter-claude-code.md',
+   'references/adapter-codex.md',
+   'references/environment-herdr.md',
+   'environments.toml',
+   'roles.toml',
+   'space_watch.py',
+   'environment_config.py',
++  'task_wait.py',
+   'templates/card-chain.md')
+
+======================================================================
+FAIL: test_three_docs_and_watcher_dispatch_use_fixed_workspace_scope (test_space_watch.ProtocolTests.test_three_docs_and_watcher_dispatch_use_fixed_workspace_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/nash/work/relay-lite/.dh-worktrees/RLT_36/tests/test_space_watch.py", line 370, in test_three_docs_and_watcher_dispatch_use_fixed_workspace_scope
+    self.assertIn(token, section, rel)
+AssertionError: '--workspace' not found in '\n\n#### watcher 通用启动与监控步骤\n\n**所有 agent 共用同一 watcher 合同**。监控主体是 `space_watch.py` 常驻程序，默认放在 Herdr 独立普通终端；不要求模型不断产生回合。可选 watcher agent 的模型/实例仍须确认，其空闲、结束回复或暂停不应终止独立监控终端。兼容旧 agent 内的持久子进程入口，但新的启动优先采用独立普通终端；两种入口不得同时监控同一 space。\n\n1. **准备与身份**：编排核环境配置、真实 `workspace_id`、接收方 `notify` 和普通监控终端 `self`，登记在 execution_strategy。普通程序没有模型，无需为它另启模型实例；可选 agent 仍走 model-allocation gate。独立终端按环境协议创建，固定脚本运行在该终端的真实 shell 内，保留继承的 HERDR 上下文，不导出伪造身份。\n2. **启动与接管**：执行 RECEIPT/环境/身份 preflight，按环境协议启动固定程序；取得真实子进程句柄/PID与该 pane 的对应关系，确认进程存活和 `SPACE_WATCH_STARTED` 后才称确认接管。同一服务端/space 用内存 socket 防止重复实例，无锁文件；冲突停止新实例，不杀旧进程。启动失败应由主编排直接处理结果等待，不能把外层包装工具 running 当脚本存活。\n3. **固定观察**：每 120 秒动态发现本 space 其它 agent，排除 watcher 自身和主编排，不按 kind、名字前缀或派单名单过滤。比较 agent_status/state_change_seq及新增/离开/pane替换，无变化静默；快照仅内存。临时读取失败保留观察基线，输出一次降级原因后下一节拍继续只读观察，恢复只报告一次；RELAY_RECEIPT、环境、身份错误等硬闸仍停止。\n4. **通知独立于观察**：向已核接收方的精确 pane 单次提交；CLI agent_prompted 仅证明提交，不要求主编排出现新的 working/seq，不冒称消费或完成。已知审批/unknown UI时不提交，保留事件并在后续节拍合并观察；尝试后的失败/超时/未知保留 UNCONFIRMED，继续观察且不盲重发该事件。正常提交后只等待真实报告/signal；主编排状态变化不触发通知回声。\n5. **退出和兜底**：退出只一次通知，按通知事实保留未知；不自动重拉 agent、不自动重启未知状态的脚本。主编排从自己已派出的精确结果文件，用 `task_wait.py` 做有接收者的有界前台等待；不结束回合后无人接收地空等。每次等待最多60秒，PENDING表示本批结果尚未出现，不是任务失败；继续有界等待或明确报告已有停止条件。READY只表示结果可读，编排核原角色 durable signal、完整报告、适用独立复核与实际状态后，才按原授权路由。监控暂停/失联不是已授权交接的额外放行闸，也不放宽审批/人验/开工闸。\n\nwatcher 对 repo/workspace **完全只读**：不写 signal/progress/execution_strategy/轮询日志/通知日志或任何文档，不路由、不分派、不启动 agent。stdout/stderr只留独立终端或宿主临时输出，不保存终端正文；旧子进程入口由宿主工具取真实句柄、短等待巡检，不再自己目测比对状态。watcher 常驻，不逐批 clear。主编排的 task_wait 只读精确任务结果，不代跑 worker测试，不代判结果。\n\n**安全 Enter**：只有①本次派单仍在输入框（含 queued 未提交指令）、②`state_change_seq` 未推进、③不是审批/确认 UI，三条件同时成立才由获授权 watcher agent 发一次并复验；一次失败交编排按原授权路由，禁止连按。程序永不发键、不读取/保存终端正文。\n\n#### watcher 专用派单模板（所有 kind 通用，兼容可选 agent）\n\n```text\n[relay-lite:single-task] worker · phase=watcher · agent=watcher#<实例> · batch=na · round=1 · workspace=<任务工作区>\nenvironment=<已校验环境>；space_id=<真实ID>；notify=<编排身份>；self=<watcher身份>。\n读 AGENTS、核心 watcher 通用合同、环境协议与自己的宿主 adapter；RELAY_RECEIPT preflight。\n监控主体采用独立普通终端中的space_watch.py；不要为保持监控反复要求模型续跑。\n已有程序时只核精确PID/终端与启动结果，不重复启动；旧子进程入口须取得真实持久句柄。\n程序每120秒动态观察本space其它agent，排除self/编排，不按kind或名单过滤。\n变化才通知，无变化静默；提交不冒称消费；未知不盲重发，观察继续。\n不写仓库或工作区文件，不存终端正文，不路由、不派活、不启动agent，不自动重启脚本。\n```\n\n' : SKILL.md
+
+----------------------------------------------------------------------
+Ran 75 tests in 3.738s
+
+FAILED (failures=2)

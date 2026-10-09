@@ -1,3 +1,15 @@
+# relay-lite 持续监控与结果等待实装（RLT_36）
+
+默认watcher主体为Herdr独立普通终端中的space_watch.py；无模型回合依赖。兼容旧agent-name入口，普通终端用继承pane ID + pane get核身份。服务端/space内存socket单实例保护，不生成文件；CLI错误/身份/RELAY_RECEIPT硬闸及凭据白名单保留。
+
+通知向已核目标pane只提交一次；agent_prompted仅确认提交，working/seq不作消费证明。审批/unknown UI前置延后可合并；尝试后未知事件保留且不盲重发、观察继续；临时只读错误保留观察基线，下一节拍恢复。程序退出一次提示不重拉；主编排按task_wait.py的精确派单七字段/结果路径做0..60秒只读等待，不因watcher暂停结束整卡。READY不是PASS，BLOCKED结果也必须读原报告/signal；重复PENDING核实际worker状态和原停止线。
+
+安装器三侧闭集新增task_wait.py，manifest与Git dirty来源包含它；临时home入口和协议可自包含运行。不安装用户真实副本，不改变AW_07/WFP_08/dev-harness在途监控。
+
+本卡证据见workspace/36-RLT_36-watcher-reliability；当前本地76项与有效变异还原通过，真实隔离Herdr演练已证实同PID跨120秒、busy提交、monitor停止后3PENDING→READY核收与交接，最终独立复核/CI/合入/verify未完成。Linux实际终端验证不冒称Windows Herdr实态；Windows CI证明Python包与行为。
+
+## v2.1.0 历史交付记录（原证保留）
+
 # relay-lite v2.1.0 实装
 
 配置入口 environments.toml，目前默认/注册仅Herdr；environment_config.py实际读取和校验配置、恢复环境、协议路径及运行前置，READY JSON交给agent读取对应协议。工具只读，不自动启动agent或执行配置命令。模型roles提案独立，缺件/未知/恢复冲突/RECEIPT拒绝，不fallback。

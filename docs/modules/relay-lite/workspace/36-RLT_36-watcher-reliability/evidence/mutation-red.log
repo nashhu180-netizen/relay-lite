@@ -1,0 +1,42 @@
+test_wrong_dispatch_old_round_or_partial_write_never_ready (test_task_wait.TaskWaitTests.test_wrong_dispatch_old_round_or_partial_write_never_ready) ... 
+  test_wrong_dispatch_old_round_or_partial_write_never_ready (test_task_wait.TaskWaitTests.test_wrong_dispatch_old_round_or_partial_write_never_ready) (signal='DONE task=OTHER phase=batch agent=worker#1 batch=1 path=na review_round=1 remediation_count=0 verdict=PASS evidence=report.md\n') ... FAIL
+  test_wrong_dispatch_old_round_or_partial_write_never_ready (test_task_wait.TaskWaitTests.test_wrong_dispatch_old_round_or_partial_write_never_ready) (signal='DONE task=RLT_36 phase=batch agent=worker#1 batch=1 path=na review_round=2 remediation_count=0 verdict=PASS evidence=report.md\n') ... FAIL
+  test_wrong_dispatch_old_round_or_partial_write_never_ready (test_task_wait.TaskWaitTests.test_wrong_dispatch_old_round_or_partial_write_never_ready) (signal='DONE task=RLT_36 phase=batch agent=other#1 batch=1 path=na review_round=1 remediation_count=0 verdict=PASS evidence=report.md\n') ... FAIL
+
+======================================================================
+FAIL: test_wrong_dispatch_old_round_or_partial_write_never_ready (test_task_wait.TaskWaitTests.test_wrong_dispatch_old_round_or_partial_write_never_ready) (signal='DONE task=OTHER phase=batch agent=worker#1 batch=1 path=na review_round=1 remediation_count=0 verdict=PASS evidence=report.md\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/nash/work/relay-lite/.dh-worktrees/RLT_36/tests/test_task_wait.py", line 46, in test_wrong_dispatch_old_round_or_partial_write_never_ready
+    self.assertEqual("PENDING", tw.wait(self.root, [self.name], self.expected, timeout=0)["state"])
+AssertionError: 'PENDING' != 'READY'
+- PENDING
++ READY
+
+
+======================================================================
+FAIL: test_wrong_dispatch_old_round_or_partial_write_never_ready (test_task_wait.TaskWaitTests.test_wrong_dispatch_old_round_or_partial_write_never_ready) (signal='DONE task=RLT_36 phase=batch agent=worker#1 batch=1 path=na review_round=2 remediation_count=0 verdict=PASS evidence=report.md\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/nash/work/relay-lite/.dh-worktrees/RLT_36/tests/test_task_wait.py", line 46, in test_wrong_dispatch_old_round_or_partial_write_never_ready
+    self.assertEqual("PENDING", tw.wait(self.root, [self.name], self.expected, timeout=0)["state"])
+AssertionError: 'PENDING' != 'READY'
+- PENDING
++ READY
+
+
+======================================================================
+FAIL: test_wrong_dispatch_old_round_or_partial_write_never_ready (test_task_wait.TaskWaitTests.test_wrong_dispatch_old_round_or_partial_write_never_ready) (signal='DONE task=RLT_36 phase=batch agent=other#1 batch=1 path=na review_round=1 remediation_count=0 verdict=PASS evidence=report.md\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/nash/work/relay-lite/.dh-worktrees/RLT_36/tests/test_task_wait.py", line 46, in test_wrong_dispatch_old_round_or_partial_write_never_ready
+    self.assertEqual("PENDING", tw.wait(self.root, [self.name], self.expected, timeout=0)["state"])
+AssertionError: 'PENDING' != 'READY'
+- PENDING
++ READY
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.008s
+
+FAILED (failures=3)

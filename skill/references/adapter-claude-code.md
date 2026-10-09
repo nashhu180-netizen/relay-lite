@@ -79,15 +79,21 @@
 
 ### watcher 节拍与安全 Enter
 
-核心 watcher 通用合同适用于全部 kind：当前 Herdr 的 `space_watch.py` 根据 `workspace_id` 动态观察，`--workspace`、`--notify`、`--self` 从环境协议及真实派单取得；排除 watcher 自身和主编排，不按名字前缀或名单筛选。`phase=watcher` 只启动脚本并核存活，120 秒节拍由脚本维持，不再自己比对状态；完整监控、启动确认、通知/退出与安全 Enter 步骤读取核心及选中环境协议。
+核心 watcher 通用合同适用于全部 kind：当前 Herdr 的 `space_watch.py` 根据 `workspace_id` 动态观察，`--workspace`、`--notify`、`--self` 从环境协议及真实派单取得；排除 watcher 自身和主编排，不按名字前缀或名单筛选。默认由环境协议在独立普通终端常驻程序，`phase=watcher` agent可选；120 秒节拍由脚本维持，不再自己比对状态；完整监控、启动确认、通知/退出与安全 Enter 步骤读取核心及选中环境协议。
 
-#### watcher 宿主工具调用（Claude Code）
+#### watcher 宿主工具调用（Claude Code，旧 agent 子进程兼容入口）
 
 执行核心「watcher 通用启动与监控步骤」及选中环境协议；所有 agent 的监控规则相同，这里只说明宿主工具。固定脚本路径与真实 space/notify/self 从环境协议/派单取得。
 
 用 Bash 的 `run_in_background=true` 运行固定脚本，读取真实后台 task_id/进程标识；立即用该宿主的任务状态/输出工具短等待核原后台任务存活或退出，再通过环境通知入口确认启动。随后对同一 task_id 短等待巡检；后台句柄缺失或无法证明持续运行即报告 blocked。120秒观察节拍在脚本内；宿主每次等待不超过60秒，不靠模型长阻塞维持循环。
 
-stdout/stderr仅保留宿主临时任务输出，不重定向进仓库/工作区；正常静默，退出一次报信确认，未知不重发、不重启。安全 Enter、RECEIPT、watcher不逐批clear与durable signal路由全部沿核心。
+stdout/stderr仅保留宿主临时任务输出，不重定向进仓库/工作区；正常静默，退出一次报信确认；通知未知不重发，观察继续；不自动重启。安全 Enter、RECEIPT、watcher不逐批clear与durable signal路由全部沿核心。
+
+### 主编排有界结果等待
+
+按环境协议调用task_wait.py只读等待本批精确DONE/BLOCKED文件，不依赖watcher模型持续working。主编排保持有接收者的等待回合；每次最多60秒。PENDING/退出3是本批结果未出现，继续有界等待或按真实停止线报告，不以watcher暂停终止整卡；READY/退出0只发现结果，仍核原signal、完整报告与适用复核，再按原授权接力，不代判或代跑worker测试。
+
+等待工具用Bash前台有界命令或run_in_background=true所得真实task_id与任务状态工具读回结果；后台任务没有自动恢复回合能力时使用前台有界等待，PENDING回来继续等待，不把后台句柄当结果。
 
 ### 恢复依据
 

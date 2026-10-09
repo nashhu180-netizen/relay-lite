@@ -56,16 +56,36 @@ herdr agent get <同一目标>
 
 ## 固定观察脚本（全部 kind 共用）
 
-编排先按公共步骤给watcher独立tab/交互agent并写真实参数，watcher运行：
+默认让普通终端承载程序，watcher agent可选。编排按已确认测试/任务拓扑创建独立具名tab，解析真实pane ID；不要在现有用户pane里抢占前台。程序从真实shell继承上下文：
 
 ```bash
-python3 <SPACE_WATCH> --workspace <真实space_id> --notify <编排name> --self <watcher_name>
+herdr tab create --workspace <真实space_id> --cwd <授权cwd> --label relay-monitor --no-focus
+herdr pane run <返回的monitor-pane-id> "python3 <SPACE_WATCH> --workspace <真实space_id> --notify <编排name> --self <同一monitor-pane-id>"
+herdr pane process-info --pane <同一monitor-pane-id>
 ```
 
-仓内 SPACE_WATCH=`tools/space_watch.py`；安装后为 `<SKILL_DIR>/space_watch.py`。不是把业务任务文档的workspace路径传给`--workspace`。用宿主adapter持久进程工具运行并取真实句柄，启动后立即确认/报信，随后短等待巡检；只在宿主临时输出保留结果，无repo/workspace日志。所有kind都用此脚本和同一监控范围。
+仓内 SPACE_WATCH=`tools/space_watch.py`；安装后 `<SKILL_DIR>/space_watch.py`。空白/特殊字符路径须按真实shell转义，不用JSON当shell转义。普通monitor pane不出现在agent list中；脚本用pane get核self等于HERDR_PANE_ID且workspace_id正确。旧 `--self <watcher_name>` 兼容已启动agent，仍检查真实pane与继承身份；无持久宿主能力时不要把它当默认常驻方式。
 
-脚本要求 HERDR_ENV=1；RELAY_RECEIPT存在含空值拒绝。`--self`必须位于目标space，若提供HERDR_PANE_ID也须一致；不填self时可用该ID自动定位。内部每120秒 `herdr agent list` 动态发现workspace_id成员，按pane get状态，排除自身/主编排pane（主编排无论是否在该space都仅作为notify目标），不按kind或前缀/名单筛选；未命名agent也按pane观察。
+启动后从指定终端只提取 `SPACE_WATCH_STARTED workspace=<id> pid=<pid> interval=120`，并用process-info/实际PID核程序仍活；只保留这些白名单事实，不能用shell文本猜PID，也不保存终端全文。同服务端/space固定内存socket占位防止重复启动；新实例冲突失败不影响旧实例，不生成repo/workspace锁文件。
 
-第一轮快照仅内存建基线；新增/离开/agent_status或state_change_seq变动才通知。脚本通知用 `herdr agent prompt --wait --until working --timeout 5000`，核同pane、working与seq推进。投递失败/超时/未知不提交比较基线，输出固定 `SPACE_WATCH_BLOCKED reason=...` 与仅白名单diff的UNCONFIRMED、非零退出，不盲重发、不读存终端正文、不发送Enter。watcher核退出/存活，退出一次报信，通知不能确认则blocked后停，编排恢复前核实际结果，不自动重启。
+脚本先拒绝缺失HERDR_ENV和存在（含空值）的RELAY_RECEIPT；每120秒按workspace_id动态发现agent，排除self与主编排的实际pane，不按kind/前缀/派单名单过滤，未命名agent按pane观察。身份/环境硬闸仍停止；临时只读命令失败/状态不全/list-get竞争保留原基线，下一节拍重新只读观察，避免假消失。
 
-watcher启动确认也通过上节通知入口，消息如 `[relay-lite] watcher-started <space_id> <self>`，仅核到真实子进程仍活后发；确认未知不能当监控已接管。原脚本的周期与基线不因此改变。仅核心安全Enter三条件同时满足时由watcher人工发一次；脚本永不发键。编排放行只读durable signal与独立工件，agent idle/done和watcher提示均不作完成真相。
+变化通知先核接收者并向其精确pane执行一次：
+
+```bash
+herdr agent prompt <已核接收方pane-id> "<白名单变化通知>"
+```
+
+返回agent_prompted只确认提交，不证明消费。主编排working可提交，不用working/seq推进作为提交判据；审批blocked/unknown时不提交、待下轮观察后合并。命令尝试后超时/失败/结果未知，输出 `SPACE_WATCH_UNCONFIRMED` 及白名单diff，保留未知，不自动重发该事件，观察仍继续；后续真实新变化独立处理。程序不发送Enter或读存终端正文。这里的提交语义仅适用于watcher即时提示，跨卡维护移交仍沿前节原确认合同。
+
+## 主编排精确结果等待（watcher 暂停/缺席时同样有效）
+
+每次派单后，编排按自己的精确派单选DONE/BLOCKED两个独立文件，不能扫描其它卡或用idle/done放行。WAIT_TOOL仓内 `tools/task_wait.py`，安装后 `<SKILL_DIR>/task_wait.py`：
+
+```bash
+python3 <WAIT_TOOL> --root <任务workspace绝对路径> --signal signals/DONE.batch.worker-1.md --signal signals/BLOCKED.batch.worker-1.md --task <当前task> --phase batch --agent <精确worker实例> --batch 1 --path na --review-round 1 --remediation-count 0 --timeout 50
+```
+
+root是任务文档workspace，与Herdr space ID不同。路径、文件名和七字段必须来自本批派单。只读工具拒绝越界/symlink/冲突signal/RELAY_RECEIPT；不调用Herdr、不发消息、不写文件，不启动agent。
+
+退出0/READY：输出结果路径/hash与DONE/BLOCKED类型，**不是PASS**；主编排读完整原报告与signal核版本/复核/写者/原停止线，再处理结果或继续获授权交接。退出3/PENDING：没有匹配本批的完整结果，保持接收者并继续有界等待，不把一次超时当整个任务终止；不能发final空等watcher。连续PENDING时只读核已派worker的身份/状态与精确工件；明确失败、审批阻塞或退出无signal按原合同报告阻塞，不无限空等、不自动重投。退出2/BLOCKED：参数/边界/冲突硬闸，保留现场并处理实际阻塞。等待时按宿主adapter取真实句柄，单次工具等待不超过60秒，不让watcher在线成为结果核收前置。

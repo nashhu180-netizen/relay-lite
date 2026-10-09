@@ -1,0 +1,41 @@
+[
+  {
+    "pid": 734015,
+    "pane": "w6Y:p1",
+    "cwd": "/home/nash/work/relay-lite/.dh-worktrees/RLT_36",
+    "executable": "codex",
+    "confirmed_flags": [
+      "--yolo",
+      "--no-daemon",
+      "--no-alt-screen",
+      "gpt-6-luna",
+      "model_reasoning_effort=medium"
+    ]
+  },
+  {
+    "pid": 734627,
+    "pane": "w6Y:p2",
+    "cwd": "/home/nash/work/relay-lite/.dh-worktrees/RLT_36",
+    "executable": "codex",
+    "confirmed_flags": [
+      "--yolo",
+      "--no-daemon",
+      "--no-alt-screen",
+      "gpt-6-luna",
+      "model_reasoning_effort=medium"
+    ]
+  },
+  {
+    "pid": 735893,
+    "pane": "w6Y:p3",
+    "cwd": "/home/nash/work/relay-lite/.dh-worktrees/RLT_36",
+    "executable": "codex",
+    "confirmed_flags": [
+      "--yolo",
+      "--no-daemon",
+      "--no-alt-screen",
+      "gpt-6-luna",
+      "model_reasoning_effort=medium"
+    ]
+  }
+]

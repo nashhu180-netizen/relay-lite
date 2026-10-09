@@ -1,0 +1,1 @@
+{"repository":"nashhu180-netizen/relay-lite","target":"master","branch_protection_http_status":404,"message":"Branch not protected","configured_required_checks":[],"configured_required_approvals":0,"card_required_checks":["ubuntu-latest Python 3.12 unittest","windows-latest Python 3.12 unittest"],"bypass":false}

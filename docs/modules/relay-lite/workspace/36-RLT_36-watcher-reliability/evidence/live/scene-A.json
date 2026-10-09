@@ -1,0 +1,32 @@
+{
+  "observed_at": 1791539264.201725,
+  "elapsed_since_start": 169.2094476222992,
+  "monitor_pid": 740665,
+  "monitor_alive": true,
+  "actors": [
+    {
+      "name": "rlt36-orch",
+      "pane_id": "w6Y:p1",
+      "agent_status": "working",
+      "state_change_seq": 3055
+    },
+    {
+      "name": "rlt36-worker",
+      "pane_id": "w6Y:p2",
+      "agent_status": "done",
+      "state_change_seq": 3047
+    },
+    {
+      "name": "rlt36-watcher",
+      "pane_id": "w6Y:p3",
+      "agent_status": "done",
+      "state_change_seq": 3058
+    }
+  ],
+  "submission_markers": [
+    "SPACE_WATCH_SUBMITTED workspace=w6Y event=c678964b531099ce6dd1ee12d4935e8fdaf8f3282252032be2deb65e1c1e29f3"
+  ],
+  "native_pending_json_count": 2,
+  "worker_dispatched": false,
+  "worker_signal_exists": false
+}

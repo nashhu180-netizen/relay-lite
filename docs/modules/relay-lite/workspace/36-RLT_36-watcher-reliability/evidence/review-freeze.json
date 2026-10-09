@@ -1,0 +1,101 @@
+{
+  "schema": "dh.review-freeze.v2",
+  "task_id": "RLT_36",
+  "card_ref": "docs/modules/relay-lite/dev_plan/P4-watcher可靠性.md#rlt_36",
+  "task_type_marker_sha256": "07dc19879cfdc664a773f8d0d7445553f8e0851d62b890af0d75c7917648942f",
+  "classification_facts": {
+    "production_operation": {
+      "value": false,
+      "evidence": "docs/modules/relay-lite/workspace/36-RLT_36-watcher-reliability/brief.md#分类事实"
+    },
+    "irreversible_migration": {
+      "value": false,
+      "evidence": "docs/modules/relay-lite/workspace/36-RLT_36-watcher-reliability/brief.md#分类事实"
+    },
+    "metric_semantics": {
+      "value": false,
+      "evidence": "docs/modules/relay-lite/workspace/36-RLT_36-watcher-reliability/brief.md#分类事实"
+    },
+    "security_or_shared_guarantee": {
+      "value": false,
+      "evidence": "docs/modules/relay-lite/workspace/36-RLT_36-watcher-reliability/brief.md#分类事实"
+    },
+    "behavior_or_rule_semantics_changed": {
+      "value": true,
+      "evidence": "docs/modules/relay-lite/workspace/36-RLT_36-watcher-reliability/brief.md#分类事实"
+    }
+  },
+  "policy_version": "three-tier.v2",
+  "policy_source_digest": "1e02aeb3100185fd8541d24db5f25729a7b4e5769ce0424581ee9e46a8a9faa6",
+  "policy_sources": [
+    {
+      "path": "tools/dh-policy/three-tier.mjs",
+      "sha256": "86193917583b697c59a6e871e32e3426e3a277ac8d3c7c4d4dbc008847a08914"
+    },
+    {
+      "path": "tools/dh-policy/task-type.mjs",
+      "sha256": "a24074db98a9a0e68fc768c6475a80b312dd2ad3a2ded0d6b34ede2d61089ddd"
+    },
+    {
+      "path": "tools/dh-policy/registry.mjs",
+      "sha256": "3f584e35c059a8fd4455a6ff098c50e55e57c9d29580b9a7828b9c2849688fe2"
+    },
+    {
+      "path": "tools/dh-policy/review-policy.mjs",
+      "sha256": "2d82aa02cfa870659e8647443be3da570bef7f59b438705ba7f73caefc23e886"
+    },
+    {
+      "path": "tools/dh-policy/review-gate.mjs",
+      "sha256": "4673dca40e8f4dbb24ada4b72318d3ce57dc1de788abd4aaae56cfe022ca94d4"
+    },
+    {
+      "path": "tools/dh-policy/policy.mjs",
+      "sha256": "694de48b3bd64459af89b9ec8497db35f256ec320f59c2f6ae21ca0a9c88ff4d"
+    },
+    {
+      "path": "tools/dh-policy/migration.mjs",
+      "sha256": "5f3b09e793a5e5f763f315384f1be86e873ff6f31da06fc1226106ba9c488c06"
+    },
+    {
+      "path": "tools/dh-core.mjs",
+      "sha256": "0c6d4bcfff6f47b8327c0beb07ae8decbb60e4e001f505956fe2542a356d2c47"
+    },
+    {
+      "path": "tools/dh-check.mjs",
+      "sha256": "0e8b97517325dde560cc4ae7d085f5da08e07db2d68775b6920fca16ecd35e1b"
+    },
+    {
+      "path": "tools/dh-nav.mjs",
+      "sha256": "d4f1ac1fbb205a4cc4df2b4b511ecf0b8375ad2dc3c71a8fb9babb671e3345f7"
+    },
+    {
+      "path": "tools/dh-r18.mjs",
+      "sha256": "13b0ebd91627c1f65aa25117774162a9ca1f79eac49d6a4a529321dabb00fc6b"
+    },
+    {
+      "path": "tools/dh-dispatch.mjs",
+      "sha256": "5155f285ca6198a5082a77d22e466d8d8bee17b0b4ad8961d1c228c448c041ba"
+    },
+    {
+      "path": "tools/dh-release.mjs",
+      "sha256": "0ec53acaa6b50f0fb7f9134832c62202fefa8dd05fb45f7f91adb97ea72d94e9"
+    },
+    {
+      "path": "tools/dh-snapshot.mjs",
+      "sha256": "620dcb35401cfe969a47b451767255aaa282147682bf640b0c36bdabfccb5328"
+    },
+    {
+      "path": "tools/dh-console/scan.mjs",
+      "sha256": "0eb22d2970790113534c2c297cca7a87003bde5f7c69b6f74dc48190e0f1a848"
+    }
+  ],
+  "required_path_ids": [
+    "code_review"
+  ],
+  "recipe_sha256": "6396e83a0416214cfc5a043d3d77aaeb4f3cd32014c89ec7243bfd122988e91e",
+  "baseline_sha": "dfbe56371b569ff768e7bcd82eeb8d204d55dfea",
+  "target_sha": "fa9c21fa2dcce7f55760ef19f93ac28a3188e34b",
+  "diff_sha256": "9d351c5118e97824b9530b283d0186cb647a0f572078b12bec87c22aab9d149a",
+  "implementer_session_id": "codex-root-rlt36-20261009",
+  "policy_authorization_ref": "docs/modules/relay-lite/workspace/36-RLT_36-watcher-reliability/brief.md#本卡开工授权"
+}

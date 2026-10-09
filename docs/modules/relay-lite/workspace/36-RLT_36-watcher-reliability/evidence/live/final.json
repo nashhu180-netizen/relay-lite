@@ -1,0 +1,43 @@
+{
+  "observed_at": 1791539421.536263,
+  "actors": [
+    {
+      "name": "rlt36-orch",
+      "pane_id": "w6Y:p1",
+      "agent_status": "done",
+      "state_change_seq": 3063
+    },
+    {
+      "name": "rlt36-worker",
+      "pane_id": "w6Y:p2",
+      "agent_status": "done",
+      "state_change_seq": 3062
+    },
+    {
+      "name": "rlt36-watcher",
+      "pane_id": "w6Y:p3",
+      "agent_status": "done",
+      "state_change_seq": 3058
+    }
+  ],
+  "sources": {
+    "tools/space_watch.py": "ec2e399c5b9fe5326ce5b89e44b80736e1af5f6ff2e36db2ab5093f306b3985b",
+    "tools/task_wait.py": "5526592c267158079f3d549df7e409aa148c3a28f11946bba4dd1ccf894797a0"
+  },
+  "artifacts": {
+    "worker-report.md": "875b042b9bb348d482eb8d1e487933513846ceaa7b68c4e478a9e5e00368ecc4",
+    "signals/DONE.batch.worker.md": "2b498bd81b6ff07192215e2d2d7c98b3776a267b200adea397440af7f447a2a3",
+    "orch-report.md": "7fed079a4eb49309f06871128d37f9111e8a334a1b7e7b3d25d80b539b4d3b9e",
+    "signals/DONE.batch.orch.md": "344802bae979e2ec6a21af52b38a1020eba06b09ca75b0563897cacbb25e29e8"
+  },
+  "native_pending_json_count": 3,
+  "native_ready_json_count": 0,
+  "actual_owner_report_pending_count": 3,
+  "owner_handoff_signal_present": true,
+  "monitor_absent_before_worker": true,
+  "owner_additional_prompts_after_initial_dispatch": 0,
+  "worker_initial_prompts": 1,
+  "business_task_acceptance": false,
+  "scene_A": "same monitor PID alive after169s, watcher done, owner working with unchangedseq3055, one submitted event",
+  "scene_B": "monitor absent before first worker dispatch; owner3PENDING thenREADY; original report/signal/hash + real worker done; explicit local handoff artifact"
+}

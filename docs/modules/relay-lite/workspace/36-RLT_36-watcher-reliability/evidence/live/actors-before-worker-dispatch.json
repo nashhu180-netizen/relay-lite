@@ -1,0 +1,38 @@
+{
+  "sampled_at": 1791539198.038993,
+  "actors": [
+    {
+      "name": "rlt36-orch",
+      "pane_id": "w6Y:p1",
+      "workspace_id": "w6Y",
+      "agent_status": "working",
+      "state_change_seq": 3055,
+      "read_tokens": [
+        "READY",
+        "PENDING",
+        "matching_signal_not_ready"
+      ]
+    },
+    {
+      "name": "rlt36-worker",
+      "pane_id": "w6Y:p2",
+      "workspace_id": "w6Y",
+      "agent_status": "done",
+      "state_change_seq": 3047,
+      "read_tokens": [
+        "error: the argument '--no-daemon' cannot be used multiple times"
+      ]
+    },
+    {
+      "name": "rlt36-watcher",
+      "pane_id": "w6Y:p3",
+      "workspace_id": "w6Y",
+      "agent_status": "done",
+      "state_change_seq": 3058,
+      "read_tokens": [
+        "error: the argument '--no-daemon' cannot be used multiple times",
+        "WATCHER_MODEL_TURN_ENDED"
+      ]
+    }
+  ]
+}

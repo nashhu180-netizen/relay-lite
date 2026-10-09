@@ -159,6 +159,8 @@ class PackageTests(unittest.TestCase):
                 proc=subprocess.run([sys.executable,str(target/'space_watch.py'),'--help'],cwd=tmp,capture_output=True,text=True)
                 self.assertEqual(0,proc.returncode,proc.stderr)
                 self.assertTrue((target/'templates/card-chain.md').is_file())
+                proc=subprocess.run([sys.executable,str(target/'task_wait.py'),'--help'],cwd=tmp,capture_output=True,text=True)
+                self.assertEqual(0,proc.returncode,proc.stderr)
                 self.assertFalse((target/'archive').exists())
                 for doc in ('SKILL.md','references/adapter-codex.md','references/adapter-claude-code.md','templates/card-chain.md'):
                     text=(target/doc).read_text(encoding='utf-8')

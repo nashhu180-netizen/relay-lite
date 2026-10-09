@@ -1,0 +1,1 @@
+DONE task=RLT_36_TEST phase=batch agent=orch#rlt36 batch=1 path=na review_round=1 remediation_count=0 verdict=HANDOFF_CONFIRMED evidence=docs/modules/relay-lite/workspace/36-RLT_36-watcher-reliability/evidence/live/orch-report.md

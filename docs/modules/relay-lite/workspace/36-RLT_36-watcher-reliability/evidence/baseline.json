@@ -1,0 +1,15 @@
+{
+  "cwd": "/home/nash/work/relay-lite",
+  "sha": "dfbe56371b569ff768e7bcd82eeb8d204d55dfea",
+  "command": [
+    "/usr/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "exit_code": 0
+}

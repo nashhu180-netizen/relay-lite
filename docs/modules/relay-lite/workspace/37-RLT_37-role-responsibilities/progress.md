@@ -24,6 +24,8 @@
 
 | E-013 | integration | evidence/integration.json、integration-tests/check/gate.log、pr19-final-ci.json、pr19-merge.json | pass | 最新source双CI成功，实际merge bf33f50主干78项/check/collector全过，产品与所审候选同字节。 |
 
+| E-014 | verify | verify(relay-lite)提交f4d0b7961eec36bf37539258721a12a8768f1a98 | pass | 实际合入主干复验后提交，仅本卡证据；有限收口归档后清理。 |
+
 ## 施工里程碑
 先主树落户后迁入独立树；初稿与分发测试完成。格式检查失败原证保留，修复仅本卡文档格式，不降低闸口。
 

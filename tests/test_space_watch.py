@@ -60,6 +60,90 @@ class SpaceWatchTests(unittest.TestCase):
         self.assertNotIn("watcher2", self.watch.previous)
         self.assertEqual(["orch", "pane-toy-builder", "orch", "pane-toy-builder"], self.client.get_calls)
 
+    def test_unconfirmed_notification_continues_without_resending(self):
+        self.watch.poll()
+        self.client.rows[1]["agent_status"] = "done"
+        self.client.fail = True
+        self.assertEqual(1, len(self.watch.poll()))
+        self.client.fail = False
+        self.assertEqual([], self.watch.poll())
+        self.assertEqual([], self.client.sent)
+        self.client.rows.append(agent("new-worker"))
+        self.assertEqual(1, len(self.watch.poll()))
+        self.assertEqual(1, len(self.client.sent))
+
+    def test_shell_monitor_survives_watcher_agent_disappearance(self):
+        pane = {"pane_id": "pane-watcher2", "workspace_id": "w68"}
+        self.client.pane = lambda identity: copy.deepcopy(pane)
+        self.client.rows = self.client.rows[1:]
+        self.watch.poll()
+        self.client.rows[0]["agent_status"] = "done"
+        self.assertEqual(1, len(self.watch.poll()))
+        self.assertEqual(1, len(self.client.sent))
+
+    def test_deferred_before_submission_is_coalesced_then_sent_once(self):
+        self.watch.poll()
+        baseline = copy.deepcopy(self.watch.previous)
+        self.client.rows[1]["agent_status"] = "done"
+        with patch.object(self.client, "notify", side_effect=sw.NotificationDeferred("notification_target_not_ready")):
+            self.assertEqual(1, len(self.watch.poll()))
+            self.assertEqual(1, len(self.watch.poll()))
+        self.assertEqual(baseline, self.watch.previous)
+        self.assertEqual([], self.client.sent)
+        self.watch.poll()
+        self.assertEqual(1, len(self.client.sent))
+        self.watch.poll()
+        self.assertEqual(1, len(self.client.sent))
+
+    def test_transient_read_failure_recovers_without_consuming_delta(self):
+        self.watch.poll()
+        self.client.rows[1]["agent_status"] = "done"
+        inventory = self.client.agents
+        calls = 0
+        def sometimes_unavailable():
+            nonlocal calls
+            calls += 1
+            if calls == 1:
+                raise sw.WatchError("herdr_command_failed")
+            return inventory()
+        sleeps = 0
+        def stop_after_recovery(seconds):
+            nonlocal sleeps
+            self.assertEqual(120, seconds)
+            sleeps += 1
+            if sleeps == 2:
+                raise KeyboardInterrupt
+        with patch.object(self.client, "agents", side_effect=sometimes_unavailable):
+            with self.assertRaises(KeyboardInterrupt):
+                sw.run(self.watch, sleep=stop_after_recovery)
+        self.assertEqual(1, len(self.client.sent))
+
+    def test_runtime_hard_guard_is_not_retried(self):
+        self.watch.env["RELAY_RECEIPT"] = ""
+        with patch("time.sleep") as sleep:
+            with self.assertRaisesRegex(sw.WatchError, "relay_receipt_present"):
+                sw.run(self.watch)
+            sleep.assert_not_called()
+
+    def test_duplicate_runtime_is_rejected_and_release_is_reusable(self):
+        env = {"HERDR_SESSION": "rlt36-unittest-single-instance"}
+        guard = sw.acquire_instance("unit-space", env)
+        try:
+            with self.assertRaisesRegex(sw.WatchError, "monitor_instance_conflict"):
+                sw.acquire_instance("unit-space", env)
+        finally:
+            guard.close()
+        sw.acquire_instance("unit-space", env).close()
+
+    def test_exit_notice_attempts_once_and_does_not_replay_unknown_change(self):
+        self.watch.last_unconfirmed_message = "original-unknown-change"
+        with patch.object(self.client, "notify", side_effect=sw.WatchError("notification_unconfirmed")) as notify:
+            sw.notify_exit(self.watch, "interrupted")
+        self.assertEqual(1, notify.call_count)
+        self.assertIn("watcher-stopped", notify.call_args.args[1])
+        self.assertNotIn("original-unknown-change", notify.call_args.args[1])
+        self.assertEqual("original-unknown-change", self.watch.last_unconfirmed_message)
+
     def test_dynamic_new_final_including_names_without_prefix(self):
         self.watch.poll()
         self.client.rows.extend([agent("toy-final"), agent("reviewer-no-toy-prefix")])
@@ -167,16 +251,15 @@ class SpaceWatchTests(unittest.TestCase):
         self.client.rows[1]["pane_id"] = "replacement"
         self.assertEqual(1, len(self.watch.poll()))
 
-    def test_failed_notification_does_not_consume_delta(self):
+    def test_failed_notification_preserves_unknown_event_without_replay(self):
         self.watch.poll()
-        baseline = copy.deepcopy(self.watch.previous)
         self.client.rows[1]["agent_status"] = "done"
         self.client.fail = True
-        with self.assertRaises(sw.WatchError):
-            self.watch.poll()
-        self.assertEqual(baseline, self.watch.previous)
-        self.client.fail = False
         self.assertEqual(1, len(self.watch.poll()))
+        self.assertIn("-> done", self.watch.last_unconfirmed_message)
+        self.client.fail = False
+        self.assertEqual([], self.watch.poll())
+        self.assertEqual([], self.client.sent)
 
     def test_missing_seq_and_failed_get_fail_closed(self):
         self.watch.poll()
@@ -229,32 +312,46 @@ class HerdrDeliveryTests(unittest.TestCase):
         return subprocess.CompletedProcess([], code,
             raw if raw is not None else json.dumps({"result": result}).encode(), b"secret stderr")
 
-    def test_delivery_wait_and_sequence_advancement(self):
+    def test_busy_target_submission_needs_no_state_transition(self):
+        replies = [self.reply({"agent": agent("orch", seq=10)}),
+                   self.reply({"type": "agent_prompted"}),
+                   self.reply({"agent": agent("orch", seq=10)})]
+        with patch("subprocess.run", side_effect=replies) as run:
+            sw.Herdr().notify("orch", "event")
+        self.assertEqual(2, run.call_count)
+
+    def test_submission_is_pinned_to_exact_pane_and_uses_no_wait_or_keys(self):
         replies = [self.reply({"agent": agent("orch", seq=10)}),
                    self.reply({"type": "agent_prompted"}),
                    self.reply({"agent": agent("orch", seq=11)})]
         with patch("subprocess.run", side_effect=replies) as run:
             sw.Herdr().notify("orch", "event")
-        self.assertEqual(["herdr", "agent", "prompt", "orch", "event", "--wait",
-                          "--until", "working", "--timeout", "5000"], run.call_args_list[1].args[0])
+        self.assertEqual(["herdr", "agent", "prompt", "pane-orch", "event"], run.call_args_list[1].args[0])
         self.assertTrue(all("send-keys" not in c.args[0] for c in run.call_args_list))
 
-    def test_accepted_stalled_not_delivery(self):
+    def test_submitted_event_does_not_claim_prompt_consumption(self):
         replies = [self.reply({"agent": agent("orch")}),
                    self.reply({"type": "agent_prompted"}),
                    self.reply({"agent": agent("orch")})]
         with patch("subprocess.run", side_effect=replies):
-            with self.assertRaisesRegex(sw.WatchError, "notification_unconfirmed"):
-                sw.Herdr().notify("orch", "event")
+            returned = sw.Herdr().notify("orch", "event")
+        self.assertEqual(1, returned.seq)
 
-    def test_seq_advance_without_working_is_unconfirmed(self):
-        for status in ("idle", "done", "blocked", "unknown"):
+    def test_idle_or_done_target_can_be_submitted_without_observed_working(self):
+        for status in ("idle", "done"):
             replies = [self.reply({"agent": agent("orch", seq=10)}),
                        self.reply({"type": "agent_prompted"}),
                        self.reply({"agent": agent("orch", seq=11, status=status)})]
-            with self.subTest(status=status), patch("subprocess.run", side_effect=replies):
-                with self.assertRaisesRegex(sw.WatchError, "notification_unconfirmed"):
+            with self.subTest(status=status), patch("subprocess.run", side_effect=replies) as run:
+                sw.Herdr().notify("orch", "event")
+                self.assertEqual(2, run.call_count)
+
+    def test_approval_or_unknown_ui_is_deferred_without_submission(self):
+        for status in ("blocked", "unknown"):
+            with self.subTest(status=status), patch("subprocess.run", return_value=self.reply({"agent": agent("orch", status=status)})) as run:
+                with self.assertRaises(sw.NotificationDeferred):
                     sw.Herdr().notify("orch", "event")
+                self.assertEqual(1, run.call_count)
 
     def test_rejected_timeout_or_invalid_reply_does_not_send_enter(self):
         for bad in [self.reply(code=1), self.reply(raw=b"not json"),

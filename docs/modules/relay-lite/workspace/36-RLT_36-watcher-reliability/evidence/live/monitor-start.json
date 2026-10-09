@@ -1,0 +1,17 @@
+{
+  "instances": [
+    {
+      "pid": 740665,
+      "ppid": 730291,
+      "pane": "w6Y:p4",
+      "workspace": "w6Y",
+      "session": "kpi-agg",
+      "sampled_at": 1791539094.992278,
+      "source_sha256": "ec2e399c5b9fe5326ce5b89e44b80736e1af5f6ff2e36db2ab5093f306b3985b"
+    }
+  ],
+  "startup_markers": [
+    "SPACE_WATCH_STARTED workspace=w6Y pid=737311 interval=120",
+    "SPACE_WATCH_STARTED workspace=w6Y pid=740665 interval=120"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "observed": {
+    "rlt36-orch": "startup timeout; pane error duplicate --no-daemon; agent_not_found",
+    "rlt36-worker": "startup timeout; pane error duplicate --no-daemon; agent_not_found",
+    "rlt36-watcher": "startup timeout; pane error duplicate --no-daemon; agent_not_found"
+  },
+  "cause": "existing HERDR_ENV bash wrapper already supplies --yolo --no-daemon --no-alt-screen",
+  "correction": "remove duplicate native launch flags, do not edit wrapper or configs",
+  "model_turn_started": false
+}

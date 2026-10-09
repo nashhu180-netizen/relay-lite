@@ -67,6 +67,7 @@ class InstallSkillTests(unittest.TestCase):
                 "roles.toml",
                 "space_watch.py",
                 "environment_config.py",
+                "task_wait.py",
                 "templates/card-chain.md",
             ),
             PACKAGE_FILES,

@@ -1,0 +1,14 @@
+{
+  "observed_at": 1791539421.5369215,
+  "processes": [
+    {
+      "pid": 46286,
+      "alive": true
+    },
+    {
+      "pid": 667694,
+      "alive": false
+    }
+  ],
+  "mutated": false
+}

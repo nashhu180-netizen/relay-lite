@@ -1,0 +1,7 @@
+{
+  "stopped_at": 1791539264.6989484,
+  "monitor_pid": 740665,
+  "pid_absent": true,
+  "worker_dispatched": false,
+  "reason": "authorized controlled stop in isolated test space; no other space modified"
+}

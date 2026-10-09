@@ -1,0 +1,21 @@
+{
+  "point": "tools/task_wait.py expected dispatch comparison",
+  "before_sha256": "5526592c267158079f3d549df7e409aa148c3a28f11946bba4dd1ccf894797a0",
+  "mutated_sha256": "43d3c84dc8ea423be73f9e282aabc19f78f30e318f354770e7c50d4ed4951e47",
+  "restored_sha256": "5526592c267158079f3d549df7e409aa148c3a28f11946bba4dd1ccf894797a0",
+  "command": [
+    "/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_task_wait.py",
+    "-k",
+    "wrong_dispatch_old_round",
+    "-v"
+  ],
+  "red_exit": 1,
+  "restored_green_exit": 0
+}

@@ -79,18 +79,24 @@
 
 ### watcher 节拍与安全 Enter
 
-核心 watcher 通用合同适用于全部 kind：当前 Herdr 的 `space_watch.py` 根据 `workspace_id` 动态观察，`--workspace`、`--notify`、`--self` 从环境协议及真实派单取得；排除 watcher 自身和主编排，不按名字前缀或名单筛选。`phase=watcher` 只启动脚本并核存活，120 秒节拍由脚本维持，不再自己比对状态；完整监控、启动确认、通知/退出与安全 Enter 步骤读取核心及选中环境协议。
+核心 watcher 通用合同适用于全部 kind：当前 Herdr 的 `space_watch.py` 根据 `workspace_id` 动态观察，`--workspace`、`--notify`、`--self` 从环境协议及真实派单取得；排除 watcher 自身和主编排，不按名字前缀或名单筛选。默认由环境协议在独立普通终端常驻程序，`phase=watcher` agent可选；120 秒节拍由脚本维持，不再自己比对状态；完整监控、启动确认、通知/退出与安全 Enter 步骤读取核心及选中环境协议。
 
-#### watcher 宿主工具调用（Codex）
+#### watcher 宿主工具调用（Codex，旧 agent 子进程兼容入口）
 
 执行核心「watcher 通用启动与监控步骤」及选中环境协议；所有 agent 的监控规则相同，这里只说明宿主工具。固定脚本路径与真实 space/notify/self 从环境协议/派单取得。保留 stdout/stderr 在宿主临时输出，不写仓库或工作区。
 
 1. 直接 `exec_command({cmd: <固定脚本完整命令>, yield_time_ms: 1000})`，取得真实返回的 `session_id`（若立刻返回退出码，脚本未常驻，按通用退出规则处理）。
 2. 若工具嵌在 `functions.exec`，必须 `await tools.exec_command(...)` 并回传返回对象；只有外层返回 `Script running with cell ID ...` 时才调用 `functions.wait(cell_id=...)` 取得内层结果。外层 cell ID 不是脚本 session_id，不能据它宣布启动成功；未等待的 Promise 可能随 isolate 结束被丢弃。
 3. 取得内层 session_id 后，立即 `write_stdin({session_id: <真实ID>, chars: "", yield_time_ms: 1000})` 检查原进程是否仍运行或已经退出，再按环境通知入口向编排确认启动；返回退出码或找不到 session 即处理退出，不从 shell 文本/包装函数推断存活。
-4. 随后用同一 `write_stdin` session 短等待巡检，不新开后台 shell 或写轮询日志。工具若没有持久进程能力，报告 blocked；脚本每120秒自行观察，watcher巡检宿主句柄时每次工具等待不超过60秒。退出/通知未知不重启重发。
+4. 随后用同一 `write_stdin` session 短等待巡检，不新开后台 shell 或写轮询日志。工具若没有持久进程能力，报告 blocked；脚本每120秒自行观察，watcher巡检宿主句柄时每次工具等待不超过60秒。进程退出不重启；通知未知保留事件而继续观察、不重发。
 
 不得把 `/clear` 清理 watcher、把脚本通知当 durable PASS、以 `idle/done` 判任务完成。安全 Enter 三条件与 RECEIPT 零写入分流仍沿核心。
+
+### 主编排有界结果等待
+
+按环境协议调用task_wait.py只读等待本批精确DONE/BLOCKED文件，不依赖watcher模型持续working。主编排保持有接收者的等待回合；每次最多60秒。PENDING/退出3是本批结果未出现，继续有界等待或按真实停止线报告，不以watcher暂停终止整卡；READY/退出0只发现结果，仍核原signal、完整报告与适用复核，再按原授权接力，不代判或代跑worker测试。
+
+等待工具也用 `await tools.exec_command(...)` 取得真实session_id；必要时 `write_stdin` 短等待读回该命令结果。工具嵌套的cell ID不是脚本session_id，不用未await的Promise。PENDING回来后仍保持接收者，不发final后等待无人接收的通知。
 
 ### 恢复依据
 

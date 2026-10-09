@@ -19,7 +19,7 @@ from pathlib import Path
 SKILL_FILES = (
     "SKILL.md", "references/adapter-claude-code.md",
     "references/adapter-codex.md", "references/environment-herdr.md",
-    "environments.toml", "roles.toml", "space_watch.py", "environment_config.py",
+    "environments.toml", "roles.toml", "space_watch.py", "environment_config.py", "task_wait.py",
     "templates/card-chain.md",
 )
 SIDES = (".claude", ".codex", ".agents")
@@ -50,12 +50,12 @@ def _git(source_dir: Path, *args: str) -> str | None:
 
 def _source_fields(source_dir: Path) -> dict:
     # Include both the package and its sibling observer source in provenance.
-    dirty = _git(source_dir, "status", "--porcelain", "--", ".", "../tools/space_watch.py", "../tools/environment_config.py")
+    dirty = _git(source_dir, "status", "--porcelain", "--", ".", "../tools/space_watch.py", "../tools/environment_config.py", "../tools/task_wait.py")
     return {"source_head": _git(source_dir, "rev-parse", "HEAD"),
             "source_dirty": None if dirty is None else bool(dirty)}
 
 def _source_file(source_dir: Path, rel: str) -> Path:
-    if rel in {"space_watch.py", "environment_config.py"} and not (source_dir / rel).is_file():
+    if rel in {"space_watch.py", "environment_config.py", "task_wait.py"} and not (source_dir / rel).is_file():
         return source_dir.parent / "tools" / rel
     return source_dir / rel
 

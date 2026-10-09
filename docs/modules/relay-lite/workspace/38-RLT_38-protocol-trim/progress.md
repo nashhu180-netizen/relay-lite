@@ -31,3 +31,5 @@ plan-check.md为独立计划检查，不是code_review。主会话直接施工�
 本次miner产出1条候选 → evidence/miner-result.md；只作候选，未代用户裁决入正册。原lesson_candidates.md冻结不改，E6证据留此。
 
 阶段汇报@主干复验：实际master 937f53a全量80项OK、dh-check零失败、collector PASS、size-ledger字节一致。当前只有verify与有限收口归档尚未执行，不更新真实安装目录。
+
+verify已提交dda18d101c3522f0ec45b71f36ce859eca579330；源卡状态/验收日期与SHA作为有限收口候选，远端包含后实际关闭Issue21并只清理本卡树/分支。

@@ -45,3 +45,5 @@ Confidence Challenge：字符减少不直接证明真实agent表现；本卡只�
 - 合入 / 集成复验 / 回填 / 清理结果：PR22已合入，主干80项、dh-check、collector PASS及字符复算通过；verify/状态归档后清理。
 
 合入前最新source=4ac3aca9afd3e248d002a25aff3d6f4186b3dc9f；目标master基线0b08c18。无分支保护/规则集，仍满足双平台CI与本卡独立复核；普通merge保留候选祖先，不绕过保护。gh pr edit因classic Projects字段失败，使用REST PATCH实际更新成功，未重复执行merge。收口只追加本卡证据/状态，不变更产品。
+
+verify提交=dda18d101c3522f0ec45b71f36ce859eca579330，实际主干复验后落库；本收口候选只回填状态/日期/verify与证据，不含产品增量。所有归档进入origin/master后才实际销户，不把本地提交当远端交付。

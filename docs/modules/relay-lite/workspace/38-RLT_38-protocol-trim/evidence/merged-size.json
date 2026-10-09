@@ -1,0 +1,95 @@
+{
+  "baseline_sha": "0b08c18be09cd00e84ff214c582941593ca7c2ec",
+  "unit": "Unicode code points after UTF-8 decoding; includes whitespace and line breaks; skill md/toml only; excludes helper Python scripts in installed package",
+  "before": 50930,
+  "after": 39236,
+  "reduction": 11694,
+  "reduction_percent": 22.96,
+  "files": [
+    {
+      "path": "skill/SKILL.md",
+      "before": 23312,
+      "after": 10720,
+      "delta": -12592
+    },
+    {
+      "path": "skill/environments.toml",
+      "before": 148,
+      "after": 148,
+      "delta": 0
+    },
+    {
+      "path": "skill/references/adapter-claude-code.md",
+      "before": 7924,
+      "after": 1322,
+      "delta": -6602
+    },
+    {
+      "path": "skill/references/adapter-codex.md",
+      "before": 8423,
+      "after": 1821,
+      "delta": -6602
+    },
+    {
+      "path": "skill/references/card-chain.md",
+      "before": 0,
+      "after": 3166,
+      "delta": 3166
+    },
+    {
+      "path": "skill/references/decision-guide.md",
+      "before": 2340,
+      "after": 2340,
+      "delta": 0
+    },
+    {
+      "path": "skill/references/document-role.md",
+      "before": 0,
+      "after": 1902,
+      "delta": 1902
+    },
+    {
+      "path": "skill/references/environment-herdr.md",
+      "before": 5174,
+      "after": 5184,
+      "delta": 10
+    },
+    {
+      "path": "skill/references/orchestration.md",
+      "before": 0,
+      "after": 2704,
+      "delta": 2704
+    },
+    {
+      "path": "skill/references/verification.md",
+      "before": 0,
+      "after": 2287,
+      "delta": 2287
+    },
+    {
+      "path": "skill/references/watcher.md",
+      "before": 0,
+      "after": 2510,
+      "delta": 2510
+    },
+    {
+      "path": "skill/roles.toml",
+      "before": 1255,
+      "after": 1255,
+      "delta": 0
+    },
+    {
+      "path": "skill/templates/card-chain.md",
+      "before": 2354,
+      "after": 2354,
+      "delta": 0
+    },
+    {
+      "path": "skill/templates/dispatch.md",
+      "before": 0,
+      "after": 1523,
+      "delta": 1523
+    }
+  ],
+  "accounting": "New references are included in after total. Relocation alone contributes zero savings; totals include new routing and contract compression. Per-character semantic attribution is not claimed; rule-map and section-map show conservation."
+}

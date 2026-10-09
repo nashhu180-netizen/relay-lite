@@ -119,3 +119,5 @@ implementer_session_id=codex-root-rlt38-20261009。
 ```
 
 完整fresh初审已approved，normal路径闭合，不再派code_review。产品/工具/测试相对候选1ad9610无增量。
+
+有限收口branch=closeout/RLT_38，复用本卡任务树，基于master verify=dda18d101c3522f0ec45b71f36ce859eca579330。仅源卡状态与W证据回填，无产品/验收增量；不另发代码复核。

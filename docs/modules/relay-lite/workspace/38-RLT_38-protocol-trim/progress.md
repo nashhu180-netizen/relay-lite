@@ -15,6 +15,7 @@
 | E-005 | review-dispatch | dh dispatch | observed | 复核派出：fresh-context-subagent｜path=code_review target_sha=1ad96109b398776e99e25ed6f577e923e14a91cc diff_sha256=12ab5546bac62409f154df06ca2997f0212008f0eaaa2c0f734e8bfc7dcba5ea｜path=code_review｜attempt=1 kind=full session=/root/rlt38_code_review |
 | E-006 | independent-review | evidence/code-review-1.md / code-review-1.json | pass | fresh完整approved，无open问题，独立80项及统计/引用通过 |
 | E-007 | gate | evidence/review-gate.json / dh-check-reviewed.log | pass | collector PASS及dh-check零失败；12个命名/历史口径警告如实保留 |
+| E-008 | integration | evidence/implementation-premerge.json / implementation-merge.json / merged-tests.log / merged-check.log / merged-gate.json / merged-size.json | pass | PR22合入937f53a；双平台CI、主干80项/check/collector/字符复算通过；产品与所审候选同字节 |
 
 ## 计划检查裁决与施工补充（不回写已开工基线）
 plan-check.md为独立计划检查，不是code_review。主会话直接施工、未派零上下文施工worker；检查返回前已开始范围内重组。采纳其证据细化建议，本卡目标/验收不变：
@@ -28,3 +29,7 @@ plan-check.md为独立计划检查，不是code_review。主会话直接施工�
 阶段汇报@实现验证：包50930→39236（-22.96%）、核心23312→10720（-54.01%）、两adapter16347→3143（-80.77%）；80项GREEN，有效分发变异RED→恢复GREEN；实现候选双平台CI通过。总量略低于约25%–35%目标，保留完整规则为先，最终实测不改口径。
 
 本次miner产出1条候选 → evidence/miner-result.md；只作候选，未代用户裁决入正册。原lesson_candidates.md冻结不改，E6证据留此。
+
+阶段汇报@主干复验：实际master 937f53a全量80项OK、dh-check零失败、collector PASS、size-ledger字节一致。当前只有verify与有限收口归档尚未执行，不更新真实安装目录。
+
+verify已提交dda18d101c3522f0ec45b71f36ce859eca579330；源卡状态/验收日期与SHA作为有限收口候选，远端包含后实际关闭Issue21并只清理本卡树/分支。

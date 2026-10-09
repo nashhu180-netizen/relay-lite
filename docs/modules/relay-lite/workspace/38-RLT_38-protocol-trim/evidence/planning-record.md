@@ -1,9 +1,3 @@
-# RLT_38 维护方案审核与理解
+# 规划证据位置
 
-<a id="review"></a>
-<!-- dh:planning-evidence:v1 event=RLT38-B-20261009 artifact=dev_plan/P6-协议精简.md kind=review -->
-独立fresh /root/rlt38_plan_check的原报告plan-check.md提出证据具体化缺口。主会话采纳于progress「计划检查裁决与施工补充」，新增measure/size-ledger、rule-map、实际安装引用闭环/唯一模板及有效变异证据。无需改变目标/验收。计划审核回到时主会话已开始初稿，按事实保留时序，不冒称实施前已通过；未派施工worker。最终code_review审核完整候选及落实情况，不以计划审核代替。
-
-<a id="understanding"></a>
-<!-- dh:planning-evidence:v1 event=RLT38-B-20261009 artifact=dev_plan/P6-协议精简.md kind=understanding -->
-用户先要求统计总字符并尝试精简；主会话展示50930基线、重复来源、保留规则语义/合并重复/按需拆读方案及约25%–35%目标，明确需标准档开工。用户回复“嗯，建 issue 然后确认开工直到优化完成”。据此建Issue21和标准档normal维护卡，完整交付不再索权；约百分比为目标，验收报告真实结果，不为凑数字删规则。授权不是人验结果。
+规范化记录移至design/evidence/05-交叉审核记录-RLT_38.md，原plan-check.md保持不变。

@@ -9,7 +9,6 @@
 | ID | 类型 | 命令 / 路径 | 结果 (pass/fail/observed/waived) | 支撑什么结论 |
 |----|------|-----------|------|------|
 | E-001 | inspection | git status / gh repo / workflow | observed | 干净基线、目标与普通CI确认 |
-
 | E-002 | measurement | evidence/measure.py → evidence/size-ledger.json | pass | 同口径前后字符统计，含迁移文件 |
 | E-003 | inspection | evidence/rule-map.md / section-map.json | observed | 规则与读取/分发路径映射 |
 | E-004 | test | python3 -m unittest discover -s tests -v；evidence/tests-restored.log / mutation-red.log / mutation.json | pass | 80项通过，生产分发漏件真实RED与恢复 |

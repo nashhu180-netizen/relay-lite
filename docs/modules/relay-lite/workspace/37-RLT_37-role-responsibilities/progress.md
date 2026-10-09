@@ -15,6 +15,13 @@
 
 | E-008 | check | evidence/dh-candidate.log；git diff --check | pass | 文档硬错误清零，10项软警告主要为既有命名/brief解析，不改历史。 |
 
+| E-009 | review-dispatch | session=/root/rlt37_code_review path=code_review target_sha=8f080e1eb8da8747fc1c5d2d0b94a832a7c16f70 diff_sha256=f45c8dd2b27f2224d795828e6acc70f6bca5ca6e74e1832d8b14b7422cccec40 baseline_sha=183d6c2724924276e189069fcbd62bbd0ae6e59b; attempt=1 kind=full fresh=true | observed | 完整候选独立复核；仅写evidence/code-review-1.md/json，不改产品。 |
+
+| E-010 | review-result | evidence/code-review-1.md/json | pass | 唯一fresh完整复核approved，无findings；独立6类场景及78项测试通过。 |
+| E-011 | ci | evidence/pr19-candidate-ci.json | pass | 候选8f080e1 Ubuntu/Windows均SUCCESS；最终source仍须重核。 |
+
+| E-012 | gate | evidence/review-gate.json | pass | 共享collector核独立原证、SHA/diff/身份/额度，PASS/exit0。 |
+
 ## 施工里程碑
 先主树落户后迁入独立树；初稿与分发测试完成。格式检查失败原证保留，修复仅本卡文档格式，不降低闸口。
 

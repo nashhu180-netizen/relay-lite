@@ -2,10 +2,10 @@
 # review — RLT_37
 
 ## 独立复核区
-normal完整fresh code_review尚未派出。
+normal完整fresh code_review由/root/rlt37_code_review完成，approved/findings=[]；原报告与6类独立场景判断见E-010。
 
 ## AI 提交区
-尚未验收。
+本地协议与分发验收通过，独立复核通过；平台双CI通过，合入态复验与verify待实际执行。
 
 ## 完成条件逐条挂证据
 | ID | 条件 | 谁验 | 证据 | 达成? |
@@ -29,3 +29,9 @@ normal完整fresh code_review尚未派出。
 | 变异点锚点(生产代码 path:line) | 原值→变异值 | 语义类别 | 对应测试 ID | 运行命令 | 施加 hash | 还原 hash | 登记人(重核须=轮2实例) | 施加后结果 |
 |---|---|---|---|---|---|---|---|---|
 | tools/install_skill.py:SKILL_FILES | 分发decision-guide→漏掉指南 | 改分发闭集 | test_decision_guide_is_reachable_from_every_installed_entry | python3 -m unittest discover -s tests -p test_contract.py -k decision_guide_is_reachable -v | b26aaa8c0b5ed4893ed41fbcfc62d98e52bfc59cf7cb4e652877eb12b243e286 | 0311c9beb6a2b43bd5f541534d10d9928318b498b80669274958986d65fa9afd | codex-root-rlt37-20261009 | AssertionError/exit1；恢复后78项GREEN，E-003 |
+
+<!-- dh:review-attempt:v1 task=RLT_37 attempt=1 kind=full reviewer_session_id=/root/rlt37_code_review status=punched -->
+
+<!-- dh:review-result:v2 task=RLT_37 path=code_review attempt=1 artifact=docs/modules/relay-lite/workspace/37-RLT_37-role-responsibilities/evidence/code-review-1.json artifact_sha256=df271d7735436e3e95df93b574cef2e99a79b585234aca446afb6397f502f178 -->
+
+独立报告只绑定原字节，不改写。E-010独立推演及78项通过，E-011候选双平台CI通过；H=0基于本卡机器结果与无未决方向/风险，不填用户签名。

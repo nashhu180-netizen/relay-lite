@@ -125,3 +125,7 @@ reviewer=gpt-6.1-sol/high，实例待完整候选后fresh启动；隔离编排/w
 ```
 
 独立代码实例/root/rlt36_code_review完整attempt1 approved findings=[]；原报告及collector PASS见E-013/014。本卡源分支实现PR16；服务端采用允许的普通merge保留所审候选可达性，不绕保护。平台branch_protection404、rulesets=[]，无配置必需审批/检查；本卡仍要求Ubuntu/Windows CI，两侧PASS并最终最新source核验后合入。
+
+实现PR16实际普通merge=b940ca0e15a8b10fa82aa64b3388e7b204e4d5ad；本地主树master快进对齐，在clean index实跑76项/check/gate均exit0；独立候选可达、产品同字节。本地主干verify仅本卡W新增机器事实，随后有限收口分支归远端，保留verify SHA可达，不直推master。测试space已仅关闭w6Y，实列表确认缺席。
+
+verify主干实际提交54df8535721f959bea4e0326d626cdb413028e5a。有限收口branch=closeout/RLT_36，复用原本卡唯一worktree=.dh-worktrees/RLT_36（由wt/RLT_36 clean切换）；仅源卡机械状态与W证据，产品字节不改。原source分支及其它worktree保留直到远端归档完成。

@@ -18,3 +18,7 @@
 | E-012 | ci | evidence/pr16-candidate-ci.json；候选fa9c21f两平台SUCCESS，PR16为draft | pass | 初始候选平台CI；证据提交后须读取最新source检查，未合入。 |
 | E-013 | review-result | evidence/code-review-1.md/json；fresh独立实例原报告approved，无findings，另跑76项通过 | pass | normal完整代码复核一次闭合，无定向复查资格/必要。 |
 | E-014 | gate | evidence/review-gate.json；dh.review-gate.v2 PASS exit0 | pass | 原报告、Git候选/diff/派出身份/政策摘要由共享collector核验，未自造PASS。 |
+| E-015 | integration | evidence/pr16-final-ci.json、pr16-merge.json、integration.json及integration-tests/check/gate | pass | PR16最新source双平台SUCCESS，实际merge b940ca0；干净master76项/check/gate均exit0，产品与独立所审候选同字节。 |
+| E-016 | cleanup | evidence/cleanup-space.json | pass | 仅自建w6Y关闭；初次非JSON返回异常保留，只读list证实不存在，PID740665消失；未重复close或操作其它space。 |
+| E-017 | verify | 主干verify(relay-lite)提交54df8535721f959bea4e0326d626cdb413028e5a | pass | 实际merge复验后落库；有限收口将保留该SHA可达，非用户代签/业务space升级。 |
+| E-018 | closeout-readback | evidence/closeout-readback.md；原独立实例只读机械核验 | pass | 有限收口仅W证据/源卡机械状态、产品零变化；verify真实可达、原代码报告未改，不新增复核路/attempt。 |

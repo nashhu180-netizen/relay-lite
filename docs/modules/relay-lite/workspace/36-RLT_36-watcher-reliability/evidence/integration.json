@@ -1,0 +1,44 @@
+{
+  "sha": "b940ca0e15a8b10fa82aa64b3388e7b204e4d5ad",
+  "source_sha": "158d132c73f0babdce38093568a7dbf6163ecf57",
+  "reviewed_sha": "fa9c21fa2dcce7f55760ef19f93ac28a3188e34b",
+  "clean_before_tests": true,
+  "product_bytes_equal_reviewed_candidate": true,
+  "results": [
+    {
+      "key": "tests",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "docs/modules/relay-lite/workspace/36-RLT_36-watcher-reliability/evidence/integration-tests.log"
+    },
+    {
+      "key": "check",
+      "command": [
+        "dh",
+        "relay-lite"
+      ],
+      "exit_code": 0,
+      "log": "docs/modules/relay-lite/workspace/36-RLT_36-watcher-reliability/evidence/integration-check.log"
+    },
+    {
+      "key": "gate",
+      "command": [
+        "dh",
+        "gate",
+        "relay-lite",
+        "36-RLT_36-watcher-reliability",
+        "--review-json"
+      ],
+      "exit_code": 0,
+      "log": "docs/modules/relay-lite/workspace/36-RLT_36-watcher-reliability/evidence/integration-gate.json"
+    }
+  ]
+}

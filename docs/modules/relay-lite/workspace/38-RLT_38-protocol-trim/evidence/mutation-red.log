@@ -1,0 +1,14 @@
+test_installed_reading_routes_are_closed_and_template_is_unique (test_contract.PackageTests.test_installed_reading_routes_are_closed_and_template_is_unique) ... FAIL
+
+======================================================================
+FAIL: test_installed_reading_routes_are_closed_and_template_is_unique (test_contract.PackageTests.test_installed_reading_routes_are_closed_and_template_is_unique)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/nash/work/relay-lite/.dh-worktrees/RLT_38/tests/test_contract.py", line 97, in test_installed_reading_routes_are_closed_and_template_is_unique
+    self.assertTrue(dest.is_file(), str(dest))
+AssertionError: False is not true : /tmp/tmpuy41_u_i/.claude/skills/relay-lite/references/card-chain.md
+
+----------------------------------------------------------------------
+Ran 1 test in 0.130s
+
+FAILED (failures=1)

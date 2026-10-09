@@ -20,6 +20,13 @@ SKILL_FILES = (
     "SKILL.md", "references/adapter-claude-code.md",
     "references/adapter-codex.md", "references/environment-herdr.md",
     "references/decision-guide.md",
+    "references/card-chain.md",
+    "references/orchestration.md",
+    "references/verification.md",
+    "references/document-role.md",
+    "references/watcher.md",
+    "templates/dispatch.md",
+
     "environments.toml", "roles.toml", "space_watch.py", "environment_config.py", "task_wait.py",
     "templates/card-chain.md",
 )

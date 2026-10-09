@@ -1,6 +1,6 @@
 # Herdr 环境协议
 
-由 `environments.toml` 注册、`environment_config.py` 校验选择；本文件由所有 agent kind 共用。宿主后台进程调用见对应 adapter，监控公共步骤见核心「watcher 通用启动与监控步骤」。不依赖本仓 checkout 的安装目录。
+由 `environments.toml` 注册、`environment_config.py` 校验选择；本文件由所有 agent kind 共用。宿主后台进程调用见对应 adapter，监控公共步骤见[watcher 通用启动与监控步骤](watcher.md)。不依赖本仓 checkout 的安装目录。
 
 ## 进入前：加载当前 Herdr skill
 

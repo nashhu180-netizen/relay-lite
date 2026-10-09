@@ -1,0 +1,33 @@
+{
+  "integration-tests": {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "exit_code": 0
+  },
+  "integration-check": {
+    "command": [
+      "dh",
+      "relay-lite"
+    ],
+    "exit_code": 0
+  },
+  "integration-gate": {
+    "command": [
+      "dh",
+      "gate",
+      "relay-lite",
+      "37-RLT_37-role-responsibilities",
+      "--review-json"
+    ],
+    "exit_code": 0
+  },
+  "merge_sha": "bf33f50d90fd3f83a2783647410f0e19f3c5165c",
+  "reviewed_product_identical": true
+}

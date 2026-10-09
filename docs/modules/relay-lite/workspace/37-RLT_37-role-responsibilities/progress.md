@@ -22,7 +22,11 @@
 
 | E-012 | gate | evidence/review-gate.json | pass | 共享collector核独立原证、SHA/diff/身份/额度，PASS/exit0。 |
 
+| E-013 | integration | evidence/integration.json、integration-tests/check/gate.log、pr19-final-ci.json、pr19-merge.json | pass | 最新source双CI成功，实际merge bf33f50主干78项/check/collector全过，产品与所审候选同字节。 |
+
 ## 施工里程碑
 先主树落户后迁入独立树；初稿与分发测试完成。格式检查失败原证保留，修复仅本卡文档格式，不降低闸口。
 
 阶段汇报@实现与本地验证：78项通过、变异有效、方案检查两项采纳；即将完整fresh code_review，无新增用户待决。
+
+阶段汇报@合入态复验：PR19已合入；实际主干78项/check/collector通过；本卡机器验收齐备，无未决人判/风险。

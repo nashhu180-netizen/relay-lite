@@ -118,3 +118,5 @@ implementer_session_id=codex-root-rlt37-20261009。
 ```
 
 最终fresh reviewer=/root/rlt37_code_review，原报告approved/findings=[]；只产生evidence/code-review-1.md/json。Git回读未见产品改动。normal一轮完整闭合，不再派代码复核。
+
+PR19实际平台merge=bf33f50d90fd3f83a2783647410f0e19f3c5165c；main工作树master已快进，干净index起跑实际合入复验，78项/check/collector exit0。下一步只W证据与源卡机械收口；不更新用户安装副本。

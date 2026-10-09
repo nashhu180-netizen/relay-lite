@@ -1,4 +1,5 @@
 <!-- dh:v1 -->
+<!-- dh:workspace-contract:v2 -->
 # brief — RLT_37
 
 ## 目标与范围
@@ -25,3 +26,9 @@ behavior_or_rule_semantics_changed=true：明确编排转交触发及decider完�
 
 ## 人验
 无新增用户主观判断项；核协议一致性、场景推演及分发事实。不得把文字验证说成已证明真实业务会话审批次数下降。
+
+## 覆盖任务
+RLT_37；源卡P5，RL37-M1–M5。
+
+## 边界
+同源卡允许路径，测试临时home与GitHub普通CI；不操作现有业务space、真实数据库或用户安装目录。

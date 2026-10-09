@@ -63,6 +63,7 @@ class InstallSkillTests(unittest.TestCase):
                 "references/adapter-claude-code.md",
                 "references/adapter-codex.md",
                 "references/environment-herdr.md",
+                "references/decision-guide.md",
                 "environments.toml",
                 "roles.toml",
                 "space_watch.py",

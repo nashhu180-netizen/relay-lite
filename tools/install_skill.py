@@ -19,6 +19,7 @@ from pathlib import Path
 SKILL_FILES = (
     "SKILL.md", "references/adapter-claude-code.md",
     "references/adapter-codex.md", "references/environment-herdr.md",
+    "references/decision-guide.md",
     "environments.toml", "roles.toml", "space_watch.py", "environment_config.py", "task_wait.py",
     "templates/card-chain.md",
 )

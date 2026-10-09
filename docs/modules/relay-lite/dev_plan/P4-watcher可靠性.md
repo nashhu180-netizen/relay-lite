@@ -2,10 +2,10 @@
 # P4 · watcher 可靠性维护
 
 <!-- dh:status
-汇报: 持续监控与结果等待已修复，隔离演练和主干复验通过；验收记录正在归档。
-现状: 实现PR16已合入，76项/双平台CI/独立复核/实际主干复验均通过。
-进行到: P4 / RLT_36 有限收口；verify54df853已在合入后的主干落库。
-下一步: 有限收口PR归档机械状态与验收记录，合入后关闭Issue15并仅清理本卡树。
+汇报: 持续监控与结果等待修复已交付，隔离演练和主干复验通过。
+现状: 实现PR16已合入，76项/双平台CI/独立复核/实际主干复验均通过，验收证据已归档。
+进行到: P4 / RLT_36 已完成；verify54df853已在合入后的主干落库。
+下一步: 无自动接续；现有业务space或用户副本升级需其独立授权。
 看什么: workspace/36-RLT_36-watcher-reliability/progress.md E-007、E-013至E-016。
 阻塞: 无；现有业务space和用户安装副本未升级。
 -->
@@ -13,7 +13,7 @@
 <!-- dh:tasks -->
 | 任务ID | 任务 | 档位 | 状态 | 工作区 | 验收时间 | verify SHA | release_mode |
 |---|---|---|---|---|---|---|---|
-| RLT_36 | watcher 暂停不阻断任务接力 | 标准 | 已完成（收口PR待合入） | workspace/36-RLT_36-watcher-reliability/ | 2026-10-09 | 54df8535721f959bea4e0326d626cdb413028e5a | full |
+| RLT_36 | watcher 暂停不阻断任务接力 | 标准 | 已完成 | workspace/36-RLT_36-watcher-reliability/ | 2026-10-09 | 54df8535721f959bea4e0326d626cdb413028e5a | full |
 
 #### RLT_36
 

@@ -112,3 +112,5 @@ Issue24；Draft PR25=https://github.com/nashhu180-netizen/relay-lite/pull/25。�
 ```
 
 实际复核派发：第一次dh dispatch因note未绑定三元组被拒且未写盘；补齐同一候选后E-006登记成功，只派出/root/rlt39_code_review一个完整初审，不消耗或重置额外attempt。
+
+当前review collector原JSON=evidence/review-gate-1.json，state=BLOCKED，唯一reason=review-not-approved；不以机器汇总掩盖唯一R31待决P1。待用户决定才继续依赖动作。

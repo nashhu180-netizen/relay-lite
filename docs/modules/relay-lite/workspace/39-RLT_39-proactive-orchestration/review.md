@@ -35,3 +35,4 @@
 
 ## 单项调整（2026-10-10）
 用户已明确“同意”本卡生产变异测试免除并继续收口/双设备同步，来源见findings#r31用户裁决。R31机器诊断仍为失败，不伪造有效变异；适用验收以已修订RL39-M4为准。原reviewer定向attempt2尚待结论。
+<!-- dh:review-attempt:v1 task=RLT_39 attempt=2 kind=targeted reviewer_session_id=/root/rlt39_code_review status=punched -->

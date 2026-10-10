@@ -17,6 +17,7 @@
 | E-009 | code-review | evidence/code-review-1.md；evidence/code-review-1.json | observed | 完整fresh初审changes-requested；仅R31一个open P1 |
 | E-010 | ci | evidence/pr25-ci.json | pass | HEAD511450f的Ubuntu/Windows检查通过 |
 | E-011 | decision | findings.md#r31用户裁决；本对话2026-10-10用户“同意” | observed | 仅本卡生产变异不适用；其余交付继续 |
+| E-012 | review-dispatch | dh dispatch | observed | 复核派出：fresh-context-subagent｜path=code_review target_sha=f914dd011c484941121e25d27a2d4c1f0f9ff7d5 diff_sha256=77b8059ab935e0f019a3145c752e4fa6739411fe79a412c38aa0b7455cf29127｜path=code_review｜attempt=2 kind=targeted session=/root/rlt39_code_review |
 
 
 2026-10-10：计划复核指出纯协议normal的生产变异要求冲突，采纳并提交单项例外决定；尚未修改产品，不把回归通过当R31通过。

@@ -116,3 +116,5 @@ Issue24；Draft PR25=https://github.com/nashhu180-netizen/relay-lite/pull/25。�
 当前review collector原JSON=evidence/review-gate-1.json，state=BLOCKED，唯一reason=review-not-approved；不以机器汇总掩盖唯一R31待决P1。待用户决定才继续依赖动作。
 
 原初审freeze存evidence/review-freeze-1.json；用户2026-10-10已同意仅本卡生产代码变异不适用并继续收口/双设备同步，见findings。更新候选后按原实例attempt2定向复核；历史原件/额度均保持。
+
+最新复核collector=evidence/review-gate-2.json，PASS；dh-check-final.txt exit1，仅R31无变异表，按本对话明确单项例外交付，绝不声称dh-check全绿。首次closeout检查另含E9/E10未落账，已据真实对话展示补齐，历史输出保留。

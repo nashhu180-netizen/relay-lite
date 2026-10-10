@@ -36,3 +36,18 @@
 ## 单项调整（2026-10-10）
 用户已明确“同意”本卡生产变异测试免除并继续收口/双设备同步，来源见findings#r31用户裁决。R31机器诊断仍为失败，不伪造有效变异；适用验收以已修订RL39-M4为准。原reviewer定向attempt2尚待结论。
 <!-- dh:review-attempt:v1 task=RLT_39 attempt=2 kind=targeted reviewer_session_id=/root/rlt39_code_review status=punched -->
+
+<!-- dh:review-result:v2 task=RLT_39 path=code_review attempt=2 artifact=docs/modules/relay-lite/workspace/39-RLT_39-proactive-orchestration/evidence/code-review-2.json artifact_sha256=817e209d60b5fd432f1a29cd2760e958380815124684eed57cba7de8b4f083db -->
+
+## 当前放行结论
+原reviewer唯一一次targeted attempt2 approved，RLT39-CR-P1-R31-UNRESOLVED已resolved；原首审/机器R31失败永久保留。按用户修订验收，协议M1–M3及M4当前阶段证据齐备，无其它open P0–P3；待最新PR检查/合入态复验和verify。
+
+## 验收项元数据表
+| ID | 命题 | 最终裁决者 | 实际执行结果 |
+|---|---|---|---|
+| RL39-M1 | 汇报/插问/单步成功后继续原目标 | machine | E-005/E-009/E-013：12场景原文对照及独立复核通过 |
+| RL39-M2 | BLOCKED分流、独立工作继续与具体停点 | machine | E-005/E-009/E-013：合同与场景检查通过 |
+| RL39-M3 | 权限/写者/未知/预算边界和双宿主共用 | machine | E-004/E-009/E-013：80项及原文对照通过，未冒称真实会话效果 |
+| RL39-M4 | 修订后的协议/分发验收与完整交付证据 | machine | E-004/E-005/E-010/E-011/E-013：回归、字符、CI、用户单项处置及复核已齐；合入态复验/verify随交付闭合后追加，不提前声称完成 |
+
+Confidence Challenge：协议已明确，真实模型行为改善尚未实测。H=0，无新增主观人判、待认险或未決方向；本表仅说明候选放行依据，整卡完成仍以实际主干/verify/归档事实为准。

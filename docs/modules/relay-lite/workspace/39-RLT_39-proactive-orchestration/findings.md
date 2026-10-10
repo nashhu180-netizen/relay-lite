@@ -15,3 +15,6 @@
 
 ## R31用户裁决 · 2026-10-10
 来源：本对话主会话明确询问“是否同意本卡免除生产代码变异测试，继续收口和双设备同步？”，说明dev-harness要求与只改协议文字的冲突；用户紧接回复“同意”。该决定仅豁免本卡生产代码变异测试，不是一般规则变更、不降normal、不取消独立复核/CI/verify。源卡及brief的RL39-M4已精确更新；历史计划P1、初审open P1及原R31失败保留，当前进入原reviewer的一次定向核销。用户授权不是产品结果通过。
+
+## 当前P1核销 · 2026-10-10
+RLT39-CR-P1-R31-UNRESOLVED：resolved，由原reviewer attempt2 approved确认（evidence/code-review-2.json）。上方open/P1与待决段为历史状态；当前无未决用户验收或开放复核finding。R31机器规则仍不适用本卡，依用户明确例外处理，不改历史原件。

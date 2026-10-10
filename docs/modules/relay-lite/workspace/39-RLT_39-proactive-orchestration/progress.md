@@ -18,6 +18,8 @@
 | E-010 | ci | evidence/pr25-ci.json | pass | HEAD511450f的Ubuntu/Windows检查通过 |
 | E-011 | decision | findings.md#r31用户裁决；本对话2026-10-10用户“同意” | observed | 仅本卡生产变异不适用；其余交付继续 |
 | E-012 | review-dispatch | dh dispatch | observed | 复核派出：fresh-context-subagent｜path=code_review target_sha=f914dd011c484941121e25d27a2d4c1f0f9ff7d5 diff_sha256=77b8059ab935e0f019a3145c752e4fa6739411fe79a412c38aa0b7455cf29127｜path=code_review｜attempt=2 kind=targeted session=/root/rlt39_code_review |
+| E-013 | code-review | evidence/code-review-2.md；evidence/code-review-2.json | pass | 同实例唯一targeted approved；原P1 resolved |
+| E-014 | check | evidence/review-gate-2.json；evidence/dh-check-final.txt | observed | review gate PASS；dh-check仅剩用户批准免除的R31，原退出1保留 |
 
 
 2026-10-10：计划复核指出纯协议normal的生产变异要求冲突，采纳并提交单项例外决定；尚未修改产品，不把回归通过当R31通过。
@@ -29,3 +31,6 @@
 完成所有当前独立可推进项：修改、回归、场景/字符证据、miner、初审和PR检查。余下只有用户R31例外待决及依赖它的定向复核/合入/verify/同步，不把本次汇报当优化已完成。
 
 2026-10-10续做：用户单项批准已登记，原失败/初审留存；源卡与brief同步，产品字节保持原完整初审版本。准备原reviewer唯一一次定向attempt2。
+
+E9交付汇报已发出（2026-10-10本对话）：目标、职责改变、80项/12场景/双平台证据、用户单项例外、远端安装离线尾项、复核/miner及无人判结论已展示。
+E10证据展示区已发出：候选f914dd0、原reviewer targeted approved与collector PASS、E-004/E-005/E-010/E-013；不冒称主干复验和真实模型效果。

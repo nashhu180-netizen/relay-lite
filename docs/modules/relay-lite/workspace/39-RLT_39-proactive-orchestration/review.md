@@ -27,3 +27,4 @@
 
 ## R31生产变异待决
 当前没有本卡生产代码diff；不登记无效变异、不将既有测试通过视为R31通过。精确冲突及用户例外请求见findings#rlt39-plan-p1；真实答复前本卡不得合入/verify。
+<!-- dh:review-attempt:v1 task=RLT_39 attempt=1 kind=full reviewer_session_id=/root/rlt39_code_review status=punched -->

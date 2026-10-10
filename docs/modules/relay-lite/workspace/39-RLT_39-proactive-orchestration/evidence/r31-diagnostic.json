@@ -1,0 +1,14 @@
+{
+  "description": "Actual R31 policy diagnostic; no exception presumed, no fabricated mutation",
+  "baseline": "9f7c2b2c15dca69ce39a780aa4b7c4bc64ea6c70",
+  "target": "22b7f43c52ca4863a28dd04ad0f522271f84331e",
+  "result": {
+    "ok": false,
+    "applicable": true,
+    "violations": [
+      {
+        "code": "no-mutation-registered"
+      }
+    ]
+  }
+}

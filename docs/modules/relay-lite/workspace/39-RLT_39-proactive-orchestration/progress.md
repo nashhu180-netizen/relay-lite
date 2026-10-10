@@ -20,6 +20,7 @@
 | E-012 | review-dispatch | dh dispatch | observed | 复核派出：fresh-context-subagent｜path=code_review target_sha=f914dd011c484941121e25d27a2d4c1f0f9ff7d5 diff_sha256=77b8059ab935e0f019a3145c752e4fa6739411fe79a412c38aa0b7455cf29127｜path=code_review｜attempt=2 kind=targeted session=/root/rlt39_code_review |
 | E-013 | code-review | evidence/code-review-2.md；evidence/code-review-2.json | pass | 同实例唯一targeted approved；原P1 resolved |
 | E-014 | check | evidence/review-gate-2.json；evidence/dh-check-final.txt | observed | review gate PASS；dh-check仅剩用户批准免除的R31，原退出1保留 |
+| E-015 | verification | evidence/merged-tests.txt；evidence/merged-review-gate.json；evidence/merged-dh-check.txt；evidence/merged-size.json；evidence/merged-pr25.json | observed | 实际主干a190aa8：80项exit0、review gate PASS；dh仅R31例外exit1；字符复算一致 |
 
 
 2026-10-10：计划复核指出纯协议normal的生产变异要求冲突，采纳并提交单项例外决定；尚未修改产品，不把回归通过当R31通过。
@@ -34,3 +35,7 @@
 
 E9交付汇报已发出（2026-10-10本对话）：目标、职责改变、80项/12场景/双平台证据、用户单项例外、远端安装离线尾项、复核/miner及无人判结论已展示。
 E10证据展示区已发出：候选f914dd0、原reviewer targeted approved与collector PASS、E-004/E-005/E-010/E-013；不冒称主干复验和真实模型效果。
+
+PR25实际合入a190aa87b7d4057f7bed5f6e4593866915a8a8a9，主干index干净时复验；skill/tools/tests与所审f914dd0无差异。远端head=acd8c29的双平台CI成功，合入态80项和collector PASS。dh-check仍exit1仅R31按用户例外，不伪造全绿。
+
+本卡verify=5cd103f9e67eeba7a6958baf61b5ecad4636c30e，签于实际主干复验之后。有限收口PR只归档本卡状态/证据，无产品/工具/测试增量；所有工件进入origin/master后才清本卡树。源码验收完成不代替两设备安装验收，远端离线状态单列。

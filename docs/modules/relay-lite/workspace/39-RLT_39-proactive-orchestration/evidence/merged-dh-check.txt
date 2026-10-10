@@ -1,0 +1,27 @@
+=== dh-check: relay-lite ===
+设计文档·验收清单: (未解析到)
+
+❌ 失败 1:
+  workspace/39-RLT_39-proactive-orchestration　R31 任务「RLT_39」类型=normal 缺合法的「有效单测·变异点登记」表（mutation-table-missing）——每张重核/常规卡至少登记一个变异点，scanner 判不了一律保守不通过
+
+⚠️  警告 15:
+  dev_plan/P1-独立交付.md　R19 dev_plan 新文件命名建议为 P{N}-{计划名}-开发方案.md（warn 级，不自动改名）
+  dev_plan/P2-会话清理维护.md　R19 dev_plan 新文件命名建议为 P{N}-{计划名}-开发方案.md（warn 级，不自动改名）
+  dev_plan/P3-环境派发与监控.md　R19 dev_plan 新文件命名建议为 P{N}-{计划名}-开发方案.md（warn 级，不自动改名）
+  dev_plan/P4-watcher可靠性.md　R19 dev_plan 新文件命名建议为 P{N}-{计划名}-开发方案.md（warn 级，不自动改名）
+  dev_plan/P5-角色职责维护.md　R19 dev_plan 新文件命名建议为 P{N}-{计划名}-开发方案.md（warn 级，不自动改名）
+  dev_plan/P6-协议精简.md　R19 dev_plan 新文件命名建议为 P{N}-{计划名}-开发方案.md（warn 级，不自动改名）
+  dev_plan/P7-编排主动推进.md　R19 dev_plan 新文件命名建议为 P{N}-{计划名}-开发方案.md（warn 级，不自动改名）
+  workspace/39-RLT_39-proactive-orchestration　R30 只对账未提交变化：当前在主干「master」上，没有任务分叉点可比，已提交变化不适用本闸
+  workspace/33-RLT_33-independent/brief.md　R14 任务「RLT_33」找不到 DevPlan 计划卡验收口径，无法核对 brief 是否漂移
+  workspace/34-RLT_34-session-clear/brief.md　R14 任务「RLT_34」找不到 DevPlan 计划卡验收口径，无法核对 brief 是否漂移
+  workspace/35-RLT_35-environment-dispatch/brief.md　R14 任务「RLT_35」找不到 DevPlan 计划卡验收口径，无法核对 brief 是否漂移
+  workspace/36-RLT_36-watcher-reliability/brief.md　R14 任务「RLT_36」找不到 DevPlan 计划卡验收口径，无法核对 brief 是否漂移
+  workspace/37-RLT_37-role-responsibilities/brief.md　R14 任务「RLT_37」找不到 DevPlan 计划卡验收口径，无法核对 brief 是否漂移
+  workspace/38-RLT_38-protocol-trim/brief.md　R14 任务「RLT_38」找不到 DevPlan 计划卡验收口径，无法核对 brief 是否漂移
+  workspace/39-RLT_39-proactive-orchestration/brief.md　R14 任务「RLT_39」找不到 DevPlan 计划卡验收口径，无法核对 brief 是否漂移
+
+合计: 1 失败, 15 警告
+
+=== 任务卡写法软报告（只读 warn，不影响退出码） ===
+三字段空转: 0 | 单条验收密度: 0 | 缺少增量边界: 0

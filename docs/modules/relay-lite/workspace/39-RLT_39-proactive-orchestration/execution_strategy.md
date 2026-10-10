@@ -118,3 +118,5 @@ Issue24；Draft PR25=https://github.com/nashhu180-netizen/relay-lite/pull/25。�
 原初审freeze存evidence/review-freeze-1.json；用户2026-10-10已同意仅本卡生产代码变异不适用并继续收口/双设备同步，见findings。更新候选后按原实例attempt2定向复核；历史原件/额度均保持。
 
 最新复核collector=evidence/review-gate-2.json，PASS；dh-check-final.txt exit1，仅R31无变异表，按本对话明确单项例外交付，绝不声称dh-check全绿。首次closeout检查另含E9/E10未落账，已据真实对话展示补齐，历史输出保留。
+
+PR25 merged=a190aa87b7d4057f7bed5f6e4593866915a8a8a9；主干复验E-015完成。有限收口分支closeout/RLT_39只含本卡verify/状态/证据，无产品增量；原本卡交付授权覆盖。

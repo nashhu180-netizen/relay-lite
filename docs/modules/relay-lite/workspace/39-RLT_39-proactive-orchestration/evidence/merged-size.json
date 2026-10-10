@@ -1,0 +1,92 @@
+{
+  "baseline": "9f7c2b2c15dca69ce39a780aa4b7c4bc64ea6c70",
+  "basis": "Unicode code points including whitespace in skill md/toml",
+  "before": 39236,
+  "after": 40407,
+  "files": [
+    {
+      "path": "skill/SKILL.md",
+      "before": 10720,
+      "after": 10744,
+      "delta": 24
+    },
+    {
+      "path": "skill/environments.toml",
+      "before": 148,
+      "after": 148,
+      "delta": 0
+    },
+    {
+      "path": "skill/references/adapter-claude-code.md",
+      "before": 1322,
+      "after": 1322,
+      "delta": 0
+    },
+    {
+      "path": "skill/references/adapter-codex.md",
+      "before": 1821,
+      "after": 1821,
+      "delta": 0
+    },
+    {
+      "path": "skill/references/card-chain.md",
+      "before": 3166,
+      "after": 3166,
+      "delta": 0
+    },
+    {
+      "path": "skill/references/decision-guide.md",
+      "before": 2340,
+      "after": 2682,
+      "delta": 342
+    },
+    {
+      "path": "skill/references/document-role.md",
+      "before": 1902,
+      "after": 1902,
+      "delta": 0
+    },
+    {
+      "path": "skill/references/environment-herdr.md",
+      "before": 5184,
+      "after": 5184,
+      "delta": 0
+    },
+    {
+      "path": "skill/references/orchestration.md",
+      "before": 2704,
+      "after": 3475,
+      "delta": 771
+    },
+    {
+      "path": "skill/references/verification.md",
+      "before": 2287,
+      "after": 2287,
+      "delta": 0
+    },
+    {
+      "path": "skill/references/watcher.md",
+      "before": 2510,
+      "after": 2544,
+      "delta": 34
+    },
+    {
+      "path": "skill/roles.toml",
+      "before": 1255,
+      "after": 1255,
+      "delta": 0
+    },
+    {
+      "path": "skill/templates/card-chain.md",
+      "before": 2354,
+      "after": 2354,
+      "delta": 0
+    },
+    {
+      "path": "skill/templates/dispatch.md",
+      "before": 1523,
+      "after": 1523,
+      "delta": 0
+    }
+  ]
+}

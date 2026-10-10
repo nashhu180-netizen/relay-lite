@@ -16,6 +16,7 @@
 | E-008 | miner | evidence/mine.txt；evidence/miner-result.md | observed | fresh miner产出1条待裁决草稿，未改知识正册 |
 | E-009 | code-review | evidence/code-review-1.md；evidence/code-review-1.json | observed | 完整fresh初审changes-requested；仅R31一个open P1 |
 | E-010 | ci | evidence/pr25-ci.json | pass | HEAD511450f的Ubuntu/Windows检查通过 |
+| E-011 | decision | findings.md#r31用户裁决；本对话2026-10-10用户“同意” | observed | 仅本卡生产变异不适用；其余交付继续 |
 
 
 2026-10-10：计划复核指出纯协议normal的生产变异要求冲突，采纳并提交单项例外决定；尚未修改产品，不把回归通过当R31通过。
@@ -25,3 +26,5 @@
 施工完成：核心与三个共用引用、as-built更新；两adapter沿原必读路由使用同一合同。未执行计划中的无效生产变异，未声称R31通过。Draft PR25：https://github.com/nashhu180-netizen/relay-lite/pull/25。
 
 完成所有当前独立可推进项：修改、回归、场景/字符证据、miner、初审和PR检查。余下只有用户R31例外待决及依赖它的定向复核/合入/verify/同步，不把本次汇报当优化已完成。
+
+2026-10-10续做：用户单项批准已登记，原失败/初审留存；源卡与brief同步，产品字节保持原完整初审版本。准备原reviewer唯一一次定向attempt2。

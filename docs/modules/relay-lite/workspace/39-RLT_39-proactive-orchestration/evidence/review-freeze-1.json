@@ -1,13 +1,3 @@
-<!-- dh:v1 -->
-# execution_strategy — RLT_39
-
-当前会话直接维护relay-lite产品，不是业务卡single-task orchestrator；dev-harness标准normal。不启Herdr角色、不触发业务模型分配。本仓AGENTS及dev-harness要求的计划审核、miner、最终独立复核用fresh-context subagent继承当前模型；各只写精确自有审核/证据路径。
-任务授权见brief#本卡开工授权；总表无（独立单卡）。worktree=/home/nash/work/relay-lite/.dh-worktrees/RLT_39；branch=wt/RLT_39；client=codex-cli。
-实施者codex-root-rlt39-20261010。code_review候选提交后冻结；普通merge保留候选祖先供collector验证（本仓维护流程，非业务relay派单squash）；不绕过必要CI/审批。
-Issue24；Draft PR25=https://github.com/nashhu180-netizen/relay-lite/pull/25。双机安装沿原明确授权另留审计，待最终master才执行。
-
-<!-- dh:review-freeze:v2 -->
-```json
 {
   "schema": "dh.review-freeze.v2",
   "task_id": "RLT_39",
@@ -109,10 +99,3 @@ Issue24；Draft PR25=https://github.com/nashhu180-netizen/relay-lite/pull/25。�
   "implementer_session_id": "codex-root-rlt39-20261010",
   "policy_authorization_ref": "docs/modules/relay-lite/workspace/39-RLT_39-proactive-orchestration/brief.md#本卡开工授权"
 }
-```
-
-实际复核派发：第一次dh dispatch因note未绑定三元组被拒且未写盘；补齐同一候选后E-006登记成功，只派出/root/rlt39_code_review一个完整初审，不消耗或重置额外attempt。
-
-当前review collector原JSON=evidence/review-gate-1.json，state=BLOCKED，唯一reason=review-not-approved；不以机器汇总掩盖唯一R31待决P1。待用户决定才继续依赖动作。
-
-原初审freeze存evidence/review-freeze-1.json；用户2026-10-10已同意仅本卡生产代码变异不适用并继续收口/双设备同步，见findings。更新候选后按原实例attempt2定向复核；历史原件/额度均保持。

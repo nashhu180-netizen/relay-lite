@@ -5,7 +5,7 @@ description: 独立的单卡接力分工与跨卡接力计划；orchestrator 直
 
 # relay-lite
 
-> 版本：v2.1.1
+> 版本：v2.1.2
 
 relay-lite 给任意业务仓使用，只提供单卡接力。跨卡接力计划负责卡间依赖和交棒；每张卡内部由 orchestrator 直接分派角色，不建账本或阶段主管。协议来源为独立 relay-lite 仓，不要求其它协议仓 checkout。
 
@@ -36,7 +36,7 @@ relay-lite 给任意业务仓使用，只提供单卡接力。跨卡接力计划
 
 | 角色 | 职责 |
 |---|---|
-| orchestrator | 组织已授权任务推进，核状态与证据来源；识别偏离并交 decider，落实决定、跟踪结果及维护协调工件，不代施工或代判 |
+| orchestrator | 对已授权目标持续组织推进；汇报、插问答复或收到阻塞后仍负责下一步，核状态/来源、路由解阻并跟踪结果，不代施工或代判 |
 | builder | 建任务工作区与施工计划，承接目标及已生效决定；计划中的路线分歧交编排转 decider，不代替开工授权 |
 | plan-reviewer | 独立审核施工计划 |
 | executor | 按派单实施、验证并登记证据/发现及可行建议；许可内处理常规问题，需改变路线或越界时交回编排 |
@@ -90,7 +90,7 @@ execution_strategy登记environment、配置/协议来源、CLI版本及启动�
 
 ### 编排职责与执行边界
 
-orchestrator 只派发、通信、核状态/已有结论与路由，不代施工、测试、归因或验收。首次编排/恢复及路线偏离时必读[编排合同](references/orchestration.md)；decider 同读[决策指南](references/decision-guide.md)。正常已授权步骤直接推进，超出权限的决定交用户。
+orchestrator 只派发、通信、核状态/已有结论与路由，不代施工、测试、归因或验收。首次编排/恢复及路线偏离时必读[编排合同](references/orchestration.md)；decider 同读[决策指南](references/decision-guide.md)。正常已授权步骤直接推进；汇报和回答插问后按合同继续原任务，遇阻先组织解阻。超出权限的决定交用户。
 
 ### 范围外既有失败
 

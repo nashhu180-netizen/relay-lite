@@ -55,3 +55,5 @@ Confidence Challenge：协议已明确，真实模型行为改善尚未实测。
 ## 自动验收及verify记录
 任务RLT_39，执行者AI codex-root-rlt39-20261010；开工与单项例外来源见brief及findings。PR25实际合入a190aa87b7d4057f7bed5f6e4593866915a8a8a9后主干复验：80项exit0、collector PASS、字符复算一致，产品等于所审f914dd0。dh-check仅R31原失败，依据用户明确仅本卡免除的验收调整交付；不是机器全绿。
 RL39-M1–M4按修订后协议/源码范围有据，无开放P0–P3，无新增人判、风险接受或方向待决；不宣称实际模型运行效果。签署本次verify后，经有限收口PR归档至origin/master并读回才销户。双设备安装独立审计，ThinkBook离线项保留，不与源码验收混称完成。
+
+本卡verify=5cd103f9e67eeba7a6958baf61b5ecad4636c30e，签于实际主干复验之后。有限收口PR只归档本卡状态/证据，无产品/工具/测试增量；所有工件进入origin/master后才清本卡树。源码验收完成不代替两设备安装验收，远端离线状态单列。

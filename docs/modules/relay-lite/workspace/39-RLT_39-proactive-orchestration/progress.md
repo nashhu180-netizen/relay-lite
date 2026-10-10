@@ -37,3 +37,5 @@ E9交付汇报已发出（2026-10-10本对话）：目标、职责改变、80项
 E10证据展示区已发出：候选f914dd0、原reviewer targeted approved与collector PASS、E-004/E-005/E-010/E-013；不冒称主干复验和真实模型效果。
 
 PR25实际合入a190aa87b7d4057f7bed5f6e4593866915a8a8a9，主干index干净时复验；skill/tools/tests与所审f914dd0无差异。远端head=acd8c29的双平台CI成功，合入态80项和collector PASS。dh-check仍exit1仅R31按用户例外，不伪造全绿。
+
+本卡verify=5cd103f9e67eeba7a6958baf61b5ecad4636c30e，签于实际主干复验之后。有限收口PR只归档本卡状态/证据，无产品/工具/测试增量；所有工件进入origin/master后才清本卡树。源码验收完成不代替两设备安装验收，远端离线状态单列。

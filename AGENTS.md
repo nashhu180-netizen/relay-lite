@@ -11,7 +11,7 @@
 - worker 先读精确派单与业务仓 AGENTS、指定 workspace；只完成当前派单，不派活、不自审、不问用户。DONE/BLOCKED signal 后立即停止，不等 node_closed。watcher 对 repo/workspace 零写入，只运行观察脚本与报信。
 - 派单标头 [relay-lite:single-task]；角色 executor 表示执行获授权任务，涵盖代码、文档、配置与验证。worker 为所有被派活角色统称。
 - RELAY_RECEIPT 存在（含空值）即 fail closed：产出型角色只写精确 BLOCKED signal，watcher 非 durable 通知后停，不清除 RELAY_*。
-- 编排只派发/通信/核状态/路由，不代跑测试、不代判内容；模型分配、写者、复核与自动接续授权以 skill/SKILL.md 和原卡为准。文档角色默认不启用。
+- 编排对整体目标、路线合理性与持续推进负首责，组织派发/通信/核状态/路由与纠偏；不代跑测试、技术取证或验收判定，不以分工免除整体判断。模型分配、写者、复核与自动接续授权以 skill/SKILL.md 和原卡为准。文档角色默认不启用。
 - 凭据值永不入工件；枚举/截图证据先白名单过滤。用户授权不代替人验，不改历史失败。范围外发现只记 findings；部署、重启、环境写入另行授权。
 - 独立复核可派 fresh-context subagent，只读产品与其它工件，仅写该路径 review。当前会话只维护其被授权任务，不清理其它 worktree。
 

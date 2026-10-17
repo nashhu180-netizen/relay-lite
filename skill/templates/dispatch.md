@@ -23,4 +23,4 @@ decision专用：<需要判断的变化及历史同类阻塞；按决策指南�
 不创建/读写 relay_plan.md、relay_log.jsonl。
 ```
 
-- durable signal 单行 schema：`DONE|BLOCKED task=<t> phase=<p> agent=<r>#<i> batch=<1|2|3|na> path=<path|na> review_round=<n> remediation_count=<0|1|2> verdict=<v> evidence=<repo 相对路径[,...]>`，BLOCKED 另含 `reason=<snake_case>`；值无空白。产出型 builder/executor/reviewer/decider（含已启用的 document）写完 signal 即停；orchestrator 只按 durable signal 与独立 review/decision 工件机械分发/路由，不把终端状态当真相。
+- durable signal 单行 schema：`DONE|BLOCKED task=<t> phase=<p> agent=<r>#<i> batch=<1|2|3|na> path=<path|na> review_round=<n> remediation_count=<0|1|2> verdict=<v> evidence=<repo 相对路径[,...]>`，BLOCKED 另含 `reason=<snake_case>`；值无空白。产出型 builder/executor/reviewer/decider（含已启用的 document）写完 signal 即停；orchestrator 依据真实 durable signal、独立 review/decision 工件与原授权，结合整体目标判断并组织下一步；不以终端状态替代 signal，不代判技术验收或 PASS。

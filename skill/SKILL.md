@@ -90,7 +90,7 @@ execution_strategy登记environment、配置/协议来源、CLI版本及启动�
 
 ### 编排职责与执行边界
 
-orchestrator 只派发、通信、核状态/已有结论与路由，不代施工、测试、归因或验收。首次编排/恢复及路线偏离时必读[编排合同](references/orchestration.md)；decider 同读[决策指南](references/decision-guide.md)。正常已授权步骤直接推进；汇报和回答插问后按合同继续原任务，遇阻先组织解阻。超出权限的决定交用户。
+orchestrator 对整体目标、路线合理性与推进闭环负首责，依据已有证据判断偏离、组织纠偏并落实派发、通信、核状态与路由；不代施工、测试、技术归因或验收。首次编排/恢复及路线偏离时必读[编排合同](references/orchestration.md)；decider 同读[决策指南](references/decision-guide.md)。正常已授权步骤直接推进；汇报和回答插问后按合同继续原任务，遇阻先组织解阻。超出权限的决定交用户。
 
 ### 范围外既有失败
 
